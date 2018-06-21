@@ -1,0 +1,18 @@
+"Part";"Value";"Device";"Package";"Description";"";
+"ADC1";"";"M04LONGPADS";"1X04_LONGPADS";"Header 4";"";
+"ADC2";"";"M04LONGPADS";"1X04_LONGPADS";"Header 4";"";
+"C3";"10uF";"CAP1206";"1206";"Capacitor";"";
+"C4";"1uF";"CAP1206";"1206";"Capacitor";"";
+"C5";"100nF";"CAP1206";"1206";"Capacitor";"";
+"DIGITAL1";"";"M04LONGPADS";"1X04_LONGPADS";"Header 4";"";
+"DIGITAL2";"";"PINHD-1X5";"1X05";"PIN HEADER";"";
+"LED_BUILTIN";"";"LED1206";"1206";"GREEN";"";
+"MIC";"ATMEGA328P-AU";"ATMEGA48/88/168-AU";"TQFP32-08";"";"";
+"POWER";"";"M02LOCK_LONGPADS";"1X02_LOCK_LONGPADS";"Header 2";"";
+"PWR_LED";"";"LED1206";"1206";"RED";"";
+"PWR_LIPO";"";"CONN_HEADER_PH_2POS";"2POS_TOP_2MM";"JST Header";"";
+"R1";"10k";"RESISTOR1206";"1206";"Resistor";"";
+"R2";"330R";"RESISTOR1206";"1206";"";"";
+"R3";"330R";"RESISTOR1206";"1206";"";"";
+"S1";"";"6MM_SWITCH6MM_SWITCH";"6MM_SWITCH";"OMRON SWITCH";"";
+"SPI";"";"PINHD-1X4";"1X04";"PIN HEADER";"";

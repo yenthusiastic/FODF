@@ -1,0 +1,257 @@
+/*Styling the key words in the page*/
+#keyword {
+    color: orange;
+    font-weight: 700
+    
+}
+
+/*Styling the directory paths and file names in the page*/
+#filename {
+    color: royalblue;
+    font-style: italic;
+}
+
+/*Styling the comments in a code block*/
+#comment {
+    color:darkgrey;
+    font-style: italic;
+}
+
+/*Styling the texts in the side navigation bar*/
+#side_text {
+    color: sandybrown
+}
+
+/*Styling the code block*/
+code {
+    white-space: pre-line;
+    color: black
+}
+
+.example {
+    color:darkgoldenrod;
+    font-style: italic;
+    font-family: cursive
+}
+
+test {
+    color:blue;
+    font-family: sans-serif
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/*Styling the body*/
+
+body {
+    margin: 5;
+    font-family: "Century Gothic", sans-serif;
+    font-size: 15px;
+    color: darkcyan;
+}
+
+/*Styling the headings in the body*/
+h1, h2, h3 {
+    color: darkcyan
+}
+
+/* Style the header */
+.header {
+    padding: 0px;
+    text-align: center;
+    color: lightseagreen;
+    display:inline-block;
+    background-image: url(../media/bg.png);
+    background-size: cover
+}
+
+.header.photo {
+    width: 30%; 
+    padding-bottom: 20px;
+    background-size: 0px;
+    
+}
+
+
+
+/*Style the top navigation bar */
+.navtop ul {
+  list-style: none;
+  background-color: cadetblue;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+}
+
+.navtop li {
+    width: 200px;
+    border-bottom: none;
+    height: 50px;
+    font-size: 1.2em;
+    display: inline-block;
+    margin-right: -4px;
+    line-height: 50px;
+    text-align: left;
+  }
+
+
+
+.navtop a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  padding-left: 15px;
+  border-bottom: none;
+  transition: .3s background-color;
+}
+
+.navtop a:hover {
+  background-color: #005f5f;
+}
+
+
+
+/*Styling sub menus of top navigation bar*/
+.navtop li li {
+  font-size: .7em;
+}
+
+
+.navtop > ul > li {
+text-align: center;
+}
+
+.navtop > ul > li > a {
+padding-left: 0;
+}
+
+.navtop li ul {
+position: absolute;
+display: none;
+width: 400px;
+}
+
+.navtop li:hover ul {
+display: block;
+}
+
+.navtop li ul li {
+display: block;
+float: left
+}
+
+
+/*Style the side navigation bar */
+.navside {
+    position: fixed;
+    font-weight: 700;
+    color: sandybrown;
+    
+}
+.navside li a { 
+        list-style: none;
+		width: 250px; 
+		height: 40px; 
+		line-height: 53px; 
+		color: burlywood;
+		text-decoration: none; 
+ 		display: block;  
+		padding-left: 5px;
+	} 
+.navside li a:hover { 
+		border-bottom: solid;
+}
+.navside ul {  
+        list-style: none;
+		width: 200px;
+		float: left;  
+		font-family:"Century Gothic", "HelveticaNeueLT Pro 45 Lt", sans-serif; 
+	}
+.navside ul li { 
+		list-style: none; 
+	} 
+		
+
+.container {
+}
+
+/*Style the table*/
+table {
+    border: 1px solid;
+    
+}
+
+th, td {
+    border: 0.5px solid;
+    padding: 10px;
+    
+}
+
+
+/* Create 2 rows inside the container */
+.row {
+    margin-right:15px;
+    margin-left:15px;
+    
+}
+
+/*Top row*/
+.row.top{
+    height: 50%;
+}
+
+/*Bottom row*/
+.row.bottom {
+    height: 50%;
+}
+
+
+/* Create 2 unequal columns that float next to each other */
+.column {
+    float: left;
+}
+
+
+/* Left column */
+.column.left {
+    width: 25%;
+    list-style: none;
+    
+}
+
+/* Right column */
+.column.right {
+    width: 70%;
+    margin-bottom: 25px;
+    margin-left: 25px;
+}
+
+#intro {
+    text-align: left; 
+}
+
+/* Style the footer */
+.footer {
+    background-color: whitesmoke;
+    font-weight: 700;
+    padding: 5px;
+    bottom: 0;
+    text-align: center;
+    position:fixed;
+    width: 100%
+    
+}
+
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .column.left, .column.right {
+        width: 100%;
+    }
+}
+
+/*CSS file using snippets from http://css-snippets.com/drop-down-navigation/
+and http://css-snippets.com/menu-with-transition/ with modifications
+*/

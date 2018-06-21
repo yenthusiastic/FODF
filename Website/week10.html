@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 10 - Output Device</title>
+        <link rel="stylesheet" href="main.css">   
+    </head>
+    <body>
+        <div class="header">
+          <br><img src="../media/welcome.png" height="30%" width="30%" class="header photo">
+        </div>
+
+        <div class="navtop">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a>Assignments</a>
+              <ul>
+                <li><a href="week1.html">1. Project Management</a></li>
+                <li><a href="week7.html">7. Electronics Design</a></li>
+                <li><a href="week2.html">2. 2D & 3D Design</a></li>
+                <li><a href="week8.html">8. Embedded Programming</a></li>
+                <li><a href="week3.html">3. Laser cutting</a></li>
+                <li><a href="week9.html">9. Input Device</a></li>
+                <li><a href="week4.html">4. 3D Printing</a></li>
+                <li><a href="week10.html">10. Output Device</a></li>
+                <li><a href="week5.html">5. CNC Machining</a></li>
+                <li><a href="week11.html">11. Networking</a></li>
+                <li><a href="week6.html">6. Electronics Production</a></li>
+                <li><a href="final.html">Final Project</a></li>
+                
+              </ul>
+            </li>
+            <li><a href="#">Final Project</a>
+                <ul>
+                <li><a href="final.html#sect1">1. Project Description</a></li>
+                <li><a href="final.html#sect4">4. Download resources</a></li>
+                <li><a href="final.html#sect2">2. Making process</a></li>
+                <li><a href="final.html#sect5">5. License Information</a></li>
+                <li><a href="final.html#sect3">3. Reflections</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+                  <div class="column left">
+                        <h2 id="sideText"></h2>
+                          <div class="navside">
+                              <h2 id="side_text">Page index</h2>
+                              <li><a href="#sect1">1. DC Motor & H-Bridge Controller</a></li>
+                              <li><a href="#sect2">2. Acoustic buzzer</a></li>
+                              <li><a href="#sect3">3. Download resources</a></li>
+                          </div>
+                  </div>
+                  <div class="column right">
+                    <h1>Documentation Week 10: Output Device</h1>
+                    <h3>Date: 20.12.2017 - 26.12.2017</h3>
+                      <p>The assignment for this week is to controll different output devices using one of the FabLab made boards from previous weeks, better the devices that will be used in the final project. For me, I tried working with a DC motor and an acoustic buzzer.</p>
+                      <p>For my final project, I would like to make a <a id="keyword">height adjustable desk</a> that can be raised or lowered to accommodate user's both sitting and standing postures. Originally when discussed with Danielle, I wanted to use a Stepper Motor and other mechanical parts like timing belt and pulleys to create the motion for the desk. However, after looking around for aternative methods, I found out that I should better use a <a href="https://en.wikipedia.org/wiki/Linear_actuator">Linear Actuator</a> which creates motion in a straight line, which is more stable and suitable for this project's purpose than rotaty motion created by a stepper motor. Thus, I have ordered one but it has not arrived yet, so I am testing with a DC Motor instead because it can be similarly controlled with a microcontroller: I need to use a <a id="keyword">H-Bridge motor controller</a> together with the microcontroller to reverse the actuator's direction of motion under the trigger of a button.</p>
+                      <p>Another output device I need for my final project is a buzzer, which will beep some notification sound after some time of idle sitting or standing. This means, the desk will detect human's presence and after some pre-defined time if the person is still at the desk with the same sitting/ standing posture, it will beep to tell the person that they should change their posture.</p>
+                      <p>I am also considering adding an OLED display where the user can use together with a potentiometer to define the time interval after which the buzzer will be triggered. This will be done afterwards for the final project.</p>
+                    <a name="sect1"><h2>1. DC Motor & H-Bridge Controller</h2></a>
+                      <p>I used a 12V DC Motor and a <a href="https://www.sparkfun.com/products/9670">L298N Dual H-Bridge Motor Controller</a> found in the FabLab and followed the instructions in this useful <a href="http://howtomechatronics.com/tutorials/arduino/arduino-dc-motor-control-tutorial-l298n-pwm-h-bridge/">tutorial on HOW TO MECHATRONICS</a> to wire up the motor to the L298N module and to my FabLab-made board from Week 9:</p>
+                      <code><a id="comment">L298N Controller board's pin ----- ATMEGA328 Board's pin</a>
+                          <a style="color: blue">ENA ------------------------------ D9/PWM4</a>
+                          <a style="color: goldenrod">IN1 ------------------------------ D5/PWM2</a>
+                              <a style="color: limegreen">IN2 ------------------------------ D6/PWM3</a>
+                              <a style="color: black">GND ------------------------------ GND</a>
+                          
+                          <a id="comment">L298N Controller board's pin ----- DC Motor's pin</a>
+                          <a style="color: red">OUT1 ----------------------------- RED wire</a>
+                          <a style="color: black">OUT2 ----------------------------- BLACK wire</a>
+                      </code>
+                      <p>I also attached a button and a 10K resistor to the microcontroller. </p>
+                      <p>This motor controller can support 2 DC motors but I only need 1 so I am only using the <a style="color: blue">Enable Pin A (ENA)</a> which has to be connected to a <a style="color: blue">PWM pin</a> on the microcontroller to <a id="keyword">control the speed of rotation</a> without having to change the voltage supplied to the DC Motor (which can also be used to achieve the same affect). The <a style="color: goldenrod">IN1</a> and <a style="color: limegreen">IN2</a> pins are used to <a id="keyword">control the direction of rotation</a> and have to be connected to 2 Digital pins on the microcontroller. When IN1 is set to LOW and IN2 is set to HIGH, the Motor turns in one direction and vice versa, when IN1 is HIGH and IN2 is LOW; the Motor turns in the other direction. The motor's red and black wires are connected to the OUT1 and OUT2 pins on the controller module and the order does not matter because it will only reverse the direction of rotation. Finally, I also need to <a id="keyword">provide 12VDC between the 12V and GND terminals on the Controller module</a>, meanwhile the <a id="keyword">ATMEGA328 Board uses a separate 3.3V power supply</a> from the TTL-Serial converter like in previous assignments.</p>
+                      <img src="../media/week10/1.jpg" height="70%" width="70%">
+                      <p>Afterwards, I modified the example sketch from the tutorial by removing the lines relating to the potentiometer because I am not using one, and provide <a id="keyword">a fixed PWM value of 80 to the ENA pin</a> so that the motor rotates slowly enough for me to capture it in a video. The final code looks like this:</p>
+                      <img src="../media/week10/3.PNG" height="50%" width="50%">
+                      <p>And it works, the motor's diretion of rotation is reversed every time I press the button:</p>
+                      <img src="../media/week10/final1.gif" height="60%" width="60%">
+                    <a name="sect2"><h2>2. Acoustic buzzer</h2></a>
+                      <p>The acoustic buzzer is much simpler than the DC motor to control. I simply need the (+) side of it to a PWM pin and the (-) side of it to the GND pin of the microcontroller, for example:</p>
+                      <code><a id="comment">ATMEGA328 Board's pin ----- Buzzer's pin</a>
+                          <a style="color: red">D3/INT1/PWM1 -------------- RED wire</a>
+                          <a style="color: black">GND ----------------------- BLACK wire</a>
+                      </code>
+                      <p>I also wrote a small sketch to make the buzzer beeps 3 tones of different frequencies at the starting up of the microcontroller:</p>
+                      <img src="../media/week10/4.PNG" height="40%" width="40%">
+                      <p>Here it can be seen that the playNotes() function create 3 notes using the tone() function of Arduino: 2 notes with a frequency of 350Hz, 1 with a frequency of 300Hz. All of them have a length of 200ms and loudness of 250 (out of 255).</p>
+                      <p>And here is a video of the buzzer making tones when I reboot the microcontroller.</p>
+                      <embed src="../media/week10/final2.mp4"></embed>
+                      <p>Luckily, I did not encounter any problems for this week's assignment.</p>
+                    <a name="sect3"><h2>3. Download resources</h2></a>
+                The Arduino sketches used for this week's assignment can be downloaded below:
+                <ul>
+                    <li><a href="../Assignment Files/Week10/H_bridge_test.ino">DC Motor & H-bridge controller</a></li>
+                    <li><a href="../Assignment Files/Week10/test_buzzer3.ino">Buzzer's tones</a></li>
+                </ul>
+                  </div>
+                </div>        
+             </div>
+        
+                <div class="footer">
+                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                </div>
+              
+    </body>
+
+</html>

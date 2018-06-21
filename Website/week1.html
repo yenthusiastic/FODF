@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 1 - Project Management</title>
+        <link rel="stylesheet" href="main.css">   
+    </head>
+    <body>
+        <div class="header">
+          <br><img src="../media/welcome.png" height="30%" width="30%" class="header photo">
+        </div>
+
+        <div class="navtop">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a>Assignments</a>
+              <ul>
+                <li><a href="week1.html">1. Project Management</a></li>
+                <li><a href="week7.html">7. Electronics Design</a></li>
+                <li><a href="week2.html">2. 2D & 3D Design</a></li>
+                <li><a href="week8.html">8. Embedded Programming</a></li>
+                <li><a href="week3.html">3. Laser cutting</a></li>
+                <li><a href="week9.html">9. Input Device</a></li>
+                <li><a href="week4.html">4. 3D Printing</a></li>
+                <li><a href="week10.html">10. Output Device</a></li>
+                <li><a href="week5.html">5. CNC Machining</a></li>
+                <li><a href="week11.html">11. Networking</a></li>
+                <li><a href="week6.html">6. Electronics Production</a></li>
+                <li><a href="final.html">Final Project</a></li>
+                
+              </ul>
+            </li>
+            <li><a href="#">Final Project</a>
+                <ul>
+                <li><a href="final.html#sect1">1. Project Description</a></li>
+                <li><a href="final.html#sect4">4. Download resources</a></li>
+                <li><a href="final.html#sect2">2. Making process</a></li>
+                <li><a href="final.html#sect5">5. License Information</a></li>
+                <li><a href="final.html#sect3">3. Reflections</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+                  <div class="column left">
+                        <h2 id="sideText"></h2>
+                          <div class="navside">
+                              <h2 id="side_text">Page index</h2>
+                              <li><a href="#sect1">1. HTML & CSS Basics</a></li>
+                              <li><a href="#sect2">2. Using Git</a></li>
+                              <li><a href="#sect3">3. Problems & Troubleshooting</a></li>
+                          </div>
+                  </div>
+                  <div class="column right">
+                    <h1>Documentation Week 1 - Project Management</h1>
+                    <h3>Date: 11.10.2017 - 17.10.2017</h3>
+                      <p>In this first week we learn about designing website with HTML and CSS, and working with Git in order to produce documentation and safely make changes to the projects.</p>
+                    <a name="sect1"><h2>1. HTML & CSS Basics</h2></a>
+                    <h3>1.1. Install the Brackets IDE</h3>
+                      The IDE that Daniele introduced to us in the lecture is called <a id="keyword">Brackets</a> (<a href="http://www.brackets.io">download link here</a>). This IDE can be used to code in different languages, among which we use HTML and CSS for our website. It comes with many useful functions including syntax suggestion, syntax highlighting, autocomplete and so on.
+                      
+                    <h3>1.2. Simple exercises</h3>
+                      During the lecture we practised some basic HTML and CSS knowledge including
+                      <ul>
+                          <li>Using HTML tags</li>
+                          <code>
+                            <b>This is a bold text</b>
+                            <ul><li>This is an unordered list item</li></ul>
+                            <ol><li>This is an ordered list item</li></ol>
+                          </code>
+                          <li>Using CSS selectors</li>
+                          <code>
+                            <a class="example">This line uses the "example" class. A class in CSS helps to group all objects with common properties together</a>
+                            <a id="keyword">This line uses the "keyword" identifer. An identifier in CSS helps to give unique properties to certain objects</a>
+                            <test>This line uses the "test" tag. All HTML tags' properties can be defined in the CSS file.</test>
+                          </code>
+                      </ul>
+                      
+                      <h3>1.3. Building my website</h3>
+                      Just with the basic knowledge it is already a good foundation for me to learn to <b>build the basic frame of my website which consists of 4 parts:</b> 
+                      <ul>
+                          <li>a header with a background picture and a foreground picture,</li>
+                          <li>a top navigation bar with 4 tabs "Home/Assignments/Final Project/About",</li>
+                          <li>a content frame with the page's index menu on the left and the page content on the right,</li>
+                          <li> and a footer with some information text.</li>
+                      </ul>
+                      Here are the examples of the codes I used inside the <a id="keyword">HTML body</a> and in my <a id="keyword">CSS file</a> for these parts:
+                      <br><br>
+                      <table>
+                          <tr>
+                              <th><b>Part of the website frame</b></th>
+                              <th><b>HTML Code</b></th>
+                              <th><b>CSS code</b></th>
+                          </tr>
+                        <tr>
+                            <td style="text-align: center">PAGE HEADER</td>
+                            <td>
+                                <code>
+                                  &lt;div class="header"&gt;
+                                  &lt;br&gt;&lt;img src="../media/foreground_picture.png" height="30%" width="30%"&gt;
+                                  &lt;/div&gt;
+                                </code>
+                            </td>
+                            <td>
+                                <code>
+                                  .header {
+                                    padding: 0px;
+                                    text-align: center;
+                                    color: lightseagreen;
+                                    display: inline-block;
+                                    background-image: url(../media/background_pic.png);
+                                    background-size: cover
+                                    }
+                                    
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">TOP NAVIGATION BAR</td>
+                            <td>
+                                <code>
+                                    &lt;div class="navtop">
+                                      &lt;ul&gt;
+                                        &lt;li&gt;&lt;a href="../index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;Assignments&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;Final Project&lt;/a>&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="about.html"&gt;About&lt;/a&gt;&lt;/li&gt;
+                                      &lt;/ul&gt;
+                                    &lt;/div&gt;
+                                </code>
+                            </td>
+                            <td>
+                                <code>
+                                    .navtop ul {
+                                      list-style: none;
+                                      background-color: cadetblue;
+                                      text-align: right;
+                                      padding: 0;
+                                      margin: 0;
+                                    }
+
+                                    .navtop li {
+                                        width: 150px;
+                                        border-bottom: none;
+                                        height: 50px;
+                                        font-size: 1.2em;
+                                        display: inline-block;
+                                        margin-right: -4px;
+                                        line-height: 50px;
+                                        text-align: left;
+                                      }
+                                    
+                                </code>
+                            </td>
+                        </tr>
+                          <tr>
+                              <td style="text-align: center">PAGE INDEX MENU AND PAGE CONTENT</td>
+                              <td>
+                                  <code>
+                                      &lt;div class="container">
+                                        &lt;div class="row">
+                                              &lt;div class="column left">
+                                                    &lt;h2 id="sideText">&lt;/h2>
+                                                      &lt;div class="navside">
+                                                          &lt;h2 id="side_text">Page index&lt;/h2>
+                                                          &lt;li>&lt;a href="#section1">1. HTML & CSS Basics&lt;/a>&lt;/li>
+                                                          &lt;li>&lt;a href="#section2">2. Using Git&lt;/a>&lt;/li>
+                                                          &lt;li>&lt;a href="#section3">3. Problems & Troubleshooting&lt;/a>&lt;/li>
+                                                      &lt;/div>
+                                              &lt;/div>
+                                            &lt;div class="column right"> Here goes the page content...&lt;/div>
+                                          &lt;/div>
+                                      &lt;/div>
+                                  </code>
+                              </td>
+                              <td>
+                                  <code>
+                                      .row {
+                                        margin-right:15px;
+                                        margin-left:15px;
+                                        }
+                                      .column.left {
+                                        width: 25%;
+                                        list-style: none;
+                                        }
+                                      .navside {
+                                        position: fixed;
+                                        font-weight: 700;
+                                        color: sandybrown;   
+                                        }
+                                      .navside ul {  
+                                        width: 200px;
+                                        float: left; 
+                                        }
+                                      .column.right {
+                                        width: 70%;
+                                        margin-bottom: 25px;
+                                        margin-left: 25px;
+                                    }
+                                      
+                                  </code>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td style="text-align: center">FOOTER</td>
+                              <td>
+                                  <code>
+                                      &lt;div class="footer">
+                                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                                       &lt;/div>
+                                  </code>
+                              </td>
+                              <td>
+                                  <code>
+                                      .footer {
+                                        background-color: whitesmoke;
+                                        font-weight: 700;
+                                        padding: 5px;
+                                        bottom: 0;
+                                        text-align: center;
+                                        position:fixed;
+                                        width: 100%
+                                      }
+                                      
+                                  </code>
+                              </td>
+                          </tr>
+                      </table>
+                      <br>
+                      The CSS codes for the top navigation bar and the side menu are adapted from the snippets on <a href="http://css-snippets.com/drop-down-navigation/">this website</a>.
+                      
+                    <a name="sect2"><h2>2. Using Git</h2></a>
+                    <h3>2.1. In the lecture</h3>
+                    <a id="keyword">Git</a> is a distributed version control system, which helps us to make backups and keep track of changes done to our projects. "Distributed" means that users clone the original repository from the remote server to their own machine, making distributed copies of the repo locally. Users then work and make changes on the local copies before they commit the changes to their local repo, and finally push the changes from local repo to the original repo on remote server.
+                    <p>We <a href="https://git-scm.com/downloads">downloaded</a> and installed Git (for Windows in my case). Here are some notes Daniele mentioned while running the installer:</p>
+                       We should select OpenSSH as the SSH executable,
+                      <br><img src="../media/week1/cap10.JPG" height="50%" width="50%"> <br>               
+                      <br> and select "Use the Open SSL library" for HTTPS connections,
+                      <br><img src="../media/week1/cap11.JPG" height="50%" width="50%"> <br>
+                      <br> and select "Checkout as-is, commit as-is" for the line-ending conversions. This is because for now we only use a single computer or computers running same OS to work on the repo.
+                      <br><img src="../media/week1/cap12.JPG" height="50%" width="50%"> <br>
+                      
+                      <p>Next, we configured the email and user name, and then generated our own private and public SSH key</p>
+                      <code>
+                      ssh-keygen -t rsa -C "your_email"
+                      </code>
+                      <p>It is not necessary to give a new name of the SSH key file or give a passphrase. By default, the SSH keys will be saved under the folder <a id="filename">C:/Users/Your-user-name/.ssh</a></p>
+                      <img src="../media/week1/cap2.JPG" height="50%" width="50%">
+                    <h3>2.2. After the lecture</h3>
+                    <p>The generated public SSH key has to added to the Gitlab account in order to push and pull data from local repository on remote server
+                    <br>
+                    <ol>
+                        <li>Log in to Gitlab using credentials received from the email and change the password</li>
+                        <li>Create a project and give it a name. For me I gave it the name <a id="filename">FoDF_Documentation</a></li>
+                        <li>Go to Profile Settings, and then SSH Keys</li>
+                        <li>
+                        Copy the <a id="keyword">public SSH key</a> from the file <a id="filename">id_rsa.pub</a>, which should be located in the folder <a id="filename">C:/Users/Your-user-name/.ssh</a>, and paste it to the field </li>
+                        <img src="../media/week1/cap0.JPG" height="60%" width="60%">
+                        <li>Enter a title for the key and press <a id="keyword">Add key</a> to save it. Now go to the folder where we want to clone the repo and right click and then click on <a id="keyword">Git Bash Here:</a></li>
+
+                         <img src="../media/week1/cap8.JPG" height="25%" width="25%"> 
+                            <br>
+                            <p>Then execute the commands to clone the repository to current working folder, line-by-line. For me the codes look like the following:</p>
+                        <code>
+                        cd path/to/desired/folder <a id="comment">###change working directory to desired folder, if we open Git Bash from anywhere else other than the desired parent directory</a>
+                        git config --global user.name "Thu Nguyen" <a id="comment">###username configuration</a>
+                        git config --global user.email "thi-yen-thu.nguyen@hsrw.org"    <a id="comment">###email configuration</a>
+                        git clone git@gitlab.hsrw.org:Thu.Nguyen/FoDF_Documentation.git <a id="comment">###clone the repo from remote server to local machine</a>
+                        cd FoDF_Documentation   <a id="comment">###move to the sub-directory of the cloned local copy</a>
+                        touch README.md <a id="comment">###create the README markdown file</a>
+                        git status  <a id="comment">###check the status of the repo, modified and new files are shown in <a style="color: red"><i>red</i></a></a>
+                        git add README.md   <a id="comment">###add the README file to index tree</a>
+                        git commit -m "add README.md"   <a id="comment">###commit the README file to HEAD tree with a message </a>
+                        git push -u origin master   <a id="comment">###push the changes in the repo to the remote server</a>	
+                        </code>
+                        <br>Here are the outputs of the Git Bash
+                        <br><br>
+                         <img src="../media/week1/cap3.JPG" height="45%" width="45%">
+                         <img src="../media/week1/cap4.JPG" height="45%" width="45%">
+                        <br>	
+                    </ol>
+                    <a name="sect3"><h2>3. Problems and troubleshooting</h2></a>
+                    <h3>3.1. Problem signing the SSH key</h3>
+                      Because I was using some other Git GUI application before, a private-public SSH key pair has already existed in the folder <a id="filename">C:/Users/Your-user-name/.ssh</a>, and thus the newly generated private-public SSH key pair are not saved in this folder but outside of the folder instead. 
+                      As a result, after I copied my public key to the Gitlab repository and tried to push some changes to the repo, I encountered some problem:
+                     <br><br><img src="../media/week1/cap1.JPG" height="50%" width="50%">
+                      
+                      <p>The committed local changes could not be pushed because the SSH key pair is not put in the correct folder (at least for Windows). After I moved the SSH key pair to the folder <a id="filename">C:/Users/Your-user-name/.ssh</a>, everything worked fine again.</p>
+                    <h3>3.2. Problem with HTML & CSS</h3>
+                      While trying to adding a footer to the bottom of my page, I keep getting the problem that the footer is not where it should be, like this:
+                      <br><img src="../media/week1/cap13.JPG" height="90%" width="90%"><br>
+                      By adding the following line to the <a id="keyword">footer</a> class in my CSS file <a id="filename">main.css</a>, the problem was solved: <br>
+                      <code> 
+                      position:fixed; 
+                      </code>
+                      <p>This means keeping the footer at a fixed position of the screen, no matter where the mouse is scrolling to. Knowing this, I use the same CSS property for my side bar navigation so that it is easy to keep track of the page's content from anywhere on the page.</p>
+                      
+                      <br>
+                  </div>
+                </div>        
+             </div>
+        
+                <div class="footer">
+                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                </div>
+              
+    </body>
+
+</html>

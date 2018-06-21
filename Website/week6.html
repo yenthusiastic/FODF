@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 6 - Electronics Production</title>
+        <link rel="stylesheet" href="main.css">   
+    </head>
+    <body>
+        <div class="header">
+          <br><img src="../media/welcome.png" height="30%" width="30%" class="header photo">
+        </div>
+
+        <div class="navtop">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a>Assignments</a>
+              <ul>
+                <li><a href="week1.html">1. Project Management</a></li>
+                <li><a href="week7.html">7. Electronics Design</a></li>
+                <li><a href="week2.html">2. 2D & 3D Design</a></li>
+                <li><a href="week8.html">8. Embedded Programming</a></li>
+                <li><a href="week3.html">3. Laser cutting</a></li>
+                <li><a href="week9.html">9. Input Device</a></li>
+                <li><a href="week4.html">4. 3D Printing</a></li>
+                <li><a href="week10.html">10. Output Device</a></li>
+                <li><a href="week5.html">5. CNC Machining</a></li>
+                <li><a href="week11.html">11. Networking</a></li>
+                <li><a href="week6.html">6. Electronics Production</a></li>
+                <li><a href="final.html">Final Project</a></li>
+                
+              </ul>
+            </li>
+            <li><a href="#">Final Project</a>
+                <ul>
+                <li><a href="final.html#sect1">1. Project Description</a></li>
+                <li><a href="final.html#sect4">4. Download resources</a></li>
+                <li><a href="final.html#sect2">2. Making process</a></li>
+                <li><a href="final.html#sect5">5. License Information</a></li>
+                <li><a href="final.html#sect3">3. Reflections</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+                  <div class="column left">
+                        <h2 id="sideText"></h2>
+                          <div class="navside">
+                              <h2 id="side_text">Page index</h2>
+                              <li><a href="#sect1">1. Prepare milling job in Eagle</a></li>
+                              <li><a href="#sect2">2. PCB millling</a></li>
+                              <li><a href="#sect3">3. Populate and program PCB</a></li>
+                              <li><a href="#sect4">4. Problems and Troubleshooting</a></li>
+                              <li><a href="#sect5">5. Download resources</a></li>
+                          </div>
+                  </div>
+                  <div class="column right">
+                    <h1>Documentation Week 6: Electronics Production</h1>
+                    <h3>Date: 22.11.2017 - 28.11.2017</h3>
+                      <p>The assignment for this week is to manufacture a <a id="keyword">PCB (Printed Circuit Board)</a> using a pre-designed circuit, which is the "Hello Board" given by Daniele and the material used is FR2 (Flame Resistant 2, which is a composite made of paper and resin). We learned how to use the <a href="https://circuits.io/eagle/">Eagle CAD software</a> to export an image of the circuit for milling. The image is then processed on the <a href="fabmodules.org">Fab Modules Website</a> to produce Gcode instructions for the specific milling machine. Afterwards, we learned how to solder components to the PCB, check the connectivity and program the on-board <a id="keyword">ATTiny45</a> chip using the Arduino Uno and the Arduino IDE.</p>
+                    <a name="sect1"><h2>1. Prepare milling job in Eagle</h2></a>
+                      <p>We first have to pull the Fundamental2017CourseMaterial Repository to get the <a id="filename">EAGLE board (.BRD)</a> and <a id="filename">EAGLE schematic (.SCH)</a> files for the pre-designed circuit. Next, we open the board file in Eagle and click on the <a id="keyword">Layer</a> button on top of the left hand side Toolbar:</p>
+                      <img src="../media/week6/1.png" height="85%" width="85%">
+                      <p>Next we click on <a id="keyword">None</a> to deselect all layers, then click on only <a id="keyword">Top</a> and <a id="keyword">Pads</a> layers and finally press <a id="keyword">Apply</a> in order to highlight only these 2 layers:</p>
+                      <img src="../media/week6/2.png" height="85%" width="85%">
+                      <p>Now that we have the 2 layers needed for the milling job, we go to <a id="filename">File -> Export -> Image</a> in order to save an image of the circuit:</p>
+                      <img src="../media/week6/3.png" height="85%" width="85%">
+                      <p>We need to specify the Resolution to be <a id="keyword">1500 dpi</a>, the Area to be <a id="keyword">Full</a> and check on the <a id="keyword">Monochrome</a> box before exporting.</p>
+                      <img src="../media/week6/3b.png" height="55%" width="55%">
+                      <p>And this is how my exported image looks like:</p>
+                      <img src="../media/week6/4.png" height="75%" width="75%">
+                      <p>Next, we use a Photo Editing Software like <a href="https://www.gimp.org/">GIMP</a> to crop the image to a desired size:</p>
+                      <img src="../media/week6/5.png" height="65%" width="65%">
+                      <p>After saving this new image, we have to draw the border for the circuit using a rectangular area filled with white (if the background of the image was black, and vice versa) and also save this new image to a new file:</p>
+                      <img src="../media/week6/6.png" height="65%" width="65%">
+                      <p>After having the 2 images for the circuit and the circuit's outine, we go to the <a href="fabmodules.org">Fab Modules Website</a> to load the image:</p>
+                      <img src="../media/week6/7.png" height="85%" width="85%">
+                      <p>After selecting <a id="filename">input format -> image(.png)</a> and load the first image with the circuit traces, we need to choose the correct output format for the milling machine we are going to use. In the FabLab currently there are 2 PCB milling machines: <a id="keyword">Roland MDX-40</a> which is the same one that we used in <a href="week5.html">last week - CNC Machining</a>, and the <a id="keyword">Cirqoid</a>. Thus, we have to select <a id="filename">output format -> G-codes (.nc)</a> if using the Cirqoid, or <a id="filename">output format -> Roland mill (.rml)</a> if using the Roland.</p>
+                      <img src="../media/week6/8.png" height="85%" width="85%">
+                      <img src="../media/week6/8b.png" height="85%" width="85%">
+                      <p>Next we have to select <a id="filename">process -> PCB traces (1/64)</a> in order for the program to produce toolpath for the circuit:</p>
+                      <img src="../media/week6/9.png" height="85%" width="85%">
+                      <p>On the menu on the right hand side, we have to input the parameters for the milling job depending on the type of machine selected. Since we have already worked with the Roland last week, this week I would like to try working with a new machine so I use the settings for the Cirqoid (which are provided by Daniele) as followed:
+                      <a name="code1"><code>
+                        - cut speed 1mm
+                        - plunge speed 1mm
+                        - jog speed 1mm
+                        - jog height 2mm
+                        - cut depth 0.0mm
+                        - tool diameter 0.2mm
+                        - offset overlap 55% 
+                        - number of offsets 4
+                      </code></a>
+                      <p>Note that the cut depth is 0.0 because according to Ahmed, the thickness of top copper layer is only <a id="keyword">0.0345 mm</a> and later on we are going to set the Z-origin to be just touching the copper surface.</p>
+                      <p>After filling in the correct settings, we click on <a id="keyword">Calculate</a> so that the program can generate toolpath for the machine:</p>
+                      <img src="../media/week6/10.png" height="85%" width="85%">
+                      <p>Since these are only traces of the circuit, we have to save this job and then generate a new job for cutting the board's outline using the other image and the same process:</p>
+                      <a name="img2"><img src="../media/week6/11.png" height="85%" width="85%"></a>
+                      <p>However, the settings for this job is different because this time we are not only milling out the top copper layer but we need to fully cut through the FR2 material:
+                          <code>
+                        - cut speed 0.4mm
+                        - plunge speed 0.4mm
+                        - jog speed 1mm
+                        - jog height 5mm
+                        - cut depth 1.9mm
+                        - tool diameter 1mm
+                        - number of offsets 1
+                          </code>
+                    <p>Again, we save this job and proceed to the milling machine for manufacturing the PCB.</p>
+                    <a name="sect2"><h2>2. PCB millling</h2></a>
+                      <h3>2.1. Milling circuit traces</h3>
+                      <p>First, we have to fix the PCB on to the machine's bed (which has been prepared for us by Daniele) and then insert the correct tool. For the trace milling job, as seen in the <a href="#code1">first settings</a>, we have to insert 0.2mm milling bit into the spindle:</p>
+                      <img src="../media/week6/12.jpg" height="65%" width="65%">
+                      <p>Next, we have to open the dedicated software and connect the computer to the milling machine and <a id="keyword">press $H to home the machine.</a> Now it is time set the XYZ origin point for the milling job. The origin point in the FabModules CAM processor starts from the bottom left of the circuit's image, thus, we need to set the origin point also at the bottom left of the region we want to mill.</p>
+                      <p>First we raise the spindle in Z direction so that it is at a safe distance (about 5mm) above the copper surface, then we use the <a id="keyword">X-/X+</a> or <a id="keyword">Y-/Y+</a> buttons to move the spindle to desire XY-origin. The tough part is to set the Z-origin so that it is not too deep into the material or too far away from the copper surface. At the distance of 5mm above the copper surface, we enter the following command into the console to enable the spindle:</p>
+                    <code>M3 S100     <a id ="comment">##to enable the spindle</a></code>
+                    <p>Then we have to lower the spindle very slowly in the Z direction, first with steps of 0.1mm, until when we are only around 1-2mm away from the copper surface, we change to steps of 0.05mm until the spindle just scratches the surface:</p>
+                      <img src="../media/week6/13.jpg" height="65%" width="65%">
+                      <p>In the image above, the first time I picked the Z origin it was still too deep (the point at the bottom), thus I had to redo it and the second time (the point at the top) was better.</p>
+                      <p>After having the desired origin point, we press <a id="keyword">Reset Zero</a> to set this as origin point. Then we move the spindle up in Z direction again, and stop the spindle by entering in the console:</p>
+                      <code>M5    <a id ="comment">##to stop the spindle</a></code>
+                      <p>Now we can load the G-code file for milling the traces into the software:</p>
+                      <img src="../media/week6/14.jpg" height="85%" width="85%">
+                      <p>After checking that the traces look fine in the software, we can press <a id="keyword">Play</a> to start the job, and we do not have to move the spindle to its origin position before starting.</p>
+                      <p>One thing to note is that we should <a id="keyword">always connect the computer to AC while the machine is milling</a>, otherwise the computer could go to sleep after some time and the job stops in the middle of the way and we lose all information about the origin point. Here is an image of the machine while milling the traces:</p>
+                      <img src="../media/week6/14b.jpg" height="85%" width="85%">
+                      <h3>2.2. Cutting board outline</h3>
+                      <p>When the first milling job is finished, we can use the <a id="keyword">X-/X+</a> or <a id="keyword">Y-/Y+</a> buttons to move the spindle away for viewing and for changing the tool. Note that we <a id="keyword">SHOULD NOT PRESS HOME BUTTON</a> because this will cause us to lose the origin point of the first job.</p>
+                      <img src="../media/week6/15.jpg" height="85%" width="85%">
+                      <p>It can be seen that the traces were milling quite well. Now that I have changed to the new tool with 0.3mm diameter, I can set the new Z-origin for the second milling job without having to change the XY-origin, because only the tool length has changed. First, I have to go back to the XY-origin by entering the following commands into the console:</p>
+                      <a name="code3"><code>G0 X0    <a id ="comment">##to move spindle to X origin</a>
+                          G0 Y0    <a id ="comment">##to move spindle to Y origin</a>
+                      </code></a>
+                      <p>Now I have to set the new Z-origin using the same steps as before,</p>
+                      <img src="../media/week6/16.jpg" height="85%" width="85%">
+                      <p>then load the G-code for cutting the outline of the board into the software and press Play again to start the job:</p>
+                      <img src="../media/week6/17.jpg" height="85%" width="85%">
+                      <p>While milling my first board with the Cirqoid, I encountered a problem at this last step of cutting out the board, which will be discussed later in <a href="#sect4">Section 4 - Problems and Troubleshooting</a>. Thus, in the end my first board was missing some traces because they overlap with the outline trace:</p>
+                      <a name="img1"><img src="../media/week6/17b.jpg" height="85%" width="85%"></a>
+                      <p>Although these are still fixable, I still would like to make another board so that I can practice the milling procedure again. Thus, I changed the tool and started the milling job again at another origin position:</p>
+                      <img src="../media/week6/18.jpg" height="85%" width="85%">
+                      <p>This is how the traces on my second board look like:</p>
+                      <img src="../media/week6/19.jpg" height="65%" width="65%">
+                      <p>There is another a little problem with this second trial, as can be seen from the traces at the bottom right area where the pads for the pin headers are not perfect. This is likely because the PCB was not levelled. However, this is also fixable, so I continue with changing to the 0.3mm tool and setting the new Z-origin to cut the outline of the board:</p>
+                      <img src="../media/week6/20.jpg" height="65%" width="65%">
+                      <p>In the end, these are the 2 boards putting next to each other:</p>
+                      <img src="../media/week6/21.jpg" height="65%" width="65%">
+                      <br><a id="filename">Left: First try, Right: Second try</a>          
+                    <a name="sect3"><h2>3. Populate and program PCB</h2></a>
+                      <p>Before populating the PCB, we need to drill the holes for the pin headers on the board using 0.8mm drilling bit:</p>
+                      <img src="../media/week6/22.jpg" height="55%" width="55%">
+                      <p>Afterwards, we follow the PCB pinout image provided by Daniele in order to solder the correct components to the correct positions on the board:</p>
+                      <img src="../media/week6/23.jpeg" height="55%" width="55%">
+                      <p>Here are the Bill of Materials for each Hello Board:</p>
+                      <code>1 x ATTiny45 (SOIC8)
+                          1 x 1206 SMD LED
+                          1 x 1206 499 Ohm SMD Resistor
+                          1 x 1206 10K Ohm SMD Resistor
+                          1 x 1206 100nF SMD Capacitor
+                          1 x 1206 1uF SMD Capacitor
+                          1 x 1206 10uF SMD Capacitor
+                          1 x 5 Male pin headers
+                          2 x 2 Male pin headers
+                          1 x 1 Male pin header
+                      </code>
+                      <p>And here are my completed boards (for the first board I need to solder addditional enamelled copper wires to replace the missing traces):</p>
+                      <img src="../media/week6/24.jpg" height="85%" width="85%">
+                      <br><a id="filename">Left: Second board, Right: First board</a>
+                      <p>Next, I use the multimeter to check the connections of the board to make sure that the pins on the ATTiny are correctly connected to corresponding pin headers and components and there are no pins accidentally connected together if they should not be.</p>
+                      <p>In the Arduino IDE, first I have to upload the ISP programmer sketch to the Arduino Uno under <a id="filename">File -> Examples -> Arduino ISP -> ISP</a>:
+                    <img src="../media/week6/25c.png" height="85%" width="85%">
+                     <p>After successfully uploading the ISP sketch to Arduino Uno, I have to <a id="keyword">add the Board definition</a> for the ATTiny into the IDE in order to program the chip by going to <a id="filename">Tools -> Board -> Board Manager</a> and enter "attiny" into the search field. Then I choose the version (usually the newest version) in the dropdown menu and click <a id="keyword">Install:</a></p>
+                      <img src="../media/week6/26.png" height="85%" width="85%">
+                      <p>Then I wire the board to the Arduino Uno for programming the ATTiny using the pinout diagram provided by Daniele:</p>
+                      <img src="../media/week6/25a.png" height="65%" width="65%">
+                      <img src="../media/week6/25b.jpg" height="65%" width="65%">
+                      <p>When the board definition is already installed, I go to <a id="filename">Tools</a> to choose the correct settings for programming the board as followed:</p>
+                      <code>Board: ATTiny25/45/85
+                          Processor: ATTiny45
+                          Clock: Internal 8 MHz
+                          Port: COM10(Arduino/ Genuino Uno) <a id ="comment">##choose the corresponding port</a>
+                          Programmer: Arduino as ISP  <a id ="comment">##VERY IMPORTANT!!!</a>
+                      </code>
+                      <p>After having the correct settings, I can burn bootloader to the ATTiny by clicking on <a id="filename">Tools -> Burn bootloader.</a></p>
+                      <img src="../media/week6/27.png" height="85%" width="85%">
+                      <p>After successfully burning bootloader, I open the example LED blinking sketch under <a id="filename">File -> Examples -> Basics -> Blink</a> and go to <a id="filename">Sketch -> Upload using programmer</a> to upload the sketch to the ATTiny. <b>IMPORTANT:</b> We <a id="keyword">should not use the shortcut Upload button</a> else it will override the ISP sketch on the Arduino Uno and then we have to repeat the programming steps all over again.</p>
+                      <img src="../media/week6/28a.png" height="85%" width="85%">
+                      <img src="../media/week6/28b.png" height="85%" width="85%">
+                      <p>However, I still get some error messages from the IDE while uploading the sketch to the ATTiny:</p>
+                      <img src="../media/week6/29.png" height="85%" width="85%">
+                      <p>This is because the <a id="filename">LED_BUILTIN</a> definition only works for the Arduino Uno-like boards, not for the ATTiny chips. Thus I had to look for the pinout diagram of the ATTiny45 and check the board layout again to figure out that the LED is connected to pin A1 of the chip:</p>
+                      <img src="../media/week6/30.jpg" height="65%" width="65%">
+                      <p>Thus I change the sketch to <a id="keyword">replace LED_BUILTIN with A1</a> and upload the sketch again:</p>
+                      <img src="../media/week6/31a.png" height="85%" width="85%">
+                      <img src="../media/week6/31b.png" height="85%" width="85%">
+                      <p>And of course now it works perfectly, for both of my boards, YAY!!!</p>
+                      <img src="../media/week6/32.jpg" height="65%" width="65%">
+                      <img src="../media/week6/33.jpg" height="65%" width="65%">
+                    <a name="sect4"><h2>4. Problems and Troubleshooting</h2></a>
+                      <p>Beside the small problem while uploading the sketch to the ATTiny as described above in Section 3, I encountered some problems with the milling procedure.</p>
+                      <p>When drawing the outline trace for the first board, because the difference between the black and white regions in the image was too small like this,</p>
+                      <img src="../media/week6/e2.png" height="55%" width="55%">
+                      <p>The Fab Modules software could not produce the complete outline for the board, as seen in the missing line on the left:</p>
+                      <img src="../media/week6/e3.png" height="85%" width="85%">
+                      <p>As a result, when I tried to mill the outline for my first board, the machine stops halfway and some of the FR2 material was burned at the spot where the spindle stops:</p>
+                      <img src="../media/week6/e4.jpg" height="85%" width="85%">
+                      <p>Thus I had to move the spindle away to clean the milling bit as well as the working area and restart the cutting job, and luckily the board was still cut out completely.</p>
+                  <p>However, also because I forgot to use the <a href="#code3">commands to move the spindle back to XY-origin</a>, and moved it manually instead, the origin point is not exactly the same as the previous job. Thus, some of the traces were also cut out while the machine is cutting the board outline as seen in this <a href="#img1">image in Section 2.</a></p>
+                      <p>Again, when I tried to cut the second board, although the <a href="#img2">preview for the cutting job in the CAM processor</a> was fine, when I loaded the G-code into the software, it looked like there was some missing trace again on the right side:</p>
+                      <img src="../media/week6/e5.jpg" height="85%" width="85%">
+                      <p>I asked Daniele for help and he suggested that I can try to bring the spindle a little bit (~2mm) up in the Z direction, reset the origin and run the job to see if the spindle is going where it is supposed to. After seeing that the job is correct, I do the calibration of Z-origin again and run the actual cut. Also, I learned afterwards that there is nothing wrong with the G-code and there is no missing trace. It is only because of the grid line overlapping the trace, as can be seen when viewing the trace from another angle:</p>
+                      <img src="../media/week6/e6.jpg" height="85%" width="85%">
+                      <p>So milling a PCB has more steps than milling a block of material but basically the key points are to keep the XY-origin and recalibrating the Z origin, because unlike the CAM Processor in Fusion which takes into account the difference in the Body lengths of the different end tools, the Fab Modules CAM Processor does not have this option. Also, for the Cirqoid it is more complicated because we have to manually enter commands for moving the spindle to XY-origin while for the Roland we have buttons for that, thus I keep forgetting this part. Otherwise, with more practice it should get better.</p>
+                    <a name="sect5"><h2>5. Download resources</h2></a>
+                      The files needed for this week's assignment are:
+                      <ul>
+                          <li><a href="../Assignment Files/Week6/hello.brd">Eagle board file</a></li>
+                          <li><a href="../Assignment Files/Week6/hello.sch">Eagle schematic file</a></li>
+                          <li><a href="../Assignment Files/Week6/Top_Pad_final.png">Image containing Top and Pad layers</a></li>
+                          <li><a href="../Assignment Files/Week6/Cutout_final.png">Image for board outline</a></li>
+                          <li><a href="../Assignment Files/Week6/FabModules_Settings.txt">The CAM Processor settings</a></li>
+                      </ul>
+                      The G-code files I used for milling the board with the Cirqoid are:
+                      <ul>
+                          <li><a href="../Assignment Files/Week6/Top_Pad_Cirqoid_t2.nc">Top and Pad layers G-code</a></li>
+                          <li><a href="../Assignment Files/Week6/Cutout_t2.nc">Board outline G-code</a></li>
+                      </ul>
+                  </div>
+                </div>        
+             </div>
+        
+                <div class="footer">
+                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                </div>
+              
+    </body>
+
+</html>

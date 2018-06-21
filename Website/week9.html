@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 9 - Input Device</title>
+        <link rel="stylesheet" href="main.css">   
+    </head>
+    <body>
+        <div class="header">
+          <br><img src="../media/welcome.png" height="30%" width="30%" class="header photo">
+        </div>
+
+        <div class="navtop">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a>Assignments</a>
+              <ul>
+               <li><a href="week1.html">1. Project Management</a></li>
+                <li><a href="week7.html">7. Electronics Design</a></li>
+                <li><a href="week2.html">2. 2D & 3D Design</a></li>
+                <li><a href="week8.html">8. Embedded Programming</a></li>
+                <li><a href="week3.html">3. Laser cutting</a></li>
+                <li><a href="week9.html">9. Input Device</a></li>
+                <li><a href="week4.html">4. 3D Printing</a></li>
+                <li><a href="week10.html">10. Output Device</a></li>
+                <li><a href="week5.html">5. CNC Machining</a></li>
+                <li><a href="week11.html">11. Networking</a></li>
+                <li><a href="week6.html">6. Electronics Production</a></li>
+                <li><a href="final.html">Final Project</a></li>
+                
+              </ul>
+            </li>
+            <li><a href="#">Final Project</a>
+                <ul>
+                <li><a href="final.html#sect1">1. Project Description</a></li>
+                <li><a href="final.html#sect4">4. Download resources</a></li>
+                <li><a href="final.html#sect2">2. Making process</a></li>
+                <li><a href="final.html#sect5">5. License Information</a></li>
+                <li><a href="final.html#sect3">3. Reflections</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+                  <div class="column left">
+                        <h2 id="sideText"></h2>
+                          <div class="navside">
+                              <h2 id="side_text">Page index</h2>
+                              <li><a href="#sect1">1. Read sensors with Hello Board</a></li>
+                              <li><a href="#sect2">2. Develop a Mini Arduino board</a></li>
+                              <li><a href="#sect3">3. Read sensors with Mini Arduino</a></li>
+                              <li><a href="#sect4">4. Problems and Troubleshooting</a></li>
+                              <li><a href="#sect5">5. Download resources</a></li>
+                          </div>
+                  </div>
+                  <div class="column right">
+                    <h1>Documentation Week 9: Input Device</h1>
+                    <h3>Date: 13.12.2017 - 19.12.2017</h3>
+                    <p>The assignment of this week is to develop a program that reads sensor data using one of the FabLab made microcontroller boards and displays it on the Serial Monitor of the Arduino IDE. I myself wanted to experiment with different kinds of sensors for example, digital sensors, analog sensors and sensors that require other Networking protocols like I2C, SPI, etc.</p>
+                      <p>My <a href="week7.html">FabLab made PCB from week 7</a> however does not have enough break-out pins in order to use both Software Serial (which is required to read sensor data and display it on the Serial Monitor) and analog sensors. Thus, I used the <a href="week7.html">Hello Board made in week 6</a> instead. Using this board, I could manage to read data from digital and analog sensors, but not sensors that requires I2C or SPI because these sensors usually need a library in order to communicate with the microcontroller. These libraries are usually written for more complex microcontroller like the ATMEGA328 chip on the Arduino or STM32 on the ESP8266, etc. Thus, in the end I decided to make a "Mini version of the Arduino board" by breaking out the pins that I need in order to read sensor data from all different types of sensors.</p>
+                    <a name="sect1"><h2>1. Read sensors with Hello Board</h2></a>
+                      <h3>1.1. Digital sensor</h3>
+                      <p>The most basic type of digital sensor to use is of course a button, which has been experimented with in previous weeks. I also have a <a href="https://www.adafruit.com/product/1374">Standalone momentary capacitive touch sensor board from Adafruit</a> which I bought some time ago but have not tested it. It is a very simple-to-use sensor board thus I decided to try it now. The sensor board's <a id="keyword">OUT</a> pin will output a <a id="keyword">voltage HIGH</a> when touched once and maintains this state until touched again to give a <a id="keyword">voltage LOW</a>, thus acts like a toggle switch instead of the ordinary tactile switch without additional programming required. The wiring of the sensor to the Hello board is also very simple. I only need to connect <a id="keyword">VDD to VCC, GND to GND and OUT to a digital input pin</a> on the board, which in this case is the Digital 4 (D4):</p>
+                      <img src="../media/week9/0a.png" height="75%" width="75%">
+                      <p>Then I wrote a simple program to use this sensor with the onboard LED:</p>
+                      <img src="../media/week9/0b.PNG" height="45%" width="45%">
+                      <p>I uploaded the sketch to the Hello Board using Arduino as ISP and this is how it works in action:</p>
+                      <img src="../media/week9/0c.gif" height="55%" width="55%">
+                      <p>The sensor board also has a builtin LED which is also turned on and off accordingly with the touch, thus, I find the board very convenient for small projects that need capacitive touch input, although a bit expensive.</p>
+                      <h3>1.2. Analog sensor</h3>
+                      <p>For the analog sensor, I experimented with the <a href="https://www.sparkfun.com/products/10988">TMP36 Temperature sensor.</a> Like most of the analog sensors, the output of the sensor can be read using the analog input pins of the microcontroller. For example, it can be wired to the Hello Board as followed: <a id="keyword">+Vs to VCC, GND to GND, Vout to Analog Pin 2 (ADC2).</a></p>
+                      <img src="../media/week9/1a.PNG" height="75%" width="75%">
+                      <p>The sketch to read sensor data, convert it to temperature and display the results look like this:</p>
+                      <img src="../media/week9/2.png" height="75%" width="75%">
+                      <p>The value of the <a id="keyword">reading</a> variable is a number between 0 and 1023, due to the 10-bit ADC on the microcontroller which reads an input voltage to the analog input pin and maps the voltage from 0V-5V to 0-1023 integers. Thus in the sketch we have to again convert this integer to a voltage value and from the voltage value calculate the temperature based on an offset of 400-500mV and the sensor's resolution of 10mV per degree.</p>
+                      <p>After succesfully uploading the sketch to the board using the Arduino as ISP, in order to read the sensor data and print the temperature values on the Serial Monitor, I need to connect the board to the <a id="keyword">232R-TTL-to-USB Serial converter:</a></p> 
+                      <code><a style="color: red">VCC to 5V or 3.3V</a> <a id="comment">(does not matter in this case because there is no external crystal on the board),</a> 
+                          GND to GND 
+                          <a style="color: goldenrod">Pin D1 to TX</a> <a id="comment">(Software Serial's RX, which can be defined in the sketch)</a> 
+                          <a style="color: blue">Pin D0 to RX</a> <a id="comment">(Software Serial's TX, which can be defined in the sketch)</a>
+                      </code><br>
+                      <img src="../media/week9/1b.jpg" height="45%" width="45%">
+                      <p>When I connect the 232R-TTL-to-USB Serial converter to the PC's USB port and in Arduino IDE open the Serial Monitor to that port I am able to read the sensor data as well as the converted temperatures:</p>
+                      <img src="../media/week9/4.PNG" height="55%" width="55%">
+                      <p>And the voltage values read by the sensor are pretty on par with the actual voltage values measured using a multimeter in between the Vout and GND pins:</p>
+                      <img src="../media/week9/3.jpg" height="45%" width="45%">
+                      <a name="sect1.3"><h3>1.3. Other sensors (failed attempt)</h3></a>
+                      <p>As mentioned before, I tried to connect the Hello Board with a I2C sensor board, for example the <a href="https://www.sparkfun.com/products/12787">APDS-9960 RGB, Gesture and Proximity sensor board</a> but was not sucessful because many defintions in the <a href="https://github.com/sparkfun/SparkFun_APDS-9960_Sensor_Arduino_Library/tree/V_1.4.2">APDS-9960 library from Sparkfun</a> are of course not compatible with the ATTiny45 and the compiler could not compile the sketch:</p>
+                      <img src="../media/week9/e4.PNG" height="65%" width="65%">
+                      <p>Thus I decided to make another board using the ATMEGA328 in order to have a more versatile board with more IO pins which can be compatible with other sensor libraries.</p>
+                    <a name="sect2"><h2>2. Develop a Mini Arduino board</h2></a>
+                      <h3>2.1. Board designing</h3>
+                      <p>Below is the schematic of the board I made in Eagle for the ATMEGA328:</p>
+                      <img src="../media/week9/5a.png" height="85%" width="85%">
+                      <p>For this board I wanted to include the following features:</p>
+                      <ul><li>A 2-pin male JST connector for 3.7 LiPo battery (thus no external oscillator can be used)</li>
+                          <li>Optional mounting holes for 3V CR2032 coin cell battery holder</li>
+                          <li>An onboard reset button</li>
+                          <li>A power-indicating red LED</li>
+                          <li>A built-in green LED connected to Digital Pin 13 like other Arduino boards</li>
+                          <li>8 break-out analog input pins, including 2 pins for I2C interfacing with other devices</li>
+                          <li>13 break-out digital input/ output pins, out of which:</li>
+                          <ul><li>2 can be used as Hardware Serial, </li>
+                              <li>2 can be used as Interrupt pins,</li>
+                              <li>4 can be used as PWM ("analog" output) pins</li>
+                              <li>4 can be used for SPI interfacing with other devices</li>
+                              <li>2 can be used to connect external oscillator when needed</li>
+                          </ul>
+                          <li>2 break-out power pins</li>
+                          <li>Can be programmed using the 232R-TTL-to-USB Serial converter</li>  
+                      </ul>
+                      <p>And this is how the board layout looks like with its dimension:</p>
+                       <img src="../media/week9/5b.png" height="65%" width="65%">
+                      <p>20.55mm is the distance measured between the 2 mounting holes for an additional 3V coin cell battery holder which I have available, which is of course optional.</p>
+                      <h3>2.2. Board production</h3>
+                      <p>I obtained the milling files for the Roland MDX40 using the FabModules CAM Processor like in Week 6 and 7:</p>
+                      <img src="../media/week9/6a.png" height="65%" width="65%">
+                      <img src="../media/week9/6b.png" height="65%" width="65%">
+                      <p>And this was the final board, with some signal traces at the bottom thinner than those at the top due to the unlevelled copper sheet:</p>
+                      <img src="../media/week9/7.jpg" height="45%" width="45%">
+                      <p>While testing the traces on the board, I found out the <a id="keyword">deathly issue that the VCC and GND are connected together(!)</a> After inspecting the board's traces, I recognize a very tiny connection that caused the issue, which can also be seen in the Roland Milling file generated by the CAM Processor. This is probably because <a id="keyword">1 of the VCC pads and 1 of the GND traces</a> (highlighted in the images below) are too close to each other and thus was difficult for the CAM processing software to tell them apart.</p>
+                      <img src="../media/week9/7c.jpg" height="31%" width="31%">
+                      <img src="../media/week9/7d.png" height="45%" width="45%">
+                      <p>Thus I simply used a knife to cut the trace and checked again that everything is fine. Then I proceeded to solder components to the board while keeping on checking the connections after every step:</p>
+                      <img src="../media/week9/7a.jpg" height="45%" width="45%">
+                      <img src="../media/week9/7b.jpg" height="47%" width="47%">
+                      <br><a id="filename">LEFT: Top view of populated PCB, RIGHT: Bottom view with 2-pin JST male connector and 3V CR2032 battery holder</a>
+                      <p>Next, I would like to test the power to the board with a LiPo battery to see if the power-indicating red LED is working fine. However, before doing this, I have to <a id="keyword">isolate the 2 metal terminals</a> on the coin cell battery holder so that they do not accidentally touch each other and cause a short while there is power provided by LiPo battery or by USB to the power pin headers:</p>
+                      <img src="../media/week9/8a.jpg" height="45%" width="45%">
+                      <p>Due to this, I learned that for the next version of the board I will have to include <a id="keyword">a jumper in order to choose only a single power source</a> to use at a time in order to protect the diferent power sources. Now I can plug in the Lipo battery to test the power-indicating red LED:</p>
+                      <img src="../media/week9/8b.jpg" height="45%" width="45%">
+                      <a name="bootload"><h3>2.3. Burn bootloader to the board</h3></a>
+                      <p>I upload the ArduinoISP sketch to the Arduino UNO and then connect the SPI pins (SCK, MISO, MOSI, RST) on the board to the SPI pins on the Arduino UNO (SCK, MISO, MOSI, SS) respectively. At this point, I realize that I actually <a id="keyword">forgot to break out the RESET pin on my board(!).</a> Thus, I have to use manual connection with a jumper cable between the UNO's SS pin and the board's RST pin (on the button):</p>
+                      <img src="../media/week9/10b.jpg" height="45%" width="45%">
+                      <p>In order to burn bootloader to this board which uses the 8MHz internal clock, I have to download the <a href="https://www.arduino.cc/en/uploads/Tutorial/breadboard-1-6-x.zip">ATMEGA328 on a breadboard Board definition</a> ZIP file, extract it and copy the <a id="keyword">breadboard</a> folder to the <a id="keyword">hardware</a> folder of Arduino. More detailed instructions are available in the <a href="https://www.arduino.cc/en/Tutorial/ArduinoToBreadboard">Arduino To Breadboard: Minimal Circuit tutorial</a> on the Arduino Website.</p>
+                      <img src="../media/week9/9a.PNG" height="65%" width="65%">
+                      <p>In the Arduino IDE, under <a id="filename">Tools</a> I have to choose <a id="keyword">ATMEGA328 on a breadboard (8 MHz internal clock)</a> as the board and <a id="keyword">Arduino as ISP</a> as programmer, select the correct Port and then click on <a id="keyword">Burn bootloader.</a></p>
+                      <img src="../media/week9/9.png" height="60%" width="60%">
+                      <p>When bootloader is burnt successfully (only that it does not always happen from the very first trial, more to be discussed in <a href="#sect4">Section 4: Problems and Troubleshooting</a>), I can disconnect the board from the Arduino UNO and connect the VCC, GND, TX, RX pins on the board to the 3V3, GND, RX, TX pins on the TTL-to-USB Serial converter correspondingly to program the board.</p>
+                      <h3>2.4. Upload an example sketch</h3>
+                      <p>Now in the <a id="filename">Tools</a> menu I only have to <a id="keyword">change the Programmer back to AVRISP mkII</a>, then I can upload the example <a id="filename">Blink</a> sketch to the board as usual:</p>
+                      <img src="../media/week9/11a.png" height="60%" width="60%">
+                      <p>The sketch can be uploaded as usual with the shortcut <a id="filename">Upload button</a>, unlike when programming using Arduino as ISP where we have to select <a id="filename">Upload using programmer</a>. However, another thing to note is we have to press the <a id="keyword">RESET button</a> while uploading so that the bootloader on the board can tell the microcontroller to run the newly uploaded program.</p>
+                      <p>And it works, after much troubleshooting:</p>
+                      <img src="../media/week9/11b.gif" height="65%" width="65%">
+                    <a name="sect3"><h2>3. Read sensors with Mini Arduino board</h2></a>
+                      <h3>3.1. Interface with sensor over I2C</h3>
+                      <p>Now I can finally continue with where I left off with the sensors in <a href="#sect1.3">Section 1</a>. I opened the example sketch <a id="filename">Proximity sensor</a> from the downloaded <a id="filename">APDS-9960 library from Sparkfun:</a></p>
+                      <img src="../media/week9/11c.png" height="50%" width="50%">
+                      <p>For wiring, I have to connect the sensor board to the ATMEGA328 Board following this schema:</p>
+                      <code><a id="comment">APDS9960 sensor board's pin ----- ATMEGA328 Board's pin</a>
+                          <a style="color: blue">SDA ----------------------------- ADC4/SDA</a>
+                          <a style="color: goldenrod">SCL ----------------------------- ADC5/SCL</a>
+                              <a style="color: black">GND ----------------------------- GND</a>
+                              <a style="color: limegreen">INT ----------------------------- D2/INT0</a>
+                              <a style="color: red">VCC ----------------------------- VCC</a>
+                      </code>
+                      <br>
+                      <img src="../media/week9/11e.jpg" height="50%" width="50%">
+                      <p>After uploading the sketch to the board, I could read the sensor data:</p>
+                      <img src="../media/week9/11d.PNG" height="55%" width="55%">
+                      <p>I noticed that the sensor values range from 5 to 255 where 255 is the maximum value read when an object is closer to the sensor and 5 is when the object is farther away. The smallest distance that the object has to be from the sensor in order to be detected is around 10cm, and the maximum distance that the sensor can detect is around 30cm.</p>
+                      <h3>3.2. Interface with other input devices over SPI</h3>
+                      <p>Using SPI interface, we can even use this Mini Arduino board to program another board, for example the Hello Board, or even another (improved) copy of this board (<a style="font-family: monospace; color: grey">#todo</a>). Or we can also use it to communicate with other input devices that use this interface. For example, the <a href="https://playground.arduino.cc/Learning/MFRC522">MIFARE RC552 RFID reader</a> is one. First, I download the library for the module <a href="https://gsithub.com/miguelbalboa/rfid">here</a>, unzip it and open the example sketch called <a id="filename">ReadNIUD.ino</a></p>
+                      <img src="../media/week9/12c.PNG" height="65%" width="65%">
+                      <p>In the sketch I have to modify the pin numbers for the <a id="keyword">SS and RST pins</a> accordingly:</p>
+                      <img src="../media/week9/12d.PNG" height="65%" width="65%">
+                      <p>Then I connect the RFID reader module to my board following this wiring scheme:</p>
+                      <code><a id="comment">RFID reader module's pin ------ Board's pin</a>
+                          <a style="color: blue">SDA --------------------------- D10/SS</a>
+                          <a style="color: limegreen">SCK --------------------------- D13/SCK</a>
+                          <a style="color: saddlebrown">MOSI -------------------------- D11/MOSI</a>
+                              <a style="color: mediumpurple">MISO -------------------------- D12/MISO</a>
+                              <a style="color: black">GND --------------------------- GND</a>
+                              <a style="color: goldenrod">RST --------------------------- D9</a>
+                              <a style="color: red">3V3 --------------------------- VCC</a>
+                      </code>
+                      <br>
+                       <img src="../media/week9/12b.jpg" height="55%" width="55%">
+                      <p>I also modified the sketch a little so that it will read and display the card ID every time, instead of the original sketch where the ID of a card that has already been read before will not be displayed again. After uploading the sketch to the board, I got the following results for 2 different tags on the Serial Monitor:</p>
+                       <img src="../media/week9/12e.png" height="55%" width="55%">
+                      <p>The card reader was also able to read the NUID of a NFC-enabled smartphone device.</p>
+                    <a name="sect4"><h2>4. Problems and Troubleshooting</h2></a>
+                      <p>There was of course a lot of problems this week, mostly during the designing, bootloading and programming the ATMEGA328 board. Besides the issues that have already been discussed in previous sections, one of the other problems was bootloading the ATMEGA328. The compiler gave me this error while burning bootloader:</p>
+                      <img src="../media/week9/e2.PNG" height="65%" width="65%">
+                      <p>While looking around on the Internet for a solution, I found out that one reason could be because the ATMEGA328 might somehow have been configured by factory settings to work with external 16MHz crystal, meaning I will not be able to do anything to it (bootloading, programming) unless I connect a 16MHz crystal first, and then I can reconfigure it to use the internal 8MHz crystal instead. Hoping that this is my lifeline, I followed the <a href="https://www.arduino.cc/en/Tutorial/ArduinoToBreadboard">Arduino To Breadboard tutorial</a> on the Arduino Website and connected an <a id="keyword">external 16MHz crystal</a> over some capacitors (we need <a id="keyword">2x22pF capacitors</a> which I could not find so I had to use 6x68pF capacitors instead - putting 3x68pF caps in eries will give around 1x23pF) to the <a id="keyword">XTAL1 and XTAL2 pins</a> (D14 and D15 on my board, which I have luckily broken them out), and of course I have to <a id="keyword">provide 5V across VCC and GND pins:</a></p>
+                      <img src="../media/week9/e2-1.jpg" height="65%" width="65%">
+                      <p>Then I tried to burn bootloader again with the following settings:</p>
+                      <img src="../media/week9/e2-2.png" height="55%" width="55%">
+                      <p>And it worked like a charm! Phew! Now I can change the settings again to use the internal 8MHz clock as described in <a href="#bootload">Section 2</a> and it was also successful. Then I can finally move on to programming the board. But...</p>
+                      <p>...again it was also not smooth from the beginning. For some reason while designing the board's schematic, I made a mistake in labelling the TX and RX nets. I swapped their names over:</p>
+                      <img src="../media/week9/e1-3.png" height="45%" width="45%">     
+                      <img src="../media/week9/e1-4.png" height="45%" width="45%">
+                      <br><a id="filename">LEFT: labelling error for RX and TX nets, RIGHT: corrected labels</a><br>
+                      <p>As a result, while trying to upload the <a id="filename">Blink</a> sketch to the board over the TTL-to-USB Serial converter, I got the following error:</p>
+                      <img src="../media/week9/e1.png" height="55%" width="55%">
+                      <p>After re-checking my schematic and figured out the error, I swapped the TX and RX connections and finally I was able to upload the sketch to the board.</p>
+                    <a name="sect5"><h2>5. Download resources</h2></a>
+                      Arduino sketches:
+                      <ul><li><a href="../Assignment Files/Week9/ATTiny_CapSense_Toggle.ino">ATTiny45 & Capacitive touch toggle switch board</a></li>
+                          <li><a href="../Assignment Files/Week9/ATTiny_SoftwareSerial_TM36.ino">ATTiny45 & TMP36 temperature sensor</a></li>
+                          <li><a href="../Assignment Files/Week9/APDS_9960_Proximity_Sensor.ino">ATMEGA328 & APDS-9960 Proximity sensor Test</a></li>
+                          <li><a href="../Assignment Files/Week9/RFID_readNUID.ino">ATMEGA328 & RC552 RFID reader module</a></li>
+                      </ul>
+                      Eagle files for ATMEGA328 board:
+                      <ul><li><a href="../Assignment Files/Week9/Arduino_Mini.sch">Eagle schematic</a></li>
+                          <li><a href="../Assignment Files/Week9/Arduino_Mini.brd">Eagle board file</a></li>
+                      </ul>
+                  </div>
+                </div>        
+             </div>
+        
+                <div class="footer">
+                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                </div
+              
+    </body>
+
+</html>

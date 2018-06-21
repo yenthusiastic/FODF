@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 3 - Laser Cutting</title>
+        <link rel="stylesheet" href="main.css">   
+    </head>
+    <body>
+        <div class="header">
+          <br><img src="../media/welcome.png" height="30%" width="30%" class="header photo">
+        </div>
+
+        <div class="navtop">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a>Assignments</a>
+              <ul>
+                <li><a href="week1.html">1. Project Management</a></li>
+                <li><a href="week7.html">7. Electronics Design</a></li>
+                <li><a href="week2.html">2. 2D & 3D Design</a></li>
+                <li><a href="week8.html">8. Embedded Programming</a></li>
+                <li><a href="week3.html">3. Laser cutting</a></li>
+                <li><a href="week9.html">9. Input Device</a></li>
+                <li><a href="week4.html">4. 3D Printing</a></li>
+                <li><a href="week10.html">10. Output Device</a></li>
+                <li><a href="week5.html">5. CNC Machining</a></li>
+                <li><a href="week11.html">11. Networking</a></li>
+                <li><a href="week6.html">6. Electronics Production</a></li>
+                <li><a href="final.html">Final Project</a></li>
+                
+              </ul>
+            </li>
+            <li><a href="#">Final Project</a>
+                <ul>
+                <li><a href="final.html#sect1">1. Project Description</a></li>
+                <li><a href="final.html#sect4">4. Download resources</a></li>
+                <li><a href="final.html#sect2">2. Making process</a></li>
+                <li><a href="final.html#sect5">5. License Information</a></li>
+                <li><a href="final.html#sect3">3. Reflections</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+                  <div class="column left">
+                        <h2 id="sideText"></h2>
+                          <div class="navside">
+                              <h2 id="side_text">Page index</h2>
+                              <li><a href="#sect1">1. Laser cutting press-fit kits</a></li>
+                              <li><a href="#sect2">2. Laser engraving</a></li>
+                              <li><a href="#sect3">3. Problems & Troubleshooting</a></li>
+                              <li><a href="#sect4">4. Download resources</a></li>
+                          </div>
+                  </div>
+                  <div class="column right">
+                    <h1>Documentation Week 3 - Laser Cutting</h1>
+                    <h3>Date: 25.10.2017 - 07.11.2017</h3>
+                    <p>In this 2 weeks we are given the assignment of practicing laser cutting techniques learned from the lecture to make press-fit kits. That means, we should do some experiments to find out the <a id="keyword">kerf</a> of the material we are using such that the parts fit perfectly together without additional glue or tape, etc.</p>
+                    <a name="sect1"><h2>1. Laser cutting press-fit kits</h2></a>
+                      <p>While looking for inspirations for the assignment, I came across <a href="http://fabacademy.org/archives/2014/students/skupniewicz.henry/week02.html">this documentation</a> from a former Fabacademy student named Henry Skup who made this cool triangular module that can be fitted together to build bigger structures. Thus, I decided to replicate his module to do the laser cutting.</p>
+                      <h3>1.1. Measuring the kerf of the material and design the module</h3>
+                      <p>First I started out with choosing the material because the kerf to be measured also depends on the type of material used. Using 3 mm MDF and the <a href="https://www.epiloglaser.co.uk/products/zing-laser-series.htm">Epilog Zing laser cutter</a>, I cut 10 rectangular pieces of size 18mm(width) * 27mm(height) each.</p>
+                      <p>Then I put the pieces together to measure the total height and width. Due to the limited range of the caliper, I could not measure for all 10 pieces but only 8 pieces for the width and 5 pieces for the height.</p>
+                      <img src="../media/week3/1.jpg" height="75%" width="75%">
+                      <p>The total length measured for 8 pieces' width is 142.95 mm, while the expected value is 8*18 = 144 mm. This means the kerf for the horizontal direction of the laser cutter is (144 - 142.95)/8 = 0.131 mm.</p>
+                      <img src="../media/week3/2.jpg" height="75%" width="75%">
+                      <p>The total length measured for 5 pieces' height is 134.32 mm, while the expected value is 5*27 = 135 mm. This means the kerf for the vertical direction of the laser cutter is (135 - 134.32)/5 = 0.137 mm.</p>
+                      <p>This means the kerf I need to use for the material is around 0.13mm. Having this in mind, I start to design the module in <a href="https://www.rhino3d.com/download/rhino/5/latest">Rhinoceros 5.0 (Evaluation Version)</a> software.</p>
+                      <p>Unfortunately on the documentation website of Henry Skup neither the DXF file for the module nor the module's measurement details are available, thus I had to do some trials and errors to make the design.</p>
+                      <p>First I started out by drawing an isosceles triangle, then drew some construction lines to find the center point of the triangle and to draw the slots and the joints for the module. The dimensions I used were as following:</p>
+                      <ul>
+                          <li>Triangle side's length: 50 mm</li>
+                          <li>Slot width = Material thickness - kerf = 3.00 - 0.13 = 2.87 mm</li>
+                          <li>Slot size and claw's size: 5.00 mm. I do not have to consider the kerf here because the material will be removed from both the slot and the joint's "claw" so in the end they will still be of the same length.</li>
+                          <li>Joint size: 10.50 mm. Hence the distance from the end of the claw to the other end of the slot should be 
+                              around 2*(joint_size - kerf) = 20.74 mm.</li>
+                      </ul>
+                      Following is the list of commands I used in Rhinoceros to design the piece:
+                      <code>
+                          POLYGON <a id="comment">#to draw the triangle</a>
+                          LINE <a id="comment">#to draw the construction lines</a>
+                          RECTANGLE <a id="comment">#to draw the rectangles</a>
+                          ROTATE <a id="comment">#to rotate the rectangles</a>
+                          ARC <a id="comment">#to draw the "claws"</a>
+                          ARRAYPOLAR <a id="comment">#to make a circular pattern out of the rectangles, lines and curves about the center</a>
+                      </code>
+                      <p>This is how the piece looks with all construction lines and dimensions:</p>
+                      <img src="../media/week3/3.PNG" height="85%" width="85%">
+                      <p>And without the construction lines:</p>
+                      <img src="../media/week3/4.PNG" height="85%" width="85%">
+                      <p>Finally I exported the piece into <a id="keyword">DXF file</a> and bring it to the PC of the laser cutter.</p>
+                      <h3>1.2. Laser cut the final object</h3>
+                      <p>An important thing to do before using the laser cutter is of course to focus the laser for the material. For the <a id="keyword">Epilog Zing</a>, this is done by pressing the <a id="keyword">Unlock</a> key and then the <a id="keyword">Up</a> or <a id="keyword">Down</a> key to raise or lower the bed until the end of the focus tool just touches the surface of the material. Similarly for the <a id="keyword">Epilog Fusion,</a> the tip of the focus tool should also touch the material surface:</p>
+                      <img src="../media/week3/12.jpg" height="85%" width="85%">
+                      <p>Next, I have to set the starting point of the job by manually moving the laser pointer <a id="keyword">(the pink/red point in picture below)</a> along the X or Y axis to the desired point. For example, I usually set this to the top left corner of the piece of material:</p>
+                      <img src="../media/week3/13.jpg" height="85%" width="85%">
+                      <p>Then I opened the DXF file in Rhinoceros on the laser cutter's computer and made a copy of it so that I have at least 2 pieces to test the joints.</p>
+                      <img src="../media/week3/5.PNG" height="85%" width="85%">
+                      <p>Next I press <a id="keyword">Ctrl + P</a> to open the print menu, choose the correct printer which is the <a id="keyword">Epilog Zing</a> and click on <a id="keyword">Properties</a> to bring up the settings for the job. I have tested cutting 3mm MDF with this laser cutter beforehand and found out the following <a id ="keyword">Speed, Power, Frequency</a> combination works well:</p>
+                      <img src="../media/week3/8.PNG" height="75%" width="75%">
+                      <p>I also put in the size of the piece I am using and the <a id ="keyword">Job Type is Vector</a> because I am only cutting and not engraving on the material. Then I press OK and then Print to send the job to the machine. When the job is shown on the machine's screen, I <a id ="keyword">turn on the Vaccumm system</a> and then press <a id ="keyword">Start</a>.</p>
+                      <p>This was the result of the job:</p>
+                      <img src="../media/week3/9.jpg" height="75%" width="75%">
+                      <p>And this is how it looks when I press them together:</p>
+                      <img src="../media/week3/10.jpg" height="50%" width="50%">
+                      <p>Afterwards, I cut a few more pieces, and also tried cutting them with the <a id ="keyword">Epilog Fusion</a> instead to see if they also fit well when cut on another laser cutter. Luckily, but of course is not always the case, they still fit well. This was the settings I used on <a id ="keyword">Epilog Fusion</a>:</p>
+                      <img src="../media/week3/6.PNG" height="75%" width="75%">
+                      <p>Finally I could build a more defined structure using multiple pieces:</p>
+                      <img src="../media/week3/11.jpg" height="75%" width="75%">
+                    <a name="sect2"><h2>2. Laser engraving</h2></a>
+                      <p>It does not make a lot of sense to do engraving on the small modular pieces that were laser-cut, so I decided to engrave a photo on <a id="keyword">3mm acrylic glass</a> instead and to make a key chain out of it. This was the photo I wanted to engrave:</p>
+                      <img src="../media/week3/14.JPG" height="75%" width="75%">
+                      <p>I also added some texts to the image. Just one thing to note when <a id ="keyword"> engraving with acrylic glass is to mirror the image</a> so that later on it is possible to view the image from the other flat side of the material.</p>
+                      <p>And here was the settings I used for engraving the acrylic and cutting out the piece:</p>
+                      <img src="../media/week3/14b.JPG" height="75%" width="75%">
+                      <p>Finally I has my engraved keychain which looks like <a id ="keyword">negative film</a> on black background:</p>
+                      <img src="../media/week3/15.jpg" height="75%" width="75%">
+                      <p>but it looks perfect on white background:</p>
+                       <img src="../media/week3/16.jpg" height="75%" width="75%">
+                      <p>(the circle under my name is because I used a scrap piece of acrylic glass available from the Lab because I did not want to waste it.)</p>
+                    <a name="sect3"><h2>3. Problems & Troubleshooting</h2></a>
+                      <p>The problems I encountered this week was first the unfamiliarity when designing in Rhinoceros because I have not used it before. But luckily after some practice and also because of some similarity it shares with <a id ="keyword">Draftsight</a>, in the end I still managed to finish the design.</p>
+                      <p>Another problem was, because of the lack of dimension details for the piece I had to do some trials to get the acceptable dimensions. For example, in the beginning, the pieces did not fit perfectly together because I did some wrong calculations for the dimensions:</p>
+                      <img src="../media/week3/e1.jpg" height="50%" width="50%">
+                      <p>After that, I calculated the dimensions again and adjusted the design so it worked in the end.</p>
+                    <a name="sect4"><h2>4. Download resources</h2></a>
+                      <p>The DXF file for the modular triangle piece can be downloaded <a href="../Assignment Files/Week3_modular_single.dxf">here.</a></p>
+                  </div>
+                </div>        
+             </div>
+        
+                <div class="footer">
+                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                </div>
+              
+    </body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 11 - Networking</title>
+        <link rel="stylesheet" href="main.css">   
+    </head>
+    <body>
+        <div class="header">
+          <br><img src="../media/welcome.png" height="30%" width="30%" class="header photo">
+        </div>
+
+        <div class="navtop">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a>Assignments</a>
+              <ul>
+                <li><a href="week1.html">1. Project Management</a></li>
+                <li><a href="week7.html">7. Electronics Design</a></li>
+                <li><a href="week2.html">2. 2D & 3D Design</a></li>
+                <li><a href="week8.html">8. Embedded Programming</a></li>
+                <li><a href="week3.html">3. Laser cutting</a></li>
+                <li><a href="week9.html">9. Input Device</a></li>
+                <li><a href="week4.html">4. 3D Printing</a></li>
+                <li><a href="week10.html">10. Output Device</a></li>
+                <li><a href="week5.html">5. CNC Machining</a></li>
+                <li><a href="week11.html">11. Networking</a></li>
+                <li><a href="week6.html">6. Electronics Production</a></li>
+                <li><a href="final.html">Final Project</a></li>
+                
+              </ul>
+            </li>
+            <li><a href="#">Final Project</a>
+                <ul>
+                <li><a href="final.html#sect1">1. Project Description</a></li>
+                <li><a href="final.html#sect4">4. Download resources</a></li>
+                <li><a href="final.html#sect2">2. Making process</a></li>
+                <li><a href="final.html#sect5">5. License Information</a></li>
+                <li><a href="final.html#sect3">3. Reflections</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+                  <div class="column left">
+                        <h2 id="sideText"></h2>
+                          <div class="navside">
+                              <h2 id="side_text">Page index</h2>
+                              <li><a href="#sect1">1. I2C Communication with OLED</a></li>
+                              <li><a href="#sect2">2. Problems & Troubleshooting</a></li>
+                              <li><a href="#sect3">3. Download resources</a></li>
+                          </div>
+                  </div>
+                  <div class="column right">
+                    <h1>Documentation Week 11: Networking</h1>
+                    <h3>Date: 27.12.2017 - 02.01.2018</h3>
+                      <p>The assignment for this week is to use one or some of the communication protocols taught in the lecture (Serial SPI, I2C, WiFi, Bluetooth) to communicate between one of the FabLab-made boards with other boards or devices. I myself experimented with the I2C protocol between my FabLab-made board from Week 9 and an OLED screen because this is what I need to use later for my final project.</p>
+                    <a name="sect1"><h2>1. I2C Communication with OLED</h2></a>
+                      <p>First I downloaded the <a href="https://github.com/adafruit/Adafruit_SSD1306">Adafruit SSD1306 OLED Driver Library</a> and copied the unipped folder to my Arduino Libraries folder. Then I opened one of the example sketches included in the library. Since my OLED display has the resolution of 128 pixels x 64 pixels and I want to use the I2C protocol, I have to choose the <a id="filename">ssd1306_128x64_i2c</a> example sketch:</p>
+                      <img src="../media/week11/1.png" height="50%" width="50%">
+                      <p>Then I wired the OLED to my FabLab-made board as followed:</p>
+                      <code><a id="comment">ATMEGA328 Board's pin ----- OLED's pin</a>
+                          <a style="color: red">VCC -------------- VCC</a>
+                          <a style="color: black">GND ----------------------- GND</a>
+                          <a style="color: limegreen">SCL -------------- A5/SCL </a>
+                          <a style="color: blue">SDA ----------------------- A4/SDA</a>
+                      </code>
+                      <p>As the I2C name suggested, we only need 2 wires (SCL & SDA lines) to connect the device to the board, besides the power lines. Before uploading the sketch I have to put in the correct I2C address of the OLED device (which can be found at the back of the display) in the code. For example, mine is <a id="keyword">0x3C</a> instead of the default 0x3D given in the library:</p>
+                       <img src="../media/week11/3.png" height="75%" width="75%">
+                      <p>Then I connect my board to the TTL-Serial converter in order to upload the example sketch to the board. And it works:</p>
+                      <img src="../media/week11/2.jpg" height="75%" width="75%">
+                      <p>Now I would like to create my own sketch in order to use it for my final project. For that, I need to use a potentiometer as the input and the display as the output. When the user turns the potentiometer, the display will show the corresponding value in minutes with a minimum of 15 and a maximum of 120 (can be redefined in the sketch). Thus, I wired a 10K-ohm potentiometer to my board as followed:</p>
+                      <code><a id="comment">ATMEGA328 Board's pin ----- Potentiometer's pin</a>
+                          <a style="color: red">VCC -------------- RIGHT pin (0 ohm)</a>
+                          <a style="color: black">GND ----------------------- LEFT pin (10K ohm)</a>
+                          <a style="color: limegreen">ADC3 -------------- MIDDLE pin </a>
+                      </code>
+                      <p>The middle pin of potentiometer always has be connected to an Analog input pin of the board. For the other 2 pins, connecting the LEFT one (the 0 ohm end) to GND and the RIGHT one (the 10K ohm end) will cause the value to increase when we turn it in clockwise direction, and vice versa, connecting LEFT pin to VCC and RIGHT pin to GND will cause the value to decrease when we turn it clockwise.</p>
+                      <p>Then I wrote a sketch to map the analog input values (0 to 1023 with interval of 1 unit) to minutes from 15 to 120 with an interval of 5 units in between these limits. The limits and interval can be changed in the defined MACROS at the top of the sketch.</p>
+                      <img src="../media/week11/4-1.PNG" height="45%" width="45%">
+                      <img src="../media/week11/4-2.PNG" height="42%" width="42%">
+                      <p>Besides the <a id="filename">setup()</a> and <a id="filename">loop()</a> functions the sketch also has 2 more functions: <a id="filename">showTexts()</a> which simply displays a fixed line of text, for example <a id="keyword">"SET TIMER"</a> on top of the screen and <a id="filename">showTime()</a> which calculates the value of minutes based on the potentiometer's input and dynamically display it on the screen below the text.</p>
+                      <p>This is how it looks like when I first uploaded the sketch to my board:</p>
+                      <img src="../media/week11/5.jpg" height="75%" width="75%">
+                      <p>And when I turn the potentiometer, the value on the screen changes accordingly:</p>
+                      <img src="../media/week11/6.gif" height="60%" width="60%">
+                    <a name="sect2"><h2>2. Problems & Troubleshooting</h2></a>
+                      <p>With the OLED screen, in the beginning I made some mistake in the code thus the screen was flickering a lot, as can be seen here:</p>
+                      <embed src="../media/week11/e1.mp4"></embed>
+                <p>After some trials I figured out that because in the code I repeated the <a id="filename">display.display()</a> functions twice in the loop by calling the 2 functions <a id="filename">showTexts()</a> and <a id="filename">showTime()</a> which both have its own <a id="filename">display.display()</a> function which updates the screen, causing the flickering because of the continuous updates:</p>
+                <img src="../media/week11/e2-1.PNG" height="35%" width="35%">
+                 <img src="../media/week11/e2-2.PNG" height="60%" width="60%">
+                <p>Thus in the end I removed these 2 lines from the 2 functions and replace them with only 1 line in the <a id="filename">loop()</a> instead, and it solved the problem.</p>
+                    <a name="sect3"><h2>3. Download resources</h2></a>
+                <p>The sketch for the Potentiometer and the OLED can be downloaded <a href="../Assignment Files/Week11/poti_oled.ino">here.</a></p>
+                  </div>
+                </div>        
+             </div>
+        
+                <div class="footer">
+                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                </div>
+              
+    </body>
+
+</html>

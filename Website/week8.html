@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 8 - Embedded Programming</title>
+        <link rel="stylesheet" href="main.css">   
+    </head>
+    <body>
+        <div class="header">
+          <br><img src="../media/welcome.png" height="30%" width="30%" class="header photo">
+        </div>
+
+        <div class="navtop">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a>Assignments</a>
+              <ul>
+               <li><a href="week1.html">1. Project Management</a></li>
+                <li><a href="week7.html">7. Electronics Design</a></li>
+                <li><a href="week2.html">2. 2D & 3D Design</a></li>
+                <li><a href="week8.html">8. Embedded Programming</a></li>
+                <li><a href="week3.html">3. Laser cutting</a></li>
+                <li><a href="week9.html">9. Input Device</a></li>
+                <li><a href="week4.html">4. 3D Printing</a></li>
+                <li><a href="week10.html">10. Output Device</a></li>
+                <li><a href="week5.html">5. CNC Machining</a></li>
+                <li><a href="week11.html">11. Networking</a></li>
+                <li><a href="week6.html">6. Electronics Production</a></li>
+                <li><a href="final.html">Final Project</a></li>
+                
+              </ul>
+            </li>
+            <li><a href="#">Final Project</a>
+                <ul>
+                <li><a href="final.html#sect1">1. Project Description</a></li>
+                <li><a href="final.html#sect4">4. Download resources</a></li>
+                <li><a href="final.html#sect2">2. Making process</a></li>
+                <li><a href="final.html#sect5">5. License Information</a></li>
+                <li><a href="final.html#sect3">3. Reflections</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+                  <div class="column left">
+                        <h2 id="sideText"></h2>
+                          <div class="navside">
+                              <h2 id="side_text">Page index</h2>
+                              <li><a href="#sect1">1. Writing the program</a></li>
+                              <li><a href="#sect2">2. Download resources</a></li>
+                              <li><a href="#sect3">3. Problems and Troubleshooting</a></li>
+                          </div>
+                  </div>
+                  <div class="column right">
+                    <h1>Documentation Week 8: Embedded Programming</h1>
+                    <h3>Date: 06.12.2017 - 12.12.2017</h3>
+                      <p>The assignment for this week is to develop a program in the Arduino IDE that uses most of the techniques learnt in the lecture, such as Data types, Operators, Control structures, Functions, Serial, Libraries, etc., and also to upload the program to one of the FabLab made boards. For me, I will explain step-by-step how I developed the <a href="week7.html#sect5">final sketch from last week</a> for my board.</p>
+                    <a name="sect1"><h2>1. Writing the program</h2></a>
+                      <h4>1.1. Programming the Neopixel</h4>
+                      <p>In order to program the RGB LED (NeoPixel), I need to use the Neopixel Library from Adafruit. <a href="week7.html#sect3">The steps to install the library and load the example sketch</a> have already been documented last week as well. The initial program looks as followed:</p>
+                      <img src="../media/week8/1.PNG" height="85%" width="85%">
+                      <p>With this example, the LEDs on the strip will be lit up with moderately <a style="color:limegreen; font-weight: 600">green</a> color one by one with a pause of 500 milliseconds in between, due to the <a id="keyword">for loop</a> and the <a id="keyword">delay() function</a>. This is however not visible when there is only one LED like in my case. Thus, I can remove the <a id="keyword">for loop</a> and the <a id="keyword">delay() function</a> because it does not have any effect in this case and can help to reduce the size of the program.</p>
+                      <p>Next, I would like to try to change the sketch so that I can use the Switch-Case control structure to switch different color modes for the Neopixel by defining the <a id="keyword">color_mode</a> macro. The editted code looks like following:</p>
+                      <img src="../media/week8/3.PNG" height="70%" width="70%">
+                      <p>With this control loop, the color mode of the Neopixel will change according to the value of the <a id="keyword">color_mode</a> macro declared before the <a id="keyword">setup() function</a>. That means if I change the value of the macro before uploading the sketch to the board, the color of the Neopixel will also change accordingly:</p>
+                      <code>When <a style="color:sandybrown">color_mode = </a><a style="color:dodgerblue; font-weight: 600">1</a>, Neopixel color is <a style="color:dodgerblue; font-weight: 600">blue</a>
+                          When <a style="color:sandybrown">color_mode = </a><a style="color:red; font-weight: 600">2</a>, Neopixel color is <a style="color:red; font-weight: 600">red</a>
+                          When <a style="color:sandybrown">color_mode = </a><a style="color:limegreen; font-weight: 600">3</a>, Neopixel color is <a style="color:limegreen; font-weight: 600">green</a>
+                      </code>
+                      <p>After testing that this works on my board, I started to add more color modes to the switch-case control, including a "BLACK" color which means the Neopixel is actually not lit at all. Also, I can bring the <a id="keyword">pixels.show() function</a> outside of the Switch control so that I do not have to repeat it in every case. The new loop() function looks like this:</p>
+                      <img src="../media/week8/7.PNG" height="70%" width="70%">
+                      <p>That is basically it for programming the Neopixel. Next, I would like to program the button's press to cycle through the color modes instead of pre-defining it at the beginning of the program.</p>
+                      <h4>1.2. Programming the button</h4>
+                      <p>I want to program the button first in a separate sketch and then put the 2 sketches for the Neopixel and the button together afterwards, instead of directly modifying the sketch for the Neopixel from above. By doing this, I can prevent making unwanted changes to the already working code.</p>
+                      <p>Thus, I open the example sketch from the Arduino IDE for the button which is called <a id="keyword">DigitalReadSerial</a> and can be found under <a id="filename">File -> Examples -> Basic -> DigitalReadSerial.</a></p>
+                      <img src="../media/week8/8.png" height="80%" width="80%">
+                    <p>First I modify the sketch by specifying the pin that the button is attached to:</p>
+                      <code><a style="color:yellowgreen">#define</a> BUTTON_PIN 2</code>
+                      <p>Next, in order to see the result of the <a id="keyword">Serial.println()</a> function in the sketch, I need to define a  <a id="keyword">Software Serial</a> object on 2 available pins on the board, because the ATTiny45 does not come with Hardware Serial. Since Digital pin 1 (pin number 6) has been used for the Neopixel and Digital pin 2 (pin number 7) has been used for the Button, and the pins D3 and D4 are not breakout in my design, I only have (luckily) 2 pins left available for the Software Serial, which are D5 and D0. I need to define these pins as TX and RX pins at the beginning of the sketch and include the Software Serial library:</p>
+                      <img src="../media/week8/4.PNG" height="60%" width="60%">
+                      <p>Then I uploaded the sketch to my FabLab made board. The result of this program is that when the button is pressed, we will read on the <a id="keyword">Serial monitor</a> the state of the button as <a style="color:red;font-weight: 600">0</a> for <a style="color:red;font-weight: 600">NOT PRESSED</a> or <a style="color:limegreen;font-weight: 600">1</a> for <a style="color:limegreen;font-weight: 600">PRESSED</a> respectively. However, in order to actually read the data from the Serial monitor, we need to connect the board over the <a id="keyword">232R TTL-to-USB Serial converter</a> to the PC's USB port. Note that the <a id="keyword">Baud rate</a> has to be set according to what is defined in the sketch in order to read the data, in this case it is <a id="keyword">9600.</a></p>
+                      <img src="../media/week8/9.PNG" height="55%" width="55%">
+                      <p>Then I modify the loop() function in this sketch so that I can print to the Serial Monitor a string instead of just the numbers. For example, I can also use the <a id="keyword">IF-ELSE</a> conditions to print different strings when the button is pressed or not pressed. My edited loop program looks like this:</p>
+                      <img src="../media/week8/10.PNG" height="55%" width="55%">
+                      <p>And this is what is shown on the Serial Monitor:</p>
+                      <img src="../media/week8/11.PNG" height="55%" width="55%">
+                      <p>The sketch is working fine, however, usually with tactile switches there is the problem of <a id="keyword">bouncing</a>, where the button's state can fluctuate between 0 and 1 by accident while being pressed or due to noises, even though in a very short moment. In order to eliminate this to get a stable reading of the button's state, we need to <a id="keyword">debounce</a> the button by waiting for small time gap (debouncing time) from the moment that the button's state has just changed. At the end of the debouncing time we will read the state of the button again and assume this is the current state of the button.</p>
+                      <p>The <a id="keyword">Debounce</a> example can be found under <a id="filename">File -> Examples -> Digital -> Debounce.</a></p>
+                      <img src="../media/week8/12.png" height="85%" width="85%">
+                      <p>However, instead of changing the state of the LED according to the state of the button like in the example sketch, I would like to modify it so that I can use the button to cycle through different color mode for the LED. Thus, I <a id="keyword">use the Serial print to simulate this mode cycler</a>. The modified sketch looks like this:</p>
+                       <img src="../media/week8/13.PNG" height="85%" width="85%">
+                      <p>The color mode will only change and be printed when the button is pressed once:</p>
+                      <a name="img"><img src="../media/week8/14.PNG" height="55%" width="55%"></a>
+                      <p>Now that I have finished programming both the Neopixel and the button, I combine the 2 sketches together in order to have the final sketch where the button press directly affects the color modes of the Neopixel.</p>
+                    <a name="sect2"><h2>2. Download resources</h2></a>
+                      <ul>
+                          <li><a href="../Assignment Files/Week8/Sketch1_Neopixel/Sketch1_Neopixel.ino">Separate sketch for the Neopixel</a> </li>
+                          <li><a href="../Assignment Files/Week8/Sketch2_button/Sketch2_button.ino">Separate sketch for the button</a> </li>
+                          <li><a href="../Assignment Files/Week8/ATTiny_Neopixel_Button/ATTiny_Neopixel_Button.ino">Final combined sketch</a> </li>
+                      </ul>
+                      
+                    <a name="sect3"><h2>3. Problems and Troubleshooting</h2></a>
+                      <p>The problems I encountered this week were mainly about the software which requires some debugging and troubleshooting.</p>
+                      <p>The first problem was that I did not do <a id="keyword">debouncing of the button</a>. As a result, the reading of the button's state was not stable enough, as can be seen when comparing these 2 GIFs:</p>
+                      <img src="../media/week8/before.gif" height="41%" width="41%">
+                      <img src="../media/week8/final.gif" height="45%" width="45%">
+                      <p><a id="filename">Left: Before debouncing, Right: After debouncing</a></p>
+                      <p>Another problem with the software was where the switching of the Neopixel's mode should be done in the code. For example, <a id="keyword">at the beginning the LED was flickering</a> because the HIGH state of the button (thus the Neopixel is on) was printed all the time, even when its state was constantly at HIGH. Afterwards, I had to modify the code so that the HIGH state of the button is only printed when there is a change in state from LOW to HIGH:</p>
+                      <img src="../media/week8/16-1.PNG" height="45%" width="45%">
+                      <img src="../media/week8/16-2.PNG" height="45%" width="45%">
+                      <p>LEFT: before, RIGHT: after</p>
+                      <p>As a result, in the beginning the Neopixel was flickering for every color mode because the button state was read all the time  thus the color mode was set all the time:</p>
+                      <img src="../media/week8/15-1.PNG" height="8%" width="8%">
+                      <img src="../media/week8/15-2.PNG" height="8%" width="8%">
+                      <img src="../media/week8/15-3.PNG" height="8%" width="8%">
+                      <img src="../media/week8/15-4.PNG" height="8%" width="8%">
+                      <img src="../media/week8/15-5.PNG" height="8%" width="8%">
+                      <img src="../media/week8/15-6.PNG" height="8%" width="8%">
+                      <img src="../media/week8/15-7.PNG" height="8%" width="8%">
+                      <p>Meanwhile, after changing the sequence of the code, the correct printing should be like in <a href="#img">this screenshot.</a></p>
+                  </div>
+                </div>        
+             </div>
+        
+                <div class="footer">
+                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                </div>
+              
+    </body>
+
+</html>

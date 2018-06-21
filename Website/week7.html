@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 7 - Electronics Design</title>
+        <link rel="stylesheet" href="main.css">   
+    </head>
+    <body>
+        <div class="header">
+          <br><img src="../media/welcome.png" height="30%" width="30%" class="header photo">
+        </div>
+
+        <div class="navtop">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a>Assignments</a>
+              <ul>
+                <li><a href="week1.html">1. Project Management</a></li>
+                <li><a href="week7.html">7. Electronics Design</a></li>
+                <li><a href="week2.html">2. 2D & 3D Design</a></li>
+                <li><a href="week8.html">8. Embedded Programming</a></li>
+                <li><a href="week3.html">3. Laser cutting</a></li>
+                <li><a href="week9.html">9. Input Device</a></li>
+                <li><a href="week4.html">4. 3D Printing</a></li>
+                <li><a href="week10.html">10. Output Device</a></li>
+                <li><a href="week5.html">5. CNC Machining</a></li>
+                <li><a href="week11.html">11. Networking</a></li>
+                <li><a href="week6.html">6. Electronics Production</a></li>
+                <li><a href="final.html">Final Project</a></li>
+                
+              </ul>
+            </li>
+            <li><a href="#">Final Project</a>
+                <ul>
+                <li><a href="final.html#sect1">1. Project Description</a></li>
+                <li><a href="final.html#sect4">4. Download resources</a></li>
+                <li><a href="final.html#sect2">2. Making process</a></li>
+                <li><a href="final.html#sect5">5. License Information</a></li>
+                <li><a href="final.html#sect3">3. Reflections</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+                  <div class="column left">
+                        <h2 id="sideText"></h2>
+                          <div class="navside">
+                              <h2 id="side_text">Page index</h2>
+                              <li><a href="#sect1">1. Circuit designing in EAGLE</a></li>
+                              <li><a href="#sect2">2. Milling and soldering the PCB</a></li>
+                              <li><a href="#sect3">3. Programming the PCB</a></li>
+                              <li><a href="#sect4">4. Problems and Troubleshooting</a></li>
+                              <li><a href="#sect5">5. Download resources</a></li>
+                          </div>
+                  </div>
+                  <div class="column right">
+                    <h1>Documentation Week 7: Electronics Design</h1>
+                    <h3>Date: 29.11.2017 - 05.12.2017</h3>
+                      <p>The assignment of this week is to practice PCB designing in EAGLE CAD by modifying an existing board and adding at least 1 button and 1 LED to the board. I chose to modify the <a href="week6.html">Hello Board</a> from last week by adding a button and replace the LED on this board with a <a href="https://www.sparkfun.com/products/11821">RGB LED with Integrated Driver WS2812</a> (also known as <a href="https://www.adafruit.com/product/1655">NeoPixel by Adafruit</a>). The idea is to control the LED to change its color with a press of the button.</p>
+                    <a name="sect1"><h2>1. Circuit designing in EAGLE</h2></a>
+                      <h3>1.1. Preparation</h3>
+                      <p>In the lecture, we started out with creating a new Project. In order to do this, we open EAGLE, under the <a id="filename">Projects -> Eagle</a> directory we right click and choose <a id="keyword">New Project.</a></p>
+                      <img src="../media/week7/1.png" height="75%" width="75%">
+                      <p>After giving the project a name, we need to design the <a id="keyword">Schematic</a> (also known as the "Logic" part of the PCB). To do this, we right click on the created Project and choose <a id="filename">New -> Schematic.</a></p>
+                      <img src="../media/week7/2.png" height="75%" width="75%">
+                      <p>We also need to add some component library that Daniele provided us, for example, for the microcontroller, the pin headers and the button. One way to do this is to download the library, then in Eagle go to <a id="filename">Library -> Open Library Manager:</a></p>
+                      <img src="../media/week7/3a.png" height="75%" width="75%">
+                      <p>Under the <a id="keyword">Available</a> tab, click on <a id="keyword">Browse</a> and look for the path to the downloaded libraries.</p>
+                      <img src="../media/week7/3b.png" height="75%" width="75%">
+                      <p>When the libraries are found, click on them and then press <a id="keyword">Use</a> to use them for the project.</p>
+                      <img src="../media/week7/3c.png" height="75%" width="75%">
+                      <h3>1.2. Schematic drawing</h3>
+                      <p>Now it is time to add components to the schematic, let's first start with the Microcontroller, in this case the <a id="keyword">ATTINY45</a>. We click on the <a id="keyword">Add</a> shortcut key on the left Toolbar. In the new ADD window, we scroll down to the <a id="keyword">fab</a> library and choose the <a id="keyword">ATTINY45SI</a> component.</p>
+                      <img src="../media/week7/4.png" height="75%" width="75%">
+                      <p>Then we click <a id="keyword">OK</a> and drop the component anywhere on the "canvas".</p>
+                      <img src="../media/week7/5.png" height="75%" width="75%">
+                      <p>We repeat the same steps until we have all the necessary components for our schematic. For my board, here is the list of components needed:</p>
+                      <code>1 x SOIC8 ATTINY45
+                          3 x 1206 SMD Capacitor
+                          1 x 6mm SMD tactile switch
+                          2 x 1206 SMD Resistor
+                          1 x 4 Male pin headers
+                          2 x 2 Male pin headers
+                          1 x 3 Male pin headers
+                          VCC
+                          GND
+                      </code>
+                      <img src="../media/week7/6.png" height="75%" width="75%">
+                      <p>Here are some basic functions of the components I used:</p>
+                      <ul>
+                          <li>The 3 capacitors have 3 different values: 1uF, 10uF and 100nF. They are used to filter the input voltage (at different frequencies) before the Microcontroller so that the Microcontroller receives a stable power supply.</li>
+                          <li>Both resistors have a value of 10K Ohm. 1 of them is used to pull down the Button, the other is used to pull up the RESET pin on the Microcontroller to VCC.</li>
+                          <li>The 4-pin-header row is used for SPI interfacing (SCK, MISO, MOSI, RST) with the Arduino UNO.</li>
+                          <li>1 of the 2-pin-header row is used to provide power to the PCB for programming, the other is so that I can solder on a 2-pin JST male connector and plug in a 3.7V LiPo battery to provide power to the PCB. Due to this, I cannot use an additional 16MHz Crystal for the Microcontroller, which requires more power than 3.7V.</li>
+                          <li>The 3-pin-header row is so that I can later solder on the RGB LED chip because I do not have it as SMD component but rather a small PCB.</li>
+                        </ul>
+                      <p>After having all of the components on the canvas, the next step is to rename and add values to the components so that we can later easily identify them in the Board layout. To do this, we click on the <a id="keyword">Value</a> shortcut key on the left Toolbar, then select a component and give it the corresponding value. For example, 1uF for one of the capacitor.</p>
+                      <img src="../media/week7/7.png" height="75%" width="75%">
+                      <p>After assigning the values for all of the components, we click on the <a id="keyword">Name</a> shortcut key on the left Toolbar, then select a component and give it the corresponding name, and again repeat this for all remaining components:</p>
+                      <img src="../media/week7/8.png" height="75%" width="75%">
+                      <p>Now comes the wiring part. We have to connect the pin of the components in order to logically represent the circuit. One way to do this is to use the <a id="keyword">Net</a> shortcut key on the left Toolbar and start drawing connecting lines (represented as <a style="color:lightgreen;font-weight: 700">green lines</a>) between the pins:</p>
+                      <img src="../media/week7/9.png" height="75%" width="75%">
+                      <p>Another way to do this is to draw a short wire extending each pin (out of the 2 pins that should be connected together), add a <a id="keyword">Label</a> to each wire, then <a id="keyword">give the 2 labels the same name:</a></p>
+                      <img src="../media/week7/10.png" height="75%" width="75%">
+                      <p>Below is the final schematic of all connections I had to wire for my board:</p>
+                      <img src="../media/week7/11.png" height="75%" width="75%">
+                      <h3>1.3. Board layout designing</h3>
+                      <p>In order to go to the Board layout function, we click on the <a id="keyword">Generate/ Switch to board</a> button at the top Toolbar. Since we have not created a board for this schematic before, we should click "Yes" when prompted:</p>
+                      <img src="../media/week7/12.png" height="75%" width="75%">
+                      <p>Now we can see all the physical appearance of all components. One first thing I usually do before starting the layout is to turn on the Grid. To do this, we click on the <a id="keyword">Grid</a> shortcut key on the top Toolbar. In the Grid window, we can specify the <a id="keyword">Size</a> of the grid in various types of unit. For example, I chose 100 mil, which is also the standard distance between 2 adjacent pin headers in a pin header row, or between 2 points on a breadboard. There is also a function called <a id="keyword">Multiple</a> which will snap the component to every point at the grid size of <a id="keyword">mutiple*size</a> (for example, 100 mil in this case) when we try to move the component around. Another function is the <a id="keyword">Alt</a> function which allows us to move the component to every point at the alt-grid size (for example, 25 mil in this case) if we press the <a id="keyword">ALT</a> key while moving the component around:</p>
+                      <img src="../media/week7/13.png" height="75%" width="75%">
+                      <p>Next I want to drag all components into the grid. To do this, I have to first click on the <a id="keyword">Group</a> shortcut key on the left Toolbar, select all components, then click on the <a id="keyword">Move</a> shortcut key on the left Toolbar, right click on the canvas and select <a id="keyword">Move: Group</a> and bring them inside the grid:</p>
+                      <img src="../media/week7/14.png" height="75%" width="75%">
+                      <p>Next I can start to do a rough layout of the board by arranging the components into where I want them to be. Then I click on the <a id="keyword">Rastnet</a> shortcut key on the left Toolbar for the software to re-route the <a style="color:gold;font-weight: 700">yellow airwires</a>. This usually really helps in making the routes less messy to look at.</p>
+                      Before rastnet:<br>
+                      <img src="../media/week7/15a.png" height="75%" width="75%">
+                      <br>After rastnet:<br>
+                      <img src="../media/week7/15b.png" height="75%" width="75%">
+                      <p>Now we can start to route the board. To do this, we click on the <a id="keyword">Route</a> shortcut key on the left Toolbar, then choose the desired width of the traces. Daniele suggested us to use <a id="keyword">0.016 inch (or 16 mil)</a> for our boards:</p>
+                      <img src="../media/week7/16.png" height="75%" width="75%">
+                      <p>If we need to unroute a trace, we have to click on the <a id="keyword">Ripup</a> shortcut key on the left Toolbar (next to the <a id="keyword">Route</a> key) and select the trace we want to unroute. One important note while routing is that we should make sure the components do not overlap each other at their borders as restricted by the white markings around them. Otherwise, later on there will not be enough space to place them next to each other while soldering.</p>
+                      <p>Here is the result of my board's layout:</p>
+                      <img src="../media/week7/17.png" height="55%" width="55%">
+                    <a name="sect2"><h2>2. Milling and soldering the PCB</h2></a>
+                      <p>Similar to last week's assignment, to prepare for the milling we have to export the board layout as an Image with DPI of at least 1500 in Monochrome color. Then we need to use a Photo Editing Software to crop out an image of the traces and draw the outline of the board. Here are the result of my images:</p>
+                      Image of circuit's traces:<br>
+                      <img src="../media/week7/18.png" height="50%" width="50%">
+                      <br>Image of board's outline:<br>
+                      <img src="../media/week7/19.png" height="50%" width="50%">
+                      <p>Now that we have the images, we need to go to the <a href="fabmodules.org">Fab Modules Online CAM Processor</a> to generate machine codes for milling. This time I am using the Roland MDX-40 and here are the settings:</p>
+                      For the trace milling:<br>
+                      <code>- cut speed 4mm
+                        - x0, y0, z0: 0
+                        - jog height 5mm
+                        - cut depth 0.0mm
+                        - tool diameter 0.2mm
+                        - number of offsets 4
+                        - offset overlap 55% 
+                      </code>
+                      For the board outline:<br>
+                      <code>- cut speed 1mm
+                        - x0, y0, z0: 0
+                        - jog height 5mm
+                        - cut depth 1.9mm
+                        - tool diameter 1mm
+                        - number of offsets 1
+                      </code>
+                      <p>After saving the machine codes (.RML files) I proceed to milling the board on the machine. First I have to set XY origin for the milling job. Then I have to insert the 0.2-0-5mm end tool for the first job. The good thing about the Roland is that I can use the machine's builtin sensor to set the Z origin:</p>
+                      <img src="../media/week7/20.jpg" height="65%" width="65%">
+                      <p>However, sometimes when the PCB is not placed evenly, the Z origin detected by the sensor is also not completely perfect for all areas of the board. I will discuss this later in <a href="#sect4">Section 4: Problems and Troubleshooting.</a></p>
+                      <p>Another difference between the Roland and the Cirqoid is that we have to remember to <a id="keyword">set the spindle RPM to 15000</a> in the VPanel for Roland software:</p>
+                      <img src="../media/week7/21.jpg" height="65%" width="65%">
+                      <p>After having the setups done, I start to run the milling job for the circuit traces. This was the result of the job:</p>
+                      <img src="../media/week7/22.jpg" height="65%" width="65%">
+                      <p>Then I changed to the 1.0mm tool, set the new Z-origin and start the second job to cut out the board. This was my board at the end after drilling the holes with 0.8mm tool, with some bends at the corner because I had trouble removing the board from the bed (the double-sided tape was too strong):</p>
+                      <img src="../media/week7/23.jpg" height="65%" width="65%">
+                      <p>I moved on with using the multimeter to check that the traces on the board are milled out correctly, i.e., no traces that are not supposed to be connected are actually connected. After this, I proceed to soldering components onto the board, here was the final result:</p>
+                      Board view from top:<br>
+                      <img src="../media/week7/24.jpg" height="65%" width="65%">
+                      <br>Board view from an angle:<br>
+                      <img src="../media/week7/25.jpg" height="65%" width="65%">
+                      <br>Board view from the side:<br>
+                      <img src="../media/week7/26.jpg" height="65%" width="65%">
+                      <p>As explained before, the extra 2-pin-header row is used for soldering the 2-pin JST male connector, which I plugged it in from the bottom and made sure the polarity is correct before soldering. Afer soldering, I check with the multimeter again to make sure everything is correct, especially the VCC and GND lines are not connected, because in the end I am going to use a Lipo battery which should never be shorted.</p>
+                    <a name="sect3"><h2>3. Programming the PCB</h2></a>
+                      <p>I wired the Neopixel to the PCB and the PCB to the Arduino as in the following diagram:</p>
+                      <img src="../media/week7/27.png" height="65%" width="65%">
+                      <p>Using the same setup as last week's assignment, I burn bootloader onto the ATTiny45 chip. Then I need to install the <a id="keyword">Adafruit Neopixel library</a> in the Arduino IDE under <a id="keyword">Sketch -> Include Library -> Manage Libraries...</a> In the Library manager, I search for the "neopixel" keyword and then install the latest version of the Adafruit Neopixel library:</p>
+                      <img src="../media/week7/28.png" height="65%" width="65%">
+                    <p>Then I open the <a id="keyword">simple</a> example sketch under the Adafruit Neopixel folder, edit some parameters in the sketch including the "number of neopixels" and the "pin number". Then I upload the sketch to the ATTINY45 using <a id="keyword">Arduino as ISP:</a></p>
+                      <img src="../media/week7/29.png" height="45%" width="45%">
+                      <img src="../media/week7/29b.png" height="45%" width="45%">
+                    <p>And now my Neopixel is lighting up:</p>
+                      <img src="../media/week7/30.jpg" height="75%" width="75%">
+                    <p>Finally, I modified the sketch to add the function for the button so that I can switch to different color modes every time I press the button. Then I disconnect the board from the Arduino Uno and plugged in the 3.7V Lipo battery. It works in the end: (YAY!)</p>
+                      <img src="../media/week7/final.gif" height="45%" width="45%">
+                    <a name="sect4"><h2>4. Problems and Troubleshooting</h2></a>
+                      <p>Besides the trouble while taking the PCB out of the bed due to the over-sticky tape, I also experienced a problem with an uneven bed, thus my circuit was not milled out evenly throughout and I had to mill the traces again. Also, this time I set the Z-origin manually instead of using the sensor because the sensor will only produce best results when the PCB's surface is even. Here is a picture of comparison:</p>
+                      <img src="../media/week7/e1.jpg" height="75%" width="75%">
+                      <br><a id="filename">LEFT: first try using sensor - uneven bed, RIGHT: second try with manual setting - problem solved</a>
+                      <p>Another problem is that while designing the board layout, I did not pay atttention to leaving enough space between the Neopixel and the button. Thus, in the end they are quite close to each other and although the Neopixel is put a bit higher above the PCB's surface, it is still not so convenient to press the button, especially if someone has bigger fingers than mine.</p>
+                    <a name="sect5"><h2>5. Download resources</h2></a>
+                      EAGLE files:
+                      <ul>
+                          <li><a href="../Assignment Files/Week7/Attiny_Neopixel_Button.sch">ATTINY-Neopixel-Button EAGLE SCHEMATIC FILE</a></li>
+                          <li><a href="../Assignment Files/Week7/Attiny_Neopixel_Button.brd">ATTINY-Neopixel-Button EAGLE BOARD FILE</a></li>
+                      </ul>
+                      Image files:
+                      <ul>
+                          <li><a href="../Assignment Files/Week7/week7_t3_traces.png">Board's traces image</a></li>
+                          <li><a href="../Assignment Files/Week7/week7_t3_outline.png">Board's outline image</a></li>
+                      </ul>
+                      Roland Milling files:
+                      <ul>
+                          <li><a href="../Assignment Files/Week7/week7_t3_traces.rml">Board's traces machine file</a></li>
+                          <li><a href="../Assignment Files/Week7/week7_t3_outline.rml">Board's outline machine file</a></li>
+                      </ul>
+                      <a href="../Assignment Files/Week7/ATTiny_Neopixel_Button.ino">Final Arduino sketch</a>
+                      <br><br>
+                  </div>
+                </div>        
+             </div>
+        
+                <div class="footer">
+                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                </div>
+              
+    </body>
+
+</html>

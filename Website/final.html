@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Final Project</title>
+        <link rel="stylesheet" href="main.css">   
+    </head>
+    <body>
+        <div class="header">
+          <br><img src="../media/welcome.png" height="30%" width="30%" class="header photo">
+        </div>
+
+        <div class="navtop">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a>Assignments</a>
+              <ul>
+                <li><a href="week1.html">1. Project Management</a></li>
+                <li><a href="week7.html">7. Electronics Design</a></li>
+                <li><a href="week2.html">2. 2D & 3D Design</a></li>
+                <li><a href="week8.html">8. Embedded Programming</a></li>
+                <li><a href="week3.html">3. Laser cutting</a></li>
+                <li><a href="week9.html">9. Input Device</a></li>
+                <li><a href="week4.html">4. 3D Printing</a></li>
+                <li><a href="week10.html">10. Output Device</a></li>
+                <li><a href="week5.html">5. CNC Machining</a></li>
+                <li><a href="week11.html">11. Networking</a></li>
+                <li><a href="week6.html">6. Electronics Production</a></li>
+                <li><a href="final.html">Final Project</a></li>
+                
+              </ul>
+            </li>
+            <li><a href="#">Final Project</a>
+                <ul>
+                <li><a href="final.html#sect1">1. Project Description</a></li>
+                <li><a href="final.html#sect4">4. Download resources</a></li>
+                <li><a href="final.html#sect2">2. Making process</a></li>
+                <li><a href="final.html#sect5">5. License Information</a></li>
+                <li><a href="final.html#sect3">3. Reflections</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+                  <div class="column left">
+                        <h2 id="sideText"></h2>
+                          <div class="navside">
+                              <h2 id="side_text">Page index</h2>
+                              <li><a href="#sect1">1. Project Description</a></li>
+                              <li><a href="#sect2">2. Making process</a></li>
+                              <li><a href="#sect3">3. Reflections</a></li>
+                              <li><a href="#sect4">4. Download resources</a></li>
+                              <li><a href="#sect5">5. License Information</a></li>
+                          </div>
+                  </div>
+                  <div class="column right">
+                    <h1>Documentation Final Project</h1>
+                    <h3>Date: 03.01.2018 - 31.01.2018</h3>
+                    <a name="sect1"><h2>1. Project Description</h2></a>
+                      <p>For the final project, I want to build a <a id="keyword">small personal desk with controllable adjustable height</a>, which<a id="keyword"> also reminds me to switch my posture</a> between sitting and standing after a certain time interval.</p> 
+                       <img src="../media/final/final.PNG" height="45%" width="45%">
+                      <img src="../media/final/final2.jpg" height="37.2%" width="37.2%">
+                    <p><a id="keyword">Motivation:</a> The idea came to me because of the fact that I find myself as well as many people around me sitting and working on the computer for a big part of the day. Many of the times when I need to focus on the work I forget to move around and get active. Thus I find it important to have some kind of friendly reminder to tell me that I should start moving after some time of idly sitting. Then I think of combining this kind of reminder with my actual working space, thus the final idea of a personal working desk with button interface to raise it up or bring it down and acoustic buzzer to remind me to change posture after some time interval.</p>
+                      <p>While searching around the Internet for inspiration and the components that I should use, I found some commercially available big table with adjustable height for around 1000 Euro or more. But of course from these products it is not clear how the table is constructed. In the end I found <a href="http://www.instructables.com/id/Electric-Height-Adjustable-Desk/">a similar project on Instructable which costs about 200 USD</a>. From this Instructable I learned that a <a href="https://en.wikipedia.org/wiki/Linear_actuator">Linear Actuator</a> is the perfect part to be used for my project. However, this desk is still a big one which uses 2 actuators and thus the problem of synchronizing them arises. For my personal desk I only need 1 actuator. Knowing this, I started to sketch out the idea for my desk and order the required components.</p>
+                      <p>The required components can be divided into following parts: Materials for making the desk (wood), electronic components, materials and parts for making my own motor controller board and microcontroller board, power supply components. The <a id="keyword">complete BOM list</a> can be downloaded in <a href="#sect4">Section 4 - Download resources</a>. According to my calculations, the project costs around <a id="keyword">90 Euro in total.</a></p>
+                      <p><a id="keyword">The making process</a> (in timely manner) of the desk is as followed:</p>
+                      <ol>
+                          <li>Sketch the overall design and order required components</li>
+                          <li>Test H-Bridge motor controller circuit on breadboard</li>
+                          <li>Test microcontroller and electronics components on breadboard</li>
+                          <li>Design PCB for H-Bridge controller and adjust microcontroller PCB design from <a href="week9.html">Week 9</a></li>
+                          <li>Design desk frame in 2D and 3D modelling softwares</li>
+                          <li>Mill and populate PCBs, test and upload final Arduino sketches</li>
+                          <li>Test cut of desk frame using Laser cutter and CNC machine, correct design errors</li>
+                          <li>Final cut of desk frame</li>
+                          <li>Mount components to frame, put parts together</li>
+                      </ol>
+                      <p>For this project, I have combined <a id="keyword">almost all of the digital fabrication techniques learned</a> during the course including:</p>
+                      <ul>
+                          <li>2D Design & laser cutting & CNC milling</li>
+                          <ul><li>2D designed & laser cut electronics box</li>
+                          <li>2D designed & CNC milled desk body</li></ul>
+                          <li>3D Modelling & 3D Printing</li>
+                          <ul><li>3D designed & 3D printed support structures for mounting linear actuator to desk's leg and top</li></ul>
+                          <li>Electronics design & Electronics production</li>
+                          <ul><li>FabLab-made H-bridge single motor controller board to control linear actuator's direction</li>
+                              <li>FabLab-made ATMEGA328P-based, Arduino-compatible microcontroller board</li>
+                          </ul>
+                          <li>Input Devices</li>
+                          <ul><li>Push button to tell actuator to go up or down</li>
+                              <li>Potentiometer to adjust timer's value</li>
+                          </ul>
+                          <li>Output devices</li>
+                          <ul><li>Linear actuator which provides the main function of the desk</li>
+                              <li>OLED display to shows timer value</li>
+                              <li>Acoustic buzzer to remind me to change posture once the timer is finished</li>
+                              <li>RGB LED (Neopixel) to display status of system</li>
+                          </ul>
+                          <li>Embedded Programming</li>
+                          <li>Networking (I2C communication between microcontroller and OLED)</li>
+                      </ul>
+                      <p>I wanted to build this desk because I think it will be very useful for me and would really like to use it while working. It would be nice to share this project as an open source project where everyone can recreate it and use it for their own benefit. Thus, I decided to share this project under the <a href="#sect5">Creative Commons Attribution-ShareAlike 4.0 International License.</a></p>
+                      <p><a id="keyword">A one-minute video</a> describing the project briefly can be found <a href="../Assignment Files/Final/Video/Final%20project_Desk.mp4">here</a></p>
+                    <a name="sect2"><h2>2. Making process</h2></a>
+                      <h3>2.1. 2D Sketch & 3D model the desk's overall design</h3>
+                      <p>In order to sketch a rough design for the desk, I needed to consider the dimensions of the desk's main component - the linear actuator:</p>
+                      <img src="../media/final/1b.PNG" height="15%" width="15%">
+                      <img src="../media/final/1a.jpg" height="44%" width="44%">
+                      <br><a id="filename">Left: Linear Actuator, Right: Corresponding dimensions (in mm)</a>
+                      <p>Based on this, the design of the desk was sketched out and also modified several times during the making process to meet other requirements:</p>
+                      <img src="../media/final/2a.jpg" height="45%" width="45%" align="top">
+                      <img src="../media/final/2b.jpg" height="45%" width="45%">
+                      <br><a id="filename">Left: First draft sketch of desk with dimensions, Right: Final sketch with dimensions after several modifications</a>
+                      <p>Since the actuator has a maximum width of 75mm and I want to use 18mm plywood for the outer case covering the bottom part of the actuator, the outer case will have a total width of 75+2*18 = 111mm. With considerations of the other dimensions, I designed the desk parts in 2D design software such as Adobe Illustrator and Rhinoceros, exported the files as .DXF then imported them in Fusion 360 to put them together to check if they fit.</p>
+                      <p>In order to mount and fix the actuator to the desk I have 4 supporting structures:</p>
+                      <ul><li>One at the bottom of the actuator where it will rest on a platform and will be fixed by screw onto the 2 hooks which connect the platform to one of the bottom case cover's wall</li>
+                          <br><img src="../media/final/3a.PNG" height="45%" width="45%" align="top">
+                          <img src="../media/final/3b.PNG" height="31.5%" width="31.5%" align="top">
+                          <br><a id="filename">Left: Bottom side view without actuator model, Right: Top side view with actuator in mounting position</a>
+                          <br><br>
+                          <li>One at the lower end and one at the upper end of the actuator's stroke length to stabilize it, especially to prevent it from shaking when the stroke is extending or withdrawing</li>
+                          <br><img src="../media/final/4a.PNG" height="35%" width="35%" align="top">
+                          <img src="../media/final/4b.PNG" height="33%" width="33%" align="top">
+                          <br><br><li>One at the top of the stroke length to hold the desktop in place:</li>
+                           <br><img src="../media/final/5a.PNG" height="25%" width="25%" align="top">
+                          <img src="../media/final/5b.PNG" height="40.5%" width="40.5%" align="top">
+                          <br><a id="filename">Left: Top support structure, Right: Top support structure in mounting position</a>
+                      </ul>
+                      <p>The final complete 2D design of the desk looks like this:</p>
+                      <img src="../media/final/6.PNG" height="60%" width="60%" align="top">
+                      <img src="../media/final/6b.PNG" height="25%" width="25%" align="top">
+                      <p>I also tried to model the full desk body in Fusion 360:</p>
+                      <img src="../media/final/7b.PNG" height="34.3%" width="34.3%" align="top">
+                      <img src="../media/final/7a.PNG" height="30%" width="30%" align="top">
+                      <br><a id="filename">Left: Model without desktop, Right: Full desk model</a>
+                      
+                      <h3>2.2. Test the electronics components</h3>
+                        <h4>2.2.1. Test H-Bridge motor controller circuit on breadboard</h4>
+                      <p>The most important part of this project is to control the Linear Actuator's direction thus I started testing it first. Using a readily available H-bridge motor controller and the same setup as described in <a href="week10.html">Week 10: Output devices</a> I could control the actuator's direction with 2 push buttons. However, the trouble comes when I want to build my own H-bridge circuit. The reason is because the available H-bridge module is transistor-based and thus can only provide a current of up to 2A, meanwhile the linear actuator needs upto 3A to function. Hence I need to make a MOSFET-based controller. The schematic of a general H-bridge motor controller using MOSFETs looks like this:</p>
+                      <img src="../media/final/8.PNG" height="80%" width="80%" align="top">
+                      <p>However, due to the complexity of the circuit, when I tried to wire it up the first time, I made wrong connections and it did not work. One of the N-channel MOSFET was getting warm, but luckily it did not break. Thus I learned that I should start testing smaller portions of the circuit before putting everything together. First, I tested the warmed MOSFET again alone to check if it still works. Then, I wired up a half-bridge controller following this schematic:</p>
+                      <img src="../media/final/9a.jpg" height="70%" width="70%" align="top">
+                      <p>The simplified circuit worked perfectly:</p>
+                        <video height="400" controls>
+                            <source src="../media/final/9c.mp4" type="video/mp4">
+                        </video>
+                       <p>At this point I could extend the circuit to test the full H-bridge again:</p>
+                      <img src="../media/final/10.PNG" height="70%" width="70%" align="top">
+                      <p>And this is a snapshot of the Arduino sketch for the full H-bridge controller, which can be downloaded below in <a id="filename">Section 4.</a></p>
+                      <img src="../media/final/11a.PNG" height="40%" width="40%" align="top">
+                      <img src="../media/final/11b.PNG" height="40%" width="40%" align="top">
+                      <img src="../media/final/11c.PNG" height="40%" width="40%" align="top">
+                      <img src="../media/final/11d.PNG" height="35%" width="35%" align="top">
+                      <p>There are several differences between this sketch and the sketch from Week 10. One is the use of 2 buttons instead of 1 to control the direction of the motor/ actuator. In this sketch, I use 1 "UP" button to tell the actuator to go up or to stop going up, and 1 "DOWN" button to tell it to go down or to stop going down. For example, when "UP" button is pressed once, actuator goes up and when "UP" is pressed again it stops the motion. Also, when the actuator is for example going up and "DOWN" is pressed, it will directly change direction and go down. As I tested, the actuator seems to change direction very smoothly.</p>
+                      <p>Another difference is of course because now I am using my own H-bridge controller instead of the ready-made module, the pins have to be controlled in a different manner and I only have to change them accordingly.</p>
+                        <h4>2.2.2. Test other electronics components on breadboard</h4>
+                      <p>Other electronics components such as potentiometer, OLED, buzzer, Neopixel have been experimented with in previous weeks. For the final project, I only need to adjust the code for the Neopixel a little bit, and add an extension to the OLED & potentiometer code for it to work with the buzzer and the timer.</p>
+                      <p>The purpose of the Neopixel in this final project is to display the status of the actuator as followed:</p>
+                      <code>Neopixel is <a style="color:limegreen; font-weight: 600">green: </a> Actuator <a style="color:limegreen; font-weight: 600">stands by</a> (no motion)
+                          Neopixel is <a style="color:gold; font-weight: 600">yellow: </a> Actuator is <a style="color:gold; font-weight: 600">going up</a>
+                          Neopixel is <a style="color:deepskyblue; font-weight: 600">blue: </a> Actuator is <a style="color:deepskyblue; font-weight: 600">going down</a>
+                      </code>
+                      <p>For the timer function of the desk, which means the buzzer will beep gently once a user-defined time interval is reached, I downloaded and installed the <a href="https://github.com/inflop/Countimer">Countimer library</a> and integrated it into my previous sketch from Week 10. The modified sketch can be download in <a id="filename">Section 4.</a></p>
+                      <p>The last part of testing the electronics is to provide the whole system with a single source of power. Thus, I ordered the 12V 3.33A power supply which provides 12V directly to the motor and the motor controller's board, and use the <a id="keyword">Step-down converter</a> to get out 5V for the microcontroller board.</p>
+                      <p>Since the step-down converter I have is an adjustable one, I have to tune the SMD potentiometer on the PCB to get 5V out while providing 12V input:</p>
+                      <img src="../media/final/12.jpg" height="50%" width="50%" align="top">
+                      <p>After making sure that all electronics components are working, I soldered wires and pin headers to them so that they can later be connected to the microcontroller boards:</p>
+                      <img src="../media/final/13a.jpg" height="45%" width="45%" align="top">
+                      <img src="../media/final/13b.jpg" height="33.8%" width="33.8%" align="top">
+                      <br><br>
+                      <img src="../media/final/13c.jpg" height="45%" width="45%" align="top">
+                      <img src="../media/final/13d.jpg" height="45%" width="45%" align="top">
+                      <br><br><img src="../media/final/13e.jpg" height="45%" width="45%" align="top">
+                      <br><br><a id="filename">Left to right, Top  to Bottom: Button with 10K pull-down resistor, Buzzer, Potentiometer, Step-down converter, AC Switch with DC jack for power input</a>
+                      <h3>2.3. PCBs designing & production</h3>
+                      <h4>2.3.1. Design & make PCB for H-bridge motor controller</h4>
+                      <p>As practiced in previous weeks, I designed my H-bridge PCB in EAGLE:</p>
+                      <img src="../media/final/14a.PNG" height="85%" width="85%" align="top">
+                      <img src="../media/final/14b.PNG" height="65%" width="65%" align="top">
+                      <br><br><a id="filename">Top: schematic of single H-bridge controller in EAGLE, Bottom: Board layout in EAGLE</a>
+                      <p>The same procedure like in Week 9 is used to produce the PCB using the Roland MDX40. Following are the settings for the milling and cutting jobs:</p>
+                      <img src="../media/final/16a.png" height="75%" width="75%" align="top">
+                      <img src="../media/final/16b.png" height="75%" width="75%" align="top">
+                      <h4>2.3.2. Design & make PCB for microntroller</h4>
+                      <p>For the final project, I have to modify my microcontroller from Week 9 by adding a 16MHz crystal and 2x22pF capacitors for the crystal so that the board can use 5V input, basically in order to provide sufficient voltage for activating the MOSFETs which requires a threshold voltage of 2-4V.</p>
+                      <img src="../media/final/18a.PNG" height="75%" width="75%" align="top">
+                      <br><br><img src="../media/final/18b.PNG" height="75%" width="75%" align="top">
+                      <br><br><a id="filename">Top: partial datasheet of IRFZ24N N-channel MOSFET, Bottom: partial datasheet of IRF9Z34N P-channel MOSFET</a>
+                      <p>I also added a 3.5mm terminal block to provide power to the board from the step-down converter, and additional power (VCC & GND) pin header pairs on the board so that I can directly connect all components to the board without having to use additional connecting wires or breadboard in between them. The final schematic and board layout looks as followed, with the difference to Week 9's board highlighted within dotted lines:</p>
+                      <img src="../media/final/15a.jpg" height="75%" width="75%" align="top">
+                      <img src="../media/final/15b.PNG" height="65%" width="65%" align="top">
+                      <p>Again, I used the same settings for milling and cutting the board using the Roland MDX40:</p>
+                      <img src="../media/final/17a.png" height="75%" width="75%" align="top">
+                      <img src="../media/final/17b.png" height="75%" width="75%" align="top">
+                      <h4>2.3.3. Test PCBs and upload final sketches</h4>
+                      <p>The finished boards out of the Roland mill...</p>
+                      <img src="../media/final/19a.jpg" height="40%" width="40%" align="top">
+                      <img src="../media/final/19b.jpg" height="40%" width="40%" align="top">
+                      <p>.. and after soldering the components:</p>
+                      <img src="../media/final/20a.jpg" height="40%" width="40%" align="top">
+                      <img src="../media/final/20b.jpg" height="40%" width="40%" align="top">
+                      <img src="../media/final/20c.jpg" height="40%" width="40%" align="top">
+                      <img src="../media/final/20d.jpg" height="40%" width="40%" align="top">
+                      <br><br><a id="filename">Left to Right, Top to Bottom: H-Bridge motor controller board FRONT side, H-Bridge motor controller board BACK side, Microcontroller board FRONT side, Microcontroller board BACK side</a>
+                      <p>Now it is time to test each of them individually. First I test the Motor controlelr board with the linear actuator and there was no problem:</p>
+                      <video height="300" controls>
+                            <source src="../media/final/21.mp4" type="video/mp4">
+                        </video>
+                      <p>Also, I used the multiple conductors shielded cable to transmit power (from motor controller board to step-down converter) & signal lines (from microcontroller board to motor controller board) so that they are all packed together. The reason is because they have to be around 1m long going along the desk's body, thus I do not want them to twist around each other or cause a mess while the actuator is moving.</p>
+                      <img src="../media/final/22.jpg" height="70%" width="70%" align="top">
+                      <br><br><a id="filename">Multiple conductor shielded cable connecting the motor controller board, step-down converter and microcontroller board</a>
+                      <p>Then I wired the remaining components to the microcontroller board for the final electronics test:</p>
+                      <img src="../media/final/23.jpg" height="70%" width="70%" align="top">
+                      <p>And luckily everything was working well:</p>
+                      <video height="400" controls>
+                            <source src="../media/final/24.mp4" type="video/mp4">
+                        </video>
+                      <h3>2.4. Laser cutting & 3D printing</h3>
+                      <h4>2.4.1. Laser cut electronics casing</h4>
+                      <p>First I made a small casing for the H-bridge controller because I'm afraid the MOSFETs can undergo physical strain, they are kind of extruding out of the board. Also, the case is not enclosed because the MOSFETS need to dissipate power as heat while working.</p>
+                      <img src="../media/final/25a.PNG" height="40%" width="40%" align="top">
+                      <img src="../media/final/25b.jpg" height="45%" width="45%" align="top">
+                      <br><br><a id="filename">TOP: 2D design of motor controller's casing, BOTTOM: actual casing after laser cutting</a>
+                      <p>Then I design the casing for the remaining electronics including step-down converter, microcontroller board, buttons, Neopixel, buzzer, potentiometer, OLED:</p>
+                      <img src="../media/final/26a.PNG" height="60%" width="60%" align="top">
+                      <img src="../media/final/26b.jpg" height="60%" width="60%" align="top">
+                      <br><br><a id="filename">TOP: 2D design of electronics' casing, BOTTOM: actual casing after laser cutting</a>
+                      <p>For both casings, I get a template box from this <a href="http://boxdesigner.connectionlab.org/">free online Box Designer tool</a> and made modifications for my needs. Then I used 3mm MDF readily available in the FabLab and the following settings in the Epilog Fusion to laser cut them:</p>
+                      <code>Speed: 8%
+                          Power: 100%
+                          Frequency: 30%
+                      </code>
+                      <h4>2.4.2. 3D print mouting structures for actuator</h4>
+                      <p>I need to 3D print 2 objects: one for fixing the upper end of the actuator's stroke to the wall of the desk's leg, and one for mouting the desktop onto of the stroke's top. However, the design was not completely correct from the very beginning, thus I had to redesign and reprint several times. For example, although the side mounting structure (in white) was OK, at first the top mounting structure (in black) was too small to be stably hold the desktop:</p>
+                      <img src="../media/final/27a.jpg" height="60%" width="60%" align="top">
+                      <p>thus I had to redesign the top mounting structure as followed, which made it more stable:</p>
+                      <img src="../media/final/27b.jpg" height="50%" width="50%" align="top">
+                      <p>For the side mounting structure, I printed using the Ultimaker 2+ with following settings:</p>
+                      <code>Material: PLA
+                          Nozzle size: 0.6mm
+                          Layer height: 0.3mm
+                          Initial layer height: 0.4mm
+                          Wall thickness: 1.2mm
+                          Top/Bottom thickness: 1.2mm
+                          Infill desnsity: 30%
+                          Infill pattern: Grid
+                          Enable retraction: Yes
+                          Print speed: 65mm/s
+                          Travel speed: 120mm/s
+                          Generate Support: No
+                          Build plate adhesion type: Brim
+                          Brim width: 5mm
+                          Print sequence: All at once
+                      </code>
+                      <p>For the top mounting structure, I printed using the Ultimaker 2+ with following settings:</p>
+                      <code>Material: PLA
+                          Nozzle size: 0.6mm
+                          Layer height: 0.3mm
+                          Initial layer height: 0.4mm
+                          Wall thickness: 1.2mm
+                          Top/Bottom thickness: 1.2mm
+                          Infill desnsity: 50%
+                          Infill pattern: Grid
+                          Enable retraction: Yes
+                          Print speed: 65mm/s
+                          Travel speed: 120mm/s
+                          Generate Support: Yes
+                          Support placement: Touching buildplate
+                          Support Overhang angle: 50
+                          Support pattern: Zigzag
+                          Support density: 10%
+                          Support Z distance: 0.3mm
+                          Build plate adhesion type: Brim
+                          Brim width: 5mm
+                          Print sequence: All at once
+                      </code>
+                        <h3>2.5. CNC cut desk body</h3>
+                        <h3>2.5.1. Test cut of partial desk body</h3>
+                      <p>I first wanted to test cut only a section of the desk to check if everything was fine and to correct any design errors before cutting the final desk completely. To do this, I sectioned out the part of the desk's leg which supports the bottom of the actuator and cut it with the eSign CNC machine, because this part was one of the most complex parts of the desk.</p>
+                      <p>The milling procedure and the cut settings are as followed:</p>
+                      <img src="../media/final/28d.jpg" height="40%" width="40%" align="top">
+                      <br><br><a id="filename">Settings for drilling the holes</a><br><br>
+                      <img src="../media/final/28a.jpg" height="60%" width="60%" align="top">
+                      <br><br><a id="filename">Settings for the inner cut</a><br><br>
+                      <img src="../media/final/28b.jpg" height="60%" width="60%" align="top">
+                      <br><br><a id="filename">Settings for the outer cut</a><br><br>
+                      <img src="../media/final/28c.jpg" height="60%" width="60%" align="top">
+                      <p>Then I put them together and tried to mount the actuator on it:</p>
+                      <img src="../media/final/29.jpg" height="40%" width="40%" align="top">
+                      <p>From this test cut, I learned that I also need to make holes at the corners of the tabs joining the case's walls together, otherwise they will not fit perfectly. Also, thanks to the test cut I realized I forgot to make cutouts in the actuator's holder platform for the motor cable to go through towards the top as well as for the power and signal cable to go through towards the bottom. Good thing I made the test cut!</p>
+                        <h3>2.5.2. Final cut of desk body</h3>
+                      <p>After making modifications to the design of the desk, I cut the final version using 18mm & 15mm plywood:</p>
+                      <img src="../media/final/30.jpg" height="50%" width="50%" align="top">
+                      <br><br><a id="filename">Desk's leg on 18mm plywood</a><br><br>
+                      <img src="../media/final/31.jpg" height="50%" width="50%" align="top">
+                      <br><br><a id="filename">Desk's standing support on 18mm plywood</a><br><br>
+                      <img src="../media/final/32.jpg" height="50%" width="50%" align="top">
+                      <br><br><a id="filename">Desktop on 15mm plywood</a><br><br>
+                        <h3>2.6. Final build</h3>
+                      <p>Now it's time to mount all components to the desk's body. First I mount the actuator and the motor controller box to the leg:</p>
+                      <img src="../media/final/33.jpg" height="50%" width="50%" align="top">
+                      <p>Then I tug the power switch and the DC jack into place of the front side of the leg:</p>
+                      <img src="../media/final/34.jpg" height="60%" width="60%" align="top">
+                      <p>Afterwards, I close the desk's leg tightly and test the system before moving on with mounting the desktop:</p>
+                      <video height="300" controls>
+                            <source src="../media/final/35.mp4" type="video/mp4">
+                        </video>
+                      <p>Then I mounted the desktop and tested again to make sure the actuator can handle the weight:</p>
+                      <img src="../media/final/36.png" height="70%" width="70%" align="top">
+                      <p>Finally, I laser cut the top cover for the stroke of the linear actuator using 6mm MDF and the following settings:</p>
+                      <code>Speed: 3%
+                          Power: 100%
+                          Frequency: 30%
+                      </code>
+                      <p>And put them together. The final product is working fine:</p>
+                      <video height="400" controls>
+                            <source src="../media/final/final.mp4" type="video/mp4">
+                        </video>
+                    <a name="sect3"><h2>3. Reflections</h2></a>
+                      <p>The experience while making the final project was for me valuable. Although it was frustrating sometimes, for example, when the Arduino sketch does not work as expected, or when the 2D and 3D design had to be redesigned multiple times but still not perfect, it was also satisfying when the system was working in the end. It taught me to understand that it is normal when things do not work as I wish for and I have to overcome the challenge to fix the issues. Only then I actually learn from the mistakes.</p>
+                      <p>As mentioned before, I personally want to use the desk for my own benefit due to the fact that I'm working on my laptop almost 8hrs everyday. In order to make this possible, I still have to fix multiple design errors and also think of better designs next time. Here are some of the errors which I still have to fix although it is not affecting the function of the desk:</p>
+                      <ul>
+                      <li>Because I chose the wrong package for the 16MHz crystal in EAGLE, I did not have enough space to solder it on the right place and thus had to troubleshoot it by soldering it directly to the ATMEGA's pin.<br><br><img src="../media/final/e1.jpg" height="50%" width="50%" align="top">
+                      <br><br>
+                          </li>
+                      <li>The distance between the mounting screw holes for the OLED was not correct, thus I could not mount all 4 crews from OLED to the case<br><br>
+                          <img src="../media/final/e2.jpg" height="50%" width="50%" align="top">
+                      <br><br></li>
+                          <li>The 3D printed top support structure has to be redesigned to make it more stable because the desktop is kind of jiggling now when the actuator moves</li>
+                          <li>The design of the standing support has to be adjusted with more tolerance for the cut-outs because currently I cannot mount the desk body onto the standing support plate yet.</li>
+                      </ul>
+                    <a name="sect4"><h2>4. Download resources</h2></a>
+                      <ul>
+                          <li><a href="../Assignment Files/Final/FODF_Final_Project_BOM.pdf">Complete BOM List</a></li>
+                          <li><a href="../Assignment Files/Final/3D_printing/">3D Printing files for actuator's support structures</a></li>
+                          <li><a href="../Assignment Files/Final/Arduino_sketch/">Arduino sketches</a></li>
+                          <li><a href="../Assignment Files/Final/CNC_Milling_files/">CNC milling files for desk body</a></li>
+                          <li><a href="../Assignment Files/Final/Eagle_boards/">Eagle schematics & board files for motor controller & microcontroller</a></li>
+                          <li><a href="../Assignment%20Files/Final/Laser_cut_files/">Laser cut files for electronics casing</a></li>
+                      </ul>
+                    <a name="sect5"><h2>5. License Information</h2></a>
+                      <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+                      </p>
+                  </div>
+                </div>        
+             </div>
+        
+                <div class="footer">
+                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                </div>
+              
+    </body>
+
+</html>

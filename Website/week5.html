@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 5 - CNC Machining</title>
+        <link rel="stylesheet" href="main.css">   
+    </head>
+    <body>
+        <div class="header">
+          <br><img src="../media/welcome.png" height="30%" width="30%" class="header photo">
+        </div>
+
+        <div class="navtop">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a>Assignments</a>
+              <ul>
+                <li><a href="week1.html">1. Project Management</a></li>
+                <li><a href="week7.html">7. Electronics Design</a></li>
+                <li><a href="week2.html">2. 2D & 3D Design</a></li>
+                <li><a href="week8.html">8. Embedded Programming</a></li>
+                <li><a href="week3.html">3. Laser cutting</a></li>
+                <li><a href="week9.html">9. Input Device</a></li>
+                <li><a href="week4.html">4. 3D Printing</a></li>
+                <li><a href="week10.html">10. Output Device</a></li>
+                <li><a href="week5.html">5. CNC Machining</a></li>
+                <li><a href="week11.html">11. Networking</a></li>
+                <li><a href="week6.html">6. Electronics Production</a></li>
+                <li><a href="final.html">Final Project</a></li>
+                
+              </ul>
+            </li>
+            <li><a href="#">Final Project</a>
+                <ul>
+                <li><a href="final.html#sect1">1. Project Description</a></li>
+                <li><a href="final.html#sect4">4. Download resources</a></li>
+                <li><a href="final.html#sect2">2. Making process</a></li>
+                <li><a href="final.html#sect5">5. License Information</a></li>
+                <li><a href="final.html#sect3">3. Reflections</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+                  <div class="column left">
+                        <h2 id="sideText"></h2>
+                          <div class="navside">
+                              <h2 id="side_text">Page index</h2>
+                              <li><a href="#sect1">1. CAM Simulation in Fusion 360</a></li>
+                              <li><a href="#sect2">2. Milling with the Roland</a></li>
+                              <li><a href="#sect3">3. Problems and Lessons learned</a></li>
+                              <li><a href="#sect4">4. Download resources</a></li>
+                          </div>
+                  </div>
+                  <div class="column right">
+                    <h1>Documentation Week 5: CNC Machining</h1>
+                    <h3>Date: 15.11.2017 - 21.11.2017</h3>
+                      <p>The assignment of this week was to mill a block of foam using the <a id="keyword">Roland MDX40 CNC milling machine</a> available in the FabLab. We learned about different types of milling bits and how to determine the appropriate bit to be used for the material and its block size. We also learned how to set up the parameters for the milling job using the free CAM tool in <a id="keyword">Fusion 360.</a></p>
+                    <a name="sect1"><h2>1. CAM Simulation in Fusion 360</h2></a>
+                      <p>First I designed a <a id="filename">Voronoi pattern</a> in <a id="keyword">Rhinoceros</a> and exported it as <a id="flename">.DXF file.</a></p>
+                      <img src="../media/week5/1-1.png" height="85%" width="85%">
+                      <p>Then I imported the <a id="filename">.DXF file</a> into Fusion using the menu <a id="keyword">Insert -> Insert DXF</a>, and extruded this pattern with various extrusion lengths on top of a 3D block which has the size 100mmx80mmx50mm. This is because the foam block that I get has the size 100mmx80mmx80mm.</p>
+                      <img src="../media/week5/1-2.png" height="85%" width="85%">
+                      <p>I put more outward extrusions than inward extrusions because the milling bits I am going to use have a minimum diameter of 3mm, thus it is not going to be able to mill sharp corners from the inside, but would do better when milling from the outside of the corners. I also made sure that the height of the extrusions do not exceed the <a id="keyword">Body length</a> of the bits I want use. When finished with the modelling, I go to the <a id="keyword">CAM Environment</a> in Fusion 360 to set up the CNC milling job.</p>
+                      <p>First I have to create a new Setup under the <a id="keyword">SETUP menu</a>, where I pick the directions of the X,Y,Z axes as well as the origin point for the milling job:</p>
+                      <img src="../media/week5/2-2.png" height="85%" width="85%">
+                      <p>Under the tab <a id="keyword">Stock</a>, I have to specify the dimensions of my block of material. In this case, I put the height to be just as the height of my model (57mm) instead of the block's actual height (80mm) so that the machine does not have to remove any material on the top of the block before milling the parts belonging to the model. This is only possible because the origin point is picked on the top of the block.</p>
+                      <img src="../media/week5/2-1.png" height="85%" width="85%">
+                      <p>Finished with the setup, now I have to choose the type of Milling. As suggested by Daniele in the lecture, for the rough cut we can use <a id="keyword">Adaptive Clearing</a>, which is found under the <a id="keyword">3D menu.</a></p>
+                      <img src="../media/week5/3.png" height="85%" width="85%">
+                      <p>Here I click on <a id="keyword">Select (Tool)</a> to open the Tool library, and added the parameters I measured using the caliper for the <a id="keyword">4mm-diameter flat end tool</a> I want to use for the rough cut as followed:</p>
+                      <img src="../media/week5/4-1.png" height="85%" width="85%">
+                      <p>Under the tab <a id="keyword">Passes</a> I have to specify, among others, the <a id="keyword">Tolerance</a> of the rough cut, which I put in 0.3mm but later on learned that it should a bit more for the rough cut (around 1mm) because this is the distance between the surface of the cut and the surface of the actual model.</p>
+                      <img src="../media/week5/5.png" height="85%" width="85%">
+                      <p>When done with the settings, I go to <a id="keyword">ACTION menu</a> and choose <a id="keyword">Simulate</a> to see the milling simulation. Luckily, there were no collisions detected for this rough cut.</p>
+                      <img src="../media/week5/6.png" height="85%" width="85%">
+                      <p>Thus I went on to export the milling job for the machine by clicking on <a id="keyword">Post Process</a> and choose the <a id="keyword">Roland configuration</a>:</p>
+                      <img src="../media/week5/7.png" height="85%" width="85%">
+                      <p>I learned from Dima that I have to also choose the right Roland model under the <a id="keyword">Property field.</a> In this case, I have to put <a id="keyword">Yes</a> next to the <a id="keyword">MDX40 model</a> and No for the other models.</p>
+                      <img src="../media/week5/8.png" height="85%" width="85%">
+                      <p>Then I pressed <a id="keyword">Post</a> and now I can save the rough cut milling job with the extension <a id="filename">.PRN</a> into a USB stick to be used with the Roland.</p>
+                      <p>In order to generate the finish cut milling job, I go to <a id="keyword">3D menu</a> and select <a id="keyword">Parallel:</a></p>
+                      <img src="../media/week5/14.png" height="85%" width="85%">
+                      <p>This time, I want to use the <a id="keyword">3mm-diameter ball end tool</a> so that I have a smooth finishing surface on my object, thus I added the parameters for the tool in the Tool library as followed:</p>
+                      <img src="../media/week5/13.png" height="85%" width="85%">
+                      <p>Note that the Body length of the tools are only measured when I have already placed the tools with the matching shafts into the machine's holder.</p>
+                      <p>Again, I adjust some settings in the <a id="keyword">Passes tab,</a> especially the <a id="keyword">Tolerance</a> which has to be smaller this time.</p>
+                      <img src="../media/week5/15.png" height="85%" width="85%">
+                      <p>When done, I run the Simulation again to check that the job has no issue:</p>
+                      <img src="../media/week5/16.png" height="85%" width="85%">
+                      <p>This time there was warning that there is <a id="keyword">1 collision</a>, however, after checking the simulation video and with Daniele, this was not an issue thus I went on to the Post-processing to generate the job for the finish cut.</p>
+                      <p>Also, taking the sugestion from Daniele that I could use the <a id="keyword">3mm-diameter flat end tool</a>for another finish cut so that the parts with inward extrusion have a flat surface, I also generated another milling job for this second finish cut.</p>
+                    <a name="sect2"><h2>2. Milling with the Roland</h2></a>
+                      <p>The first few things I have to prepare before executing the milling jobs are to <a id="keyword">insert the milling bit and corresponding shaft</a> into the machine's holder,</p>
+                      <img src="../media/week5/21.jpg" height="85%" width="85%">
+                      <p><a id="keyword">attach the foam block firmly</a> onto the wooden plate prepared for the machine, then <a id="keyword">clamp the wooden plate</a> onto the machine's moving plate to fix it.</p>
+                      <img src="../media/week5/17.jpg" height="85%" width="85%">
+                      <p>After making sure that everything is stable and firmly attached, I can use the dedicated software <a id="keyword">Roland VPanel for MDX-40A</a> to move the milling head to the desired origin point, which is of course the same point where I set in the CAM setup:</p>
+                      <img src="../media/week5/23.jpg" height="85%" width="85%">
+                      <p>Note that half of the milling bit's diameter has to be outside of the block for both X and Y direction, while on the Z axis the tip of the tool should just touch the surface of the material.</p>
+                      <p>When happy with the position of the milling head, I can apply this point as XYZ origin in the software.</p>
+                      <img src="../media/week5/18.PNG" height="55%" width="55%">
+                      <p>After setting the origin position, I proceed to load the <a id="filename">.PRN</a> file for the <a id="keyword">rough cut</a> into the Output File List. Since this machine does not have automatic tool changing function, we can only have one job at a time for each cut in the Output File List.</p>
+                      <img src="../media/week5/20.PNG" height="65%" width="65%">
+                      <p>Here is a photo of the machine while doing the rough cut:</p>
+                      <img src="../media/week5/25.jpg" height="85%" width="85%">
+                      <p>And here is the end result of the rough cut:</p>
+                      <img src="../media/week5/26.jpg" height="65%" width="65%">
+                      <p>It can be seen that because of the <a id="keyword">adaptive Stepdown,</a> the rough cut produces variably sized staircase-like steps.</p>
+                      <p>Afterwards, I changed the tool, move the block back to the original position and continue with the finish cut using the 3mm-diameter ball end tool. The good thing about the CAM software is that I can keep the same origin position and only have to measure precisely the Body length of the new tool and input this in the software in order to carry out the new milling job.</p>
+                      <p>Here is a photo of the machine while doing the first finish cut:</p>
+                      <img src="../media/week5/27.jpg" height="65%" width="65%">
+                      <p>Similarly, I continued with the second finish cut using the 3mm-diameter flat end tool, and in the end this was how my object looks like:</p>
+                      <img src="../media/week5/30.jpg" height="65%" width="65%">
+                      <img src="../media/week5/31.jpg" height="65%" width="65%">
+                    <a name="sect3"><h2>3. Problems and Lessons learned</h2></a>
+                      <p>For this week assignment, I encountered some problem when changing the tool from rough cut to finish cut. The problem was that when measuring the Body length for the 4mm-diameter flat end tool used in the rough cut, I did not measure it precisely enough. As a result, although the first rough cut was fine, when I change to the 3mm-diameter ball end tool for the finish cut and use the same origin position, there was discrepancy. Although the simulation shows that the tool should mill on the surface of the material block, in fact it was milling a few milimeters above the block (in the air) instead. I stopped the milling job and I asked Daniele for help. Clearly, he saved my day by suggesting that I should <a id="keyword">set the Z-origin point lower</a> such that now the tool's end just touches the surface of the material block. We were trying first with a smaller Z offset and observed the machine doing its work and finally decided to increase the offset a bit more (in this case, the final offset was -4.10mm). Afterwards, the job was resumed and was again doing as expected.</p>
+                      <p>Besides the concepts learned in the lecture such as the <a id="keyword">milling bit's dimensions</a> (flute, flute length, flute diameter, shaft, shoulder, body length), another thing I learned while doing the assignment was that the <a id="keyword">tolerance</a> should be bigger for the rough cut and smaller for the finish cut because this is the distance between the surface of the cut and the surface of the actual model.</p>
+                    <a name="sect4"><h2>4. Download resources</h2></a>
+                      For the Voronoi pattern:
+                      <ul>
+                          <li><a href="../Assignment Files/Week5/voronoi_definition.gh">Grasshopper definition</a></li>
+                          <li><a href="../Assignment Files/Week5/voronoi.dxf">DXF File</a></li>
+                      </ul>
+                      <p>For the 3D model: <a href="../Assignment Files/Week5/Voronoi_Block.f3d">Fusion 360 Project File</a></p>
+                  </div>
+                </div>        
+             </div>
+        
+                <div class="footer">
+                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                </div>
+              
+    </body>
+
+</html>

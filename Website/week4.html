@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 4 - 3D Printing</title>
+        <link rel="stylesheet" href="main.css">   
+    </head>
+    <body>
+        <div class="header">
+          <br><img src="../media/welcome.png" height="30%" width="30%" class="header photo">
+        </div>
+
+        <div class="navtop">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a>Assignments</a>
+              <ul>
+                <li><a href="week1.html">1. Project Management</a></li>
+                <li><a href="week7.html">7. Electronics Design</a></li>
+                <li><a href="week2.html">2. 2D & 3D Design</a></li>
+                <li><a href="week8.html">8. Embedded Programming</a></li>
+                <li><a href="week3.html">3. Laser cutting</a></li>
+                <li><a href="week9.html">9. Input Device</a></li>
+                <li><a href="week4.html">4. 3D Printing</a></li>
+                <li><a href="week10.html">10. Output Device</a></li>
+                <li><a href="week5.html">5. CNC Machining</a></li>
+                <li><a href="week11.html">11. Networking</a></li>
+                <li><a href="week6.html">6. Electronics Production</a></li>
+                <li><a href="final.html">Final Project</a></li>
+                
+              </ul>
+            </li>
+            <li><a href="#">Final Project</a>
+                <ul>
+                <li><a href="final.html#sect1">1. Project Description</a></li>
+                <li><a href="final.html#sect4">4. Download resources</a></li>
+                <li><a href="final.html#sect2">2. Making process</a></li>
+                <li><a href="final.html#sect5">5. License Information</a></li>
+                <li><a href="final.html#sect3">3. Reflections</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+                  <div class="column left">
+                        <h2 id="sideText"></h2>
+                          <div class="navside">
+                              <h2 id="side_text">Page index</h2>
+                              <li><a href="#sect1">1. Design and export STL file</a></li>
+                              <li><a href="#sect2">2. Slice STL model</a></li>
+                              <li><a href="#sect3">3. 3D Printing results</a></li>
+                              <li><a href="#sect4">4. Problems & Troubleshooting</a></li>
+                              <li><a href="#sect5">5. Download resources</a></li>
+                          </div>
+                  </div>
+                  <div class="column right">
+                    <h1>Documentation Week 4: 3D Printing</h1>
+                    <h3>Date: 08.11.2017 - 14.11.2017</h3>
+                    <p>The assignment of this week is to 3D print an object that is complex enough such that it cannot be done by alternatives like laser cutting or CNC milling.</p>
+                      <p>I personally experimented with printing ball joints, modular components and my Jack-O-Lantern design from <a href="week2.html">Week 2 - 2D & 3D design.</a></p>
+                    <a name="sect1"><h2>1. Design and export STL file in Fusion 360</h2></a>
+                      <p>I designed a ball joint module in Fusion with a tolerance of 0.3mm:</p>
+                      <img src="../media/week4/1.png" height="75%" width="75%">
+                      <p>Because my model consists of more than 1 Bodies, and I would like to export both Bodies as a whole to print together, I have to right click on the <a id="keyword">Component</a> containing both Bodies (in this case, it is at the top of the <a id="keyword">BROWSER</a>) and choose <a id="keyword">Save as STL:</a></p>
+                      <img src="../media/week4/2.png" height="75%" width="75%">
+                      <p>Note that all other Bodies, Components, Sketches, etc. should be disabled so that they are not exported together with the desired model.</p>
+                      <p>I also altered the design a little bit because I would like to test print another joint with a bit more degree of rotation freedom:</p>
+                      <img src="../media/week4/3.png" height="75%" width="75%">
+                      <p>Again, I exported this model as STL to be printed later with the previous one for comparison.</p>
+                      <p>Another model I designed in Fusion are some modular components which can be scaled up or down to build large or small flexible structure. The components look like this:</p>
+                      <img src="../media/week4/4.png" height="75%" width="75%">
+                      <p>I exported this and also my Jack-O-Lantern design from <a href="week2.html">Week 2</a> as STLs:</p>
+                      <img src="../media/week4/5.png" height="75%" width="75%">
+                    <a name="sect2"><h2>2. Slice STL model in Cura</h2></a>
+                      <p>Using the free slicing software <a href="https://ultimaker.com/en/products/ultimaker-cura-software">Cura</a> from <a id="keyword">Ultimaker</a>, I sliced my models with following settings:</p>
+                      <ul>
+                          <li>For the ball joint models:</li>
+                          <img src="../media/week4/6.png" height="75%" width="75%">
+                          <br><a id="filename">Arrangement of ball joint models on buildplate</a><br>
+                          <code>
+                          Printer: Ultimaker 2+
+                          Material: PLA
+                          Nozzle: 0.4mm
+                          Layer Height: 0.2mm
+                          Initial Layer Height: 0.3mm
+                          Wall Thickness: 0.8mm
+                          Top/Bottom Thickness: 1.0mm
+                          Infill Density: 20%
+                          Infill Pattern: Grid
+                          Enable Retraction: Yes
+                          Print Speed: 60 mm/s
+                          Travel Speed: 150 mm/s
+                          Enable Cooling: Yes
+                          Generate Support: Yes
+                          Support Placement: Touching Buildplate
+                          Support Overhang Angle: 50°
+                          Support Patterns: Lines
+                          Support Density: 8%
+                          Support Z Distance: 0.3mm
+                          Support X/Y Distance: 1.0mm
+                          Buildplate Adhesion Type: Brim
+                          Brim Width: 4mm
+                          Print Sequence: All at Once 
+                          Model Scale: 50% (uniform scale)
+                          </code>
+                          <img src="../media/week4/7.png" height="75%" width="75%">
+                          <br><a id="filename">Slicing's Layer view generated by Cura</a><br>
+                          <p>The estimated total printing time for this was 1 hour 22 minutes. The material I used was <a id="keyword">Black PLA 2.85mm</a> from <a href="https://www.innofil3d.com/">Innofil 3D</a>.</p>
+                          <li>For the modular components:</li>
+                          <img src="../media/week4/8.png" height="75%" width="75%">
+                          <br><a id="filename">Arrangement of modular components on buildplate</a><br>
+                          <a name="refSettings"><code>
+                          Printer: Ultimaker 2+
+                          Material: PLA
+                          Nozzle: 0.6mm
+                          Layer Height: 0.2mm
+                          Initial Layer Height: 0.3mm
+                          Wall Thickness: 1.0mm
+                          Top/Bottom Thickness: 0.8mm
+                          Infill Density: 30%
+                          Infill Pattern: Grid
+                          Enable Retraction: Yes
+                          Print Speed: 50 mm/s
+                          Travel Speed: 150 mm/s
+                          Enable Cooling: Yes
+                          Generate Support: No
+                          Buildplate Adhesion Type: Brim
+                          Brim Width: 4mm
+                          Print Sequence: All at Once 
+                          Model Scale: None (original size)
+                              </code></a>
+                          <img src="../media/week4/9.png" height="75%" width="75%">
+                          <br><a id="filename">Slicing's Layer view generated by Cura</a><br>
+                          <p>The estimated total printing time for this was 1 hour 34 minutes. The material I used was <a id="keyword">Silver PLA 2.85mm</a> from Innofil 3D.</p>
+                          <li>For the Jack-O-Lantern model:</li>
+                          <img src="../media/week4/10.png" height="75%" width="75%">
+                          <br><a id="filename">Arrangement of Jack-O-Lantern model on buildplate</a><br>
+                          <code>
+                          Printer: Ultimaker 2 Extended+
+                          Material: PLA
+                          Nozzle: 0.8mm
+                          Layer Height: 0.2mm
+                          Initial Layer Height: 0.3mm
+                          Wall Thickness: 0.8mm
+                          Top/Bottom Thickness: 0.8mm
+                          Infill Density: 20%
+                          Infill Pattern: Grid
+                          Enable Retraction: Yes
+                          Print Speed: 50 mm/s
+                          Travel Speed: 100 mm/s
+                          Enable Cooling: Yes
+                          Generate Support: Yes
+                          Support Placement: Touching Buildplate
+                          Support Overhang Angle: 50°
+                          Support Patterns: Zig Zag
+                          Support Density: 5%
+                          Support Z Distance: 0.1mm
+                          Support X/Y Distance: 0.7mm
+                          Buildplate Adhesion Type: Brim
+                          Brim Width: 5mm
+                          Print Sequence: All at Once  
+                          Model Scale: 50% (uniform scale)
+                          </code>
+                          <img src="../media/week4/11.png" height="75%" width="75%">
+                          <br><a id="filename">Slicing's Layer view generated by Cura</a><br>
+                          <p>The estimated total printing time for this was 1 hour 40 minutes. The material I used was <a id="keyword">White PLA 2.85mm</a> from Innofil 3D.</p>
+                      </ul>
+                      <br>For all prints, the following temperature settings were used:
+                      <code>
+                          Nozzle temperature: 210°C
+                          Buildplate temperature: 60°C
+                      </code>
+                    <a name="sect3"><h2>3. 3D Printing Results</h2></a>
+                      <p>Here are some photos during printing and the final results:</p>
+                      <ul>
+                          <li>For the ball joints:</li>
+                          <img src="../media/week4/12.jpg" height="85%" width="85%">
+                          <p>The layer resolution of 0.2mm looks fine for this print and there was no problem encountered during printing.</p>
+                          <p>And this was the final result of the ball joints:</p>
+                          <img src="../media/week4/13.jpg" height="85%" width="85%">
+                          <p>For the joint with more degree of freedom, the print was not smooth at the indented curved faces while for the other one, it is also not smooth at the top surface of the outer ball. This is probably because of my arrangement of the models on the buildplate. I should have rotated it 180° vertically like this for printing:</p>
+                          <img src="../media/week4/e6.png" height="75%" width="75%">
+                          <p>Due to lack of time and unavailability of printers, I could not reprint the joints with the new arrangement.</p>
+                          <li>For the modular components:</li>
+                          <img src="../media/week4/14.jpg" height="85%" width="85%">
+                          <p>This print also did not cause any problem while printing. The final results looked like this:</p>
+                          <img src="../media/week4/15.jpg" height="85%" width="65%">
+                          <img src="../media/week4/16.jpg" height="85%" width="65%">
+                          <p>Although the printing was not problematic, the final result was not completely satisfying because some of the joints between the modules were loose and thus the structure falls apart sometimes. This will be discussed again later in <a href="#sect4">Section 4 - Problems & Troubleshooting</a>.</p>
+                          <li>For the Jack-O-Lantern pumpkin:</li>
+                          <a name="refImage"><img src="../media/week4/17.jpg" height="85%" width="85%"></a>
+                          <p>This print was done togehter with Philip Hubatsch, another participant of the course, with his model on the left and mine on the right. This image was taken from the first trial and we did encountered some problems during the printing, which are discussed later in <a id="keyword">Section 4</a>. The final result of my Jack-O-Lantern looked like this:</p>
+                          <a name="refImage2"><img src="../media/week4/18.jpg" height="85%" width="85%"></a>
+                          <img src="../media/week4/19.jpg" height="85%" width="85%">
+                          <p>The top of the pumpkin looked very smooth, however, there was an "unexpected" support inside the body of the pumpkin which I could not remove at the end because it is all enclosed. The reason for this is also discussed in Section 4.</p>
+                      </ul>
+                    <a name="sect4"><h2>4. Problems & Troubleshooting</h2></a>
+                      <p>For all of the models, I encountered a few problems. Some of them are problems with the resultant print which means I have to modify the design in Fusion and print the model again, some are problems during the printing process.</p>
+                      <ul>
+                          <li>For the ball joint model, I first started out with a design like this because I wanted the joint to be able to make a maximum of 90° angle bend:</li>
+                          <img src="../media/week4/e1.png" height="85%" width="85%">
+                          <p>However, after printing, the joint was not held together as expected:</p>
+                          <img src="../media/week4/e2.jpg" height="85%" width="85%">
+                          <p>Thus I had to modify the design so the degree of freedom is decreased but the joint is actually held together.</p>
+                          <li>For the modular components, due to the problem mentioned in Section 3 that the structure falls apart at some joints, I modified the design in Fusion and increase the radius of the 4 corners of my smaller module so that they can be snapped in more fittingly.</li>
+                          <img src="../media/week4/e3.jpg" height="85%" width="85%">
+                          <br><a id="filename">Left: original module with 4.0mm corner radius, Right: reprinted module with 4.2mm corner radius</a>
+                          <p>I reprinted the new modules using the <a href="#refSettings">same settings</a> but now with White PLA 2.85mm.</p>
+                          <img src="../media/week4/e4.jpg" height="85%" width="85%">
+                          <img src="../media/week4/e4a.jpg" height="85%" width="85%">
+                          <p>This time the structure does not all apart at all anymore. YAY!!!</p>
+                          <li>For the Jack-O-Lantern, there were a few problems, the first can be seen in <a href="#refImage">this image in Section 3</a>. For the initial layer of this print, the speed was set to a slow value of 30 mm/s and also due to the big nozzle size of 0.8mm, the filament was coming out too much and thus produced an uneven surface on Philip's model. Thus, we had to increase the printing speed to 60 mm/s and reprint the models. However, for this new trial, another problem occured. Although the faster printing speed helped to remove the problem with Philip's model's uneven surface, it cause the problem to my model where it was printing too fast and thus the filament was not sticking to the buildplate. After some time we figured out that this only happened to the first layer. Thus, to solve this, we waited until the printer finished printing the first layer of my model with the slower speed 30 mm/s, then increase the speed to 60 mm/s again when it moves to the side to print the first layer of Philip's model, and this worked.
+                              <p>Another problem was the "unexpected" support inside the pumpkin's body which I was not able to remove at the end. This was because for my slicer settings, I chose <a id="keyword">Support type as "Touching Buildplate"</a> thus the preview for the layers did not show any support inside the pumpkin. However, when printing together with Philip, I forgot to set this and thus the <a id="keyword">support type was "Everywhere" instead</a>. Hence, there was support inside the pumpkin as seen in the <a href="#refImage2">final print</a>.</p>
+                              <p>As a result, I learned that it is a bit more difficult to troubleshoot when printing multiple independent objects together, also because of the limitations of the Cura software or the Ultimaker printer that we cannot have different printing settings for separate models on the same buildplate.</p>
+                          </li>
+                      </ul>
+                        
+                    <a name="sect5"><h2>5. Download resources</h2></a>
+                      <p>Here are the STL files, Cura project files with all settings as well as G-code files for each model:</p>
+                      <ul>
+                          <l>Ball joint models:</l>
+                          <ul>
+                              <li>STL files: <a href="../Assignment Files/Week4/Week4_snap_fit_joint.stl">Model 1 (less degree of freedom)</a>, <a href="../Assignment Files/Week4/Week4_snap_fit_joint_2.stl">Model 2 (more degree of freedom)</a></li>
+                              <li><a href="../Assignment Files/Week4/UM2P_snap_fit_joint_final.curaproject.3mf">Cura project file for both models</a></li>
+                              <li><a href="../Assignment Files/Week4/UM2P_snap_fit_joint_final.gcode">G-code file for both models</a></li>
+                              <li><a href="../Assignment Files/Week4/Ball_joint.f3d">Fusion project file for both models</a></li>
+                          </ul>
+                          <l>Modular components model:</l>
+                          <ul>
+                              <li>STL files: <a href="../Assignment Files/Week4/Week4_modular_1.stl">Component 1</a>, <a href="../Assignment Files/Week4/Week4_modular_2.stl">Component 2</a></li>
+                              <li><a href="../Assignment Files/Week4/UM2P_modular_final.curaproject.3mf">Cura project file for both components</a></li>
+                              <li><a href="../Assignment Files/Week4/UM2P_modular_final.gcode">G-code file for both components</a></li>
+                              <li><a href="../Assignment Files/Week4/Modular_components.f3d">Fusion project file for both components</a></li>
+                          </ul>
+                          <l>Pumpkin model:</l>
+                          <ul>
+                              <li><a href="../Assignment Files/Week4/Week4_pumpkin.stl">STL file</a></li>
+                              <li><a href="../Assignment Files/Week4/UM2E_pumpkin_final.curaproject.3mf">Cura project file</a></li>
+                              <li><a href="../Assignment Files/Week4/UM2E_pumpkin_final.gcode">G-code file</a></li>
+                              <li><a href="../Assignment Files/Week2_Jack-O-Lantern_final.f3d">Fusion project file</a></li>
+                          </ul>
+                      </ul>
+                  </div>
+                </div>        
+             </div>
+        
+                <div class="footer">
+                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                </div>
+              
+    </body>
+
+</html>

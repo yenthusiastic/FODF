@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 1 - Project Management</title>
+        <link rel="stylesheet" href="main.css">   
+    </head>
+    <body>
+        <div class="header">
+          <br><img src="../media/welcome.png" height="30%" width="30%" class="header photo">
+        </div>
+
+        <div class="navtop">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a>Assignments</a>
+              <ul>
+                <li><a href="week1.html">1. Project Management</a></li>
+                <li><a href="week7.html">7. Electronics Design</a></li>
+                <li><a href="week2.html">2. 2D & 3D Design</a></li>
+                <li><a href="week8.html">8. Embedded Programming</a></li>
+                <li><a href="week3.html">3. Laser cutting</a></li>
+                <li><a href="week9.html">9. Input Device</a></li>
+                <li><a href="week4.html">4. 3D Printing</a></li>
+                <li><a href="week10.html">10. Output Device</a></li>
+                <li><a href="week5.html">5. CNC Machining</a></li>
+                <li><a href="week11.html">11. Networking</a></li>
+                <li><a href="week6.html">6. Electronics Production</a></li>
+                <li><a href="final.html">Final Project</a></li>
+                
+              </ul>
+            </li>
+            <li><a href="#">Final Project</a>
+                <ul>
+                <li><a href="final.html#sect1">1. Project Description</a></li>
+                <li><a href="final.html#sect4">4. Download resources</a></li>
+                <li><a href="final.html#sect2">2. Making process</a></li>
+                <li><a href="final.html#sect5">5. License Information</a></li>
+                <li><a href="final.html#sect3">3. Reflections</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        
+        <div class="container">
+            <div class="row">
+                  <div class="column left">
+                        <h2 id="sideText"></h2>
+                          <div class="navside">
+                              <h2 id="side_text">Page index</h2>
+                              <li><a href="#sect1">1. 2D Designing in DraftSight</a></li>
+                              <li><a href="#sect2">2. 3D Designing in Fusion 360</a></li>
+                              <li><a href="#sect3">3. Problems & Troubleshooting</a></li>
+                              <li><a href="#sect4">4. Download resources</a></li>
+                          </div>
+                  </div>
+                  <div class="column right">
+                    <h1>Documentation Week 2 - 2D Design and 3D Design</h1>
+                    <h3>Date: 18.10.2017 - 24.10.2017</h3>
+                      <p>In this week we learn about designing 2D objects using the software <a href="https://www.3ds.com/products-services/draftsight-cad-software/free-download/">Draftsight</a> and modelling 3D objects using the software <a href="https://www.autodesk.com/education/free-software/fusion-360-for-educational-institutions"> Fusion 360</a> from Autodesk.</p>
+                    <a name="sect1"><h2>1. 2D Design in Draftsight</h2></a>
+                      <p>While looking around for inspiration for my 2D Design, I found this cool <a href="http://www.instructables.com/id/mechanical-iris-1/">Mechanical Iris</a> project on Instructable and decided to give it a try. The website also provided the DXF file for the design, thus I started with downloading the file and make some  measurements that I find important to "replicate" the design.</p>
+                      <img src="../media/week2/2D Design/1.png" height="75%" width="75%">
+                      <img src="../media/week2/2D Design/2.png" height="75%" width="75%">            
+                      <p>For some reason, the downloaded DXF file is not to the correct scale, as seen from the screenshots above that the design is too small (all measurements are in millimeters). However, this should not be a problem as long as I keep the ratio between the dimensions roughly the same in my design.</p>
+                      <p>First I turn on the grid by typing in the command window <a id="keyword">GRID</a> and then <a id="keyword">ON</a>. Then I start with the simpler part of the design out of the 2. Using the command <a id="keyword">CIRCLE,</a> I specify a point on the grid to be the center of the circle and enter a <a id="keyword">diameter of 92.5mm.</a></p>
+                      <img src="../media/week2/2D Design/3.png" height="75%" width="75%">
+                      <p>I continue to draw the inner circle using the same command and turn on the <a id="keyword">E-Snap</a> to pick the same center point as the previous circle, and enter a diameter of 32.5mm.</p>
+                      <img src="../media/week2/2D Design/4.png" height="75%" width="75%">  
+                      <p>Next, I use the Polygon tool to draw a pentagon by specifying the number of sides to 5, picking the same center point as before, typing in <a id="keyword">COrner</a> for the option and drag the mouse such that each side of the pentagon just touches the circle.</p>
+                      <img src="../media/week2/2D Design/5.png" height="75%" width="75%">  
+                      <img src="../media/week2/2D Design/6.png" height="75%" width="75%"> 
+                      <p>Again I use the <a id="keyword">CIRCLE</a> command to draw a circle of diameter 3mm whose center lies on one of the vertices of the pentagon. I use 3mm circle because later on I will use 3M screws through the holes.</p>
+                      <img src="../media/week2/2D Design/7.png" height="75%" width="75%"> 
+                      <p>In order to copy the circle to the remaining vertices of the pentagon, I use the <a id="keyword">PATTERN</a> command. In the pop-up menu, I select the circle as the specified entity, set the <a id="keyword">Base Pattern on</a> properties to <a id="keyword">Fill Angle and Total number of Elements</a> so that I can type in the <a id="keyword">Fill angle = 360°</a> and <a id="keyword">Total number = 5.</a> Then I select the center point to be the center of the pentagon. By cliking OK, 4 more circles should appear on the other 4 vertices of the pentagon.</p>
+                      <img src="../media/week2/2D Design/9.png" height="75%" width="75%"> 
+                      <p>Then I draw a line from the top of the circle of size 3.75mm to act as an offset distance for the next sketch.</p>
+                      <img src="../media/week2/2D Design/10.png" height="75%" width="75%"> 
+                      <p>Using again the <a id="keyword">POLYGON</a> command with the same options as before, I draw a new concentric pentagon with one of its vertex meeting the end point of the offset line.</p>
+                      <img src="../media/week2/2D Design/11.png" height="75%" width="75%"> 
+                      <p>Now that I have finished with the first part of the design, I make a copy of it to use as a guide for the remaining part. Also, I delete the unnecessary elements from the finished part such as the offset distance line and the inner pentagon which was only used to help draw the screw holes.</p>
+                      <img src="../media/week2/2D Design/13.png" height="75%" width="75%"> 
+                      <p>On the second part of the design now I draw a new circle with the same center and with a radius such that the circle  just touches the screw holes.</p>
+                      <img src="../media/week2/2D Design/14.png" height="75%" width="75%"> 
+                      <p>Next I re-check the original design and notice that I have to rotate the inner pentagon, so I use the <a id="keyword">ROTATE</a> command, choose center of the pentagon as the pivot and use the mouse to drag the pentagon to rotate in a small angle.</p>
+                      <img src="../media/week2/2D Design/16.png" height="75%" width="75%">
+                      <p>Then I draw 5 lines going from the center to the vertices of the pentagon and delete the pentagon because it was only used for reference purpose.</p>
+                      <img src="../media/week2/2D Design/19.png" height="75%" width="75%">
+                      <img src="../media/week2/2D Design/20.png" height="75%" width="75%">
+                      <p>Next, I use the <a id="keyword">SPLINE</a> tool to draw one "petal" for the Iris using one of the 5 "slices" of the pentagon as a guide.</p>
+                      <img src="../media/week2/2D Design/22.png" height="75%" width="75%">
+                      <p>After having 1 petal, I again type in the <a id="keyword">PATTERN</a> command to repeat it by 5 times around the center.</p>
+                      <img src="../media/week2/2D Design/23.png" height="75%" width="75%">
+                      <img src="../media/week2/2D Design/24.png" height="75%" width="75%">
+                      <p>Using the <a id="keyword">CIRCLE</a> command, I draw a new concentric circle with radius of 39mm; and 5 more screw holes inside the "petals". There is no need for the exact position of these new screw holes, as long as they are opposite and roughly in line with the existing screw holes.</p>
+                      <img src="../media/week2/2D Design/25.png" height="75%" width="75%">
+                      <p>Using the <a id="keyword">ARC</a> command, I draw a small arc above one of the outer screw holes</p>
+                      <img src="../media/week2/2D Design/26.png" height="75%" width="75%">
+                      <p>Then I use the <a id="keyword">OFFSET</a> command to duplicate the arc with a distance of 4mm below the original one.</p>
+                      <img src="../media/week2/2D Design/27.png" height="75%" width="75%">
+                      <p>Next I use the <a id="keyword">Eliptical Arc</a> tool to draw one of the rounded closing ends for the mechanical slot. The radius of the elipse is 2.5mm.</p>
+                      <img src="../media/week2/2D Design/28.png" height="75%" width="75%">
+                      <img src="../media/week2/2D Design/29.png" height="75%" width="75%">
+                      <img src="../media/week2/2D Design/30.png" height="75%" width="75%">
+                      <p>I repeat this step for the other end to finish the mechanical slot</p>
+                      <img src="../media/week2/2D Design/31.png" height="75%" width="75%">
+                      <p>Again, I use the <a id="keyword">PATTERN</a> command to duplicate it by 5 times around the center.</p>
+                      <img src="../media/week2/2D Design/32.png" height="75%" width="75%">
+                      <p>Now I draw a circle of radius 6mm under the slot and use the <a id="keyword">TRIM</a> tool to remove the unwanted line segments.</p>
+                      <img src="../media/week2/2D Design/34.png" height="75%" width="75%">
+                      <img src="../media/week2/2D Design/35.png" height="75%" width="75%">
+                      <img src="../media/week2/2D Design/36.png" height="75%" width="75%">
+                      <p>Then I repeat the arc again 5 times around the center and trim the unwanted segments for the remaining 4 arcs.</p>
+                      <img src="../media/week2/2D Design/37.png" height="75%" width="75%">
+                      <img src="../media/week2/2D Design/38.png" height="75%" width="75%">
+                      <p>I need to draw 5 more screw holes in the middle of these newly created arcs using the <a id="keyword">CIRCLE</a> and <a id="keyword">PATTERN</a> command.</p>
+                      <img src="../media/week2/2D Design/39.png" height="75%" width="75%">
+                      <p>Next I have to create a crank that acts as the connection between the outer frame and the "petal", like in this capture:</p>
+                      <img src="../media/week2/2D Design/Capture.JPG" height="65%" width="65%">
+                      <p>To do this, I copy one of the existing mechanical slots, rotate and scale it down using <a id="keyword">RORATE</a> and <a id="keyword">SCALE</a> command so that it fits in between the 2 screw holes.</p>
+                      <img src="../media/week2/2D Design/40.png" height="75%" width="75%">
+                      <p>Having the desired sketch of the crank, I copy it and the screw holes and duplicate them 5 times.</p>
+                      <img src="../media/week2/2D Design/41.png" height="75%" width="75%">
+                      <p>Finally, I use the <a id="keyword">RECTANGLE</a> and <a id="keyword">CIRCLE</a> tool, as well as the <a id="keyword">TRIM</a> command to draw the handle for the outer frame.</p>
+                      <img src="../media/week2/2D Design/42.png" height="75%" width="75%">
+                      <p>With that, my design is finished.</p>
+                    <a name="sect2"><h2>2. 3D Design in Fusion 360</h2></a>
+                      <p>Since Halloween is coming soon, I think of making something fun for the holiday. So I looked around Youtube and found this very detailed toturial on <a href="https://www.youtube.com/watch?v=csaliZ81daU&t=644s">How to model a Jack-O-Lantern</a> and decided to follow it. Although I worked with Fusion 360 in the <a id="keyword">MODEL</a>  Environment before, I have never tried working in the <a id="keyword">SCULPT </a> Environment so I find this tutorial very useful to learn new skills but also quite challenging.</p>
+                      <p>Enough said, let's get started with modelling the Halloween pumpkin.</p>
+                      <a name="sect2.1"><h3>2.1. Sketch the outline</h3></a>
+                          <p>First I create a sketch for the outer shape of the pumpkin. I use the <a id="keyword">Spline</a> tool under the <a id="keyword">SKETCH</a> menu and choose the XZ working plane.</p>
+                          <img src="../media/week2/3D Design/0.png" height="65%" width="65%">
+                          <p>I do not have to draw the full outer shape but only half of it because I would like it to be symmetrical about the vertical axis.</p>
+                          <img src="../media/week2/3D Design/1.png" height="65%" width="65%">
+                      <a name="sect2.2"><h3>2.2. Create a form with revolve</h3></a>
+                          <p>Next, I have to create a form for the pumpkin out of this outline by going to <a id="keyword">CREATE</a> menu and select <a id="keyword">Create Form</a>. At this point the software warns me that I am now going to the <a id="keyword">SCULPT</a> environment.</p>
+                          <img src="../media/week2/3D Design/2.png" height="60%" width="60%">
+                          <img src="../media/week2/3D Design/2a.JPG" height="30%" width="30%">
+                          <p>When I am already in the <a id="keyword">SCULPT</a> environment, I would like to revolve the curve that I sketched just now in order to make a 3D form from it. For this we go to the <a id="keyword">CREATE</a> menu and then select <a id="keyword">Revolve</a>.</p>
+                          <img src="../media/week2/3D Design/3.png" height="65%" width="65%">
+                          <p>Now the software shows me a menu with the parameters for Revolve. For the <a id="keyword">Profile</a> I choose the curve that I sketched, for the <a id="keyword">Axis</a> I choose the <a id="keyword">vertical axis</a> of the sketch's plane, the <a id="keyword">Spacing</a> should be <a id="keyword">Curvature</a>, the <a id="keyword">Symmetry</a> type should be <a id="keyword">Circular</a>, and the number of faces can be freely chosen depending on how many cloves of the pumpkin we want. For my design the parameters are chosen as below:</p>
+                          <img src="../media/week2/3D Design/4.png" height="65%" width="65%">
+                          <p>We can see that even before we press the OK button, we already have a preview of how the object will look like at the end of the Revolve process. When I press the OK button to confirm, I have a rough form of the pumpkin like this, with 10 equal faces on the surface of the pumpkin:</p> 
+                          <img src="../media/week2/3D Design/5.png" height="65%" width="65%">
+                          <p>Also notice that now if I select one of the line segments of the pumpkin's surface, all the segments symmetrical to it are also selected (highlighted in <a style="color: yellow"><b>yellow</b></a>). This is because <a id="keyword">Symmetry constraint</a> have been automatically turned on at the end of the Revolve process. For now I need this symmetry constraint so I will keep it, and I will clear it later.</p>
+                      <a name="sect2.3"><h3>2.3. Shaping the pumpkin</h3></a>
+                          <p>Now I need to select all of the curve segments on the pumpkin's surface (these are called <a id="keyword">T-Splines</a> in Fusion 360) that I need to make a crease inwards, so that it actually looks more like a pumpkin. To do this, I have to <a id="keyword">click once</a> on one of the curve segments at the top, then <a id="keyword">hold SHIFT</a> and <a id="keyword">click twice</a> on the curve segment at the bottom that lie on the same curving egde. Holding SHIFT and clicking twice means that all curve segments in between the 2 selected segments will also be selected.</p>
+                          <img src="../media/week2/3D Design/5a.png" height="65%" width="65%">
+                          <p>Now that all of the T-Splines are selected, I press right click to bring up the Options menu, then select <a id="keyword">Edit Form</a>. I also change the perpestive to the FRONT plane in order to have better view of what I am doing next.</p>
+                          <img src="../media/week2/3D Design/5b.png" height="65%" width="65%">
+                          <img src="../media/week2/3D Design/6.png" height="65%" width="65%">
+                          <p>Now comes the fun part: <a id="keyword">FORMING THE PUMPKIN.</a> In the parameters menu I have to first select <a id="keyword">Local</a> as the <a id="keyword">Coordinate Space</a>. This will change the coordinate system and the origin point from the global space (World Space) to the local space of the selected objects. Notice the difference in the coordinate system between the capture above and below:</p>
+                          <img src="../media/week2/3D Design/6a.png" height="65%" width="65%">
+                          <p>Next, I grab the arrow that is <a id="keyword">perpendicular</a> to the yellow highlighted curves, so that the arrow is now highlighted in <a style="color: deepskyblue"><b>blue</b></a>. Then I <a id="keyword">drag the arrow inwards</a> (towards the inner of the pumpkin) to make a crease, or I can simply type in a value for the <a id="keyword">crease's depth</a>. In this case, the number I put in has a <a id="keyword">negative</a> value because I want the crease to be inwards, which is the opposite direction with the arrow's direction.</p>
+                          <img src="../media/week2/3D Design/6b.png" height="65%" width="65%">
+                          <img src="../media/week2/3D Design/6c.png" height="65%" width="65%">
+                          <p>I press OK after getting the desired depth. Now, without deselecting the curves, I can make them more pronounced by going to <a id="keyword">MODIFY</a> menu and select <a id="keyword">Crease</a>. This will automatically sharpen the edges between the faces.</p>
+                          <img src="../media/week2/3D Design/7.png" height="65%" width="65%">
+                          <p>Also now I can remove the <a id="keyword">Symmetry constraint</a> because I do not need it anymore. This is done in the <a id="keyword">SYMMETRY</a> menu, under the option <a id="keyword">Clear Symmetry</a>. I select the object and click OK to remove the symmetry constraints from the object.</p>
+                          <img src="../media/week2/3D Design/8.png" height="45%" width="45%">
+                          <img src="../media/week2/3D Design/8a.png" height="45%" width="45%">
+                      <a name="sect2.4"><h3>2.4. Forming the pumpkin's stem</h3></a>
+                          <p>Now I proceed to form the stem of the pumpkin. I want to select all of the curve segments making up the hole at the top where the stem should be. To do this, I select one of the curve segment and <a id="keyword">hold SHIFT</a>, then select another curve segment <a id="keyword">right next to it</a>.</p>
+                          <img src="../media/week2/3D Design/9.png" height="65%" width="65%">
+                          <p>When the whole closed curve is selected (as highlight in yellow), I bring up the Option menu by right click once and choose <a id="keyword">Edit Form</a>.</p>
+                          <img src="../media/week2/3D Design/9b.png" height="65%" width="65%">
+                          <p>At this point I have to switch my <a id="keyword">Coordinate Space</a> back to <a id="keyword">World Space</a>.</p>
+                          <img src="../media/week2/3D Design/10.png" height="65%" width="65%">
+                          <p>Now comes the challenging part: <a id="keyword">FORMING THE STEM.</a> First, I hold the <a id="keyword">Alt Key</a>, then grab the <a id="keyword">Up arrow</a> (highlighted in <a style="color: deepskyblue"><b>blue</b></a>), and drag it up to a desired height <a id="keyword">without releasing Alt Key</a>.</p>
+                          <img src="../media/week2/3D Design/10a.png" height="65%" width="65%">
+                          <p>When finish extruding, I grab the <a id="keyword">Scale Tool</a> (the circle in the middle now highlighted in <a style="color: deepskyblue"><b>blue</b></a>) and drag the mouse <a id="keyword">down</a> in order to scale the stem down, or I can type in the <a id="keyword">scaling factor</a> in the field. The scaling factor should be smaller than 1 for scaling down, and greater than 1 for scaling up.</p>
+                          <img src="../media/week2/3D Design/10b.png" height="65%" width="65%">
+                          <p>I repeat the process of extruding and down scaling a few more times until I get the desired length and shape for the stem.</p>
+                          <img src="../media/week2/3D Design/10c.png" height="65%" width="65%">
+                          <img src="../media/week2/3D Design/10d.png" height="65%" width="65%">
+                          <img src="../media/week2/3D Design/10e.png" height="65%" width="65%">
+                          <p>Finally I have to close the hole at the top of the stem by going to the <a id="keyword">MODIFY</a> menu and select <a id="keyword">Fill Hole</a>.</p>
+                          <img src="../media/week2/3D Design/11.png" height="65%" width="65%">
+                          <p>In the pop-up menu, I have to select <a id="keyword">Collapse</a> as <a id="keyword">Fill Hole Mode.</a></p>
+                          <img src="../media/week2/3D Design/11a.png" height="65%" width="65%">
+                          <p>Next step is to edit the form of the stem so that it looks for realistic. In order to select the whole stem, first I use the same technique as before: select one face segment and hold SHIFT and select the segment right next to it.</p>
+                          <img src="../media/week2/3D Design/12.png" height="65%" width="65%">
+                          <p>From this point, I have to <a id="keyword">hold SHIFT</a> and press the <a id="keyword">down arrow key</a> on the keyboard a few times until the whole stem is selected. Then I right click and select <a id="keyword">Edit Form</a> again.</p>
+                          <img src="../media/week2/3D Design/12b.png" height="65%" width="65%">
+                          <p>First I would like to move the stem to the side instead of keeping it right in the center of the pumpkin. To do this, I grab the <a id="keyword">Translation Plane</a> that is perpendicular to the stem (now highlighted in <a style="color: deepskyblue"><b>blue</b></a>) and drag it around to give the stem the asymmetrical feel, or I can type in the translation distances in the parameter fields</p>
+                          <img src="../media/week2/3D Design/13a.png" height="65%" width="65%">
+                          <p>Next I grab one of the <a id="keyword">Rotation Axis</a> (now highlighted in <a style="color: deepskyblue"><b>blue</b></a>) and drag it to twist the stem, or I can type in the degree of rotation in the parameter field.</p>
+                          <img src="../media/week2/3D Design/13c.png" height="65%" width="65%">
+                          <p>And also with another <a id="keyword">Rotation Axis</a>, just to trying around how I can modify it.</p>
+                          <img src="../media/week2/3D Design/13b.png" height="65%" width="65%">
+                          <p>And this is how the stem look from the side due to the rotation</p>
+                          <img src="../media/week2/3D Design/13d.png" height="65%" width="65%">
+                          <p>When happy with the translation and rotation of the whole stem, I repeat these steps for smaller parts at the top of the stem to give a more realistic look to the stem.</p>
+                          <img src="../media/week2/3D Design/14.png" height="65%" width="65%">
+                          <img src="../media/week2/3D Design/14a.png" height="65%" width="65%">
+                          <img src="../media/week2/3D Design/14b.png" height="65%" width="65%">
+                          <img src="../media/week2/3D Design/15.png" height="65%" width="65%">
+                          <img src="../media/week2/3D Design/15a.png" height="65%" width="65%">
+                      <a name="sect2.5"><h3>2.5. Splitting and Shelling</h3></a>
+                          <p>After modifying the stem, the pumpkin is already finished. Next is some decoration. In order to draw the <a id="keyword">"face"</a> for the pumpkin, first I slice the pumpkin at the top and the bottom so I can draw a sketch uing the middle part, and also it is useful later for 3D printing.</p>
+                          <p><a name="splitbody">First I have define an offset plane to slice the pumpkin. I go to the <a id="keyword">CONSTRUCT</a> menu and select <a id="keyword">Offset Plane.</a></a></p>
+                          <img src="../media/week2/3D Design/16.png" height="45%" width="45%">
+                          <img src="../media/week2/3D Design/16a.png" height="45%" width="45%">
+                          <p>I select the XY plane which is perpendicular to the pumpkin's plane for the offset, and enter a small offset distance of 4mm, or simply drag the arrow upwards to the desired distance.</p>
+                          <img src="../media/week2/3D Design/16b.png" height="65%" width="65%">
+                          <p>Then I go to <a id="keyword">MODIFY</a> menu and select <a id="keyword">Split Body</a>, choose the pumpkin as the <a id="keyword">Body to split</a>, and the newly created plane as the <a id="keyword">Splititng Tool.</a></p>
+                          <img src="../media/week2/3D Design/16c.png" height="45%" width="45%">
+                          <img src="../media/week2/3D Design/16d.png" height="45%" width="45%">
+                          <p>I repeat the same steps of creating an offset plane and split the body for the top part of the pumpkin:</p>
+                          <img src="../media/week2/3D Design/17.png" height="45%" width="45%">
+                          <img src="../media/week2/3D Design/17a.png" height="45%" width="45%">
+                          <p>So now I can hide the other parts of the pumpkin and show only the middle part.</p>
+                          <img src="../media/week2/3D Design/17b.png" height="65%" width="65%">
+                          <p>We cannot forget that the Jack-O-Lantern has to be empty inside, so it is time to <a id="keyword">"remove the flesh"</a>. I do this by going to <a id="keyword">MODIFY</a> menu and select <a id="keyword">Shell</a>.</p>
+                          <img src="../media/week2/3D Design/18.png" height="65%" width="65%">
+                          <p>Here I can define how thick the shell of the pumpkin should be, and the <a id="keyword">Direction</a> of shelling should be <a id="keyword">Inside.</a></p>
+                          <img src="../media/week2/3D Design/18a.png" height="65%" width="65%">
+                      <a name="sect2.6"><h3>2.6. Carving the pumpkin</h3></a>
+                          <p>Next I will start to sketch the "face" of the pumpkin in order to extrude it out from the shell. To have an idea how big my sketching space is, I will do a projection of the pumpkin onto the XZ plane (where I started the first sketch in the beginning). To do this, we press the <a id="keyword">P</a> hotkey.</p>
+                          <img src="../media/week2/3D Design/19.png" height="65%" width="65%">
+                      <p>When the <a id="keyword">PROJECT</a> parameters menu appears, I choose the outlines of the pumpkin as the <a id="keyword">Geometry</a> to project and the XZ plane as the projection plane. When I press OK and <a id="keyword">turn off the visibility of the pumpkin Body</a>, I should have the projection lines in <a style="color: purple">purple</a>. These give a boundary for my sketch. Now I can use the <a id ="keyword">Line Tool</a> and the <a id ="keyword">Arc Tool</a> to sketch one of the eyes, (half of) the nose and (half of) the mouth on the left side the pumpkin's projection.</p>
+                          <img src="../media/week2/3D Design/19a.png" height="65%" width="65%">
+                          <p>Now I will do a mirror over the vertical axis to complete the face. To do this, first I draw a line along a the vertical axis, and make it become a construction line by right clicking and choose <a id="keyword">Normal/Construction</a>, or I can also use the hotkey <a id="keyword">X</a>.</p>
+                          <img src="../media/week2/3D Design/19b.png" height="65%" width="65%">
+                      <p>In the <a id="keyword">MIRROR</a> parameters menu, I can choose the lines and arcs I have just sketched as objects and the construction line as the <a id="keyword">Mirror Line</a>. So now I have the complate face for the pumpkin:</p>
+                          <img src="../media/week2/3D Design/19c.png" height="65%" width="65%">
+                          <p>Then I select the parts of the face I just sketched and turn on again the visibility of the pumpkin Body to do an extrusion. I use the hotkey <a id="keyword">E</a> to do this.</p>
+                          <img src="../media/week2/3D Design/20.png" height="65%" width="65%">
+                          <p>The <a id="keyword">Direction</a> should be <a id="keyword">One Side</a> and the <a id="keyword">Operation</a> should be <a id="keyword">Cut</a>. I only need to drag the mouse to a certain distance so that the extrusion fully cuts through one side of the pumpkin Body.</p>
+                          <img src="../media/week2/3D Design/20a.png" height="65%" width="65%">
+                      <a name="sect2.7"><h3>2.7. Giving it some color</h3></a>
+                      <p>Now the Kack-O-Lantern is already finished, I just want to add some colors to it so it looks more "friendly" :D. To do this, I press the <a id="keyword">A</a> hotkey for the Appearance menu to pop up.</p>
+                      <img src="../media/week2/3D Design/21.png" height="65%" width="65%">
+                      <p>We can see in this menu that the current material is by default Steel. I would like to change the material to Plastic with color Yellow, so I select it from the <a id="keyword">Fusion 360 Appearance Library</a>, and simply <a id="keyword">drag and drop</a> the material on to the body.</p>
+                      <img src="../media/week2/3D Design/21a.png" height="65%" width="65%">
+                      <p>Finally, I would like to change the color of the material from yellow to orange because it is not readily available in the library. To do this, I right click on the material and choose <a id="keyword">Edit</a> and choose orange from the Color Picker. Now I drag and drop this new material on to the other parts of the pumpkin body and my Jack-O-Lantern is fully decorated.</p>
+                      <img src="../media/week2/3D Design/finalb.png" height="65%" width="65%">
+                      <p>And this is how it looks in 3D:</p>
+                      <img src="../media/week2/3D Design/final3D.png" height="65%" width="65%">
+                    <a name="sect3"><h2>3. Lessons learned and troubleshooting</h2></a>
+                    <h3>3.1. Problem with the 2D design</h3>
+                      <p>The problem I encountered with my 2D design assignment was that sometimes the lines and curves do not intersect each other as expected, for example in this case it was like following:</p>
+                      <img src="../media/week2/2D Design/e1.png" height="80%" width="80%">
+                      <p>Although this arc was not drawn from sketch but simply was duplicated using the <a id="keyword">PATTERN</a> command, somehow it still did not join with the circle. As a result, I could not <a id="keyword">TRIM</a> off unwanted line segments. Only when I zoomed in to fill the gap by extending the arc did the trimming work.</p>
+                    <h3>3.2. Problem with the 3D design</h3>
+                      <p>The 3D model of the Jack-O-Lantern looks simple but actually if we do not know some tips and tricks in the design process it could give some real headaches. From this tutorial, I learned that <a id="keyword">the flow of the design process has to be in a certain order</a> so that the software can properly model what we intend to do. For example, I have to do the splitting of the full pumpkin body, not only so that later on it is easier to be 3D printed, but also in order to easily shell the pumpkin in the next step. If I do the splitting step after the shelling step, the bottom and top part of the pumpkin will also be shelled off, which I do not want because it will make the 3D print structure unstable.</p>
+                      
+                      <p>Another problem I encountered also had to do with the <a href="#sect2.5">splitting and shelling</a> of the pumpkin. At the step of splitting the body with the offset plane, in the beginning I put in a too small value (in this case 1.2mm) for the offset and thus when the body is split, the 2 new bodies are not perfectly solid:</p>
+                        <img src="../media/week2/3D Design/errors/e3a.png" height="65%" width="65%">
+                        <img src="../media/week2/3D Design/errors/e3b.png" height="65%" width="65%">
+                        <img src="../media/week2/3D Design/errors/e3c.png" height="65%" width="65%">
+                      <p>As a result, when I tried to shell the middle part of the pumpkin body, the software gave me an error:</p>
+                      <img src="../media/week2/3D Design/errors/e5.png" height="65%" width="65%">
+                      <p>Thus I had to edit my offset plane and bring it more upwards so that the bottom and the rest of the pumpkin are splitted in a solid way, like what we see in the end:</p>
+                      <img src="../media/week2/3D Design/errors/f7.png" height="65%" width="65%">
+                      <img src="../media/week2/3D Design/errors/f8.png" height="65%" width="65%">
+                    <a name="sect4"><h2>4. Download resources</h2></a>
+                      <p>The DXF file for my 2D design - Mechanical Iris - can be downloaded <a href="../Assignment Files/Week2_Iris.dxf">here.</a></p> 
+                      <p>The Fusion 360 file for my 3D design - Jack-O-Lantern - can be downloaded <a href="../Assignment Files/Week2_Jack-O-Lantern_final.f3d">here.</a></p>
+                      <br>
+                  </div>
+                </div>        
+             </div>
+        
+                <div class="footer">
+                        Thi Yen Thu Nguyen &#9679; Fundamentals of Digital Fabrication 2017 &#9679; FabLab Kamp-Lintfort
+                </div>
+              
+    </body>
+
+</html>

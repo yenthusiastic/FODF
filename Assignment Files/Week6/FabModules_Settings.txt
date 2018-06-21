@@ -1,0 +1,56 @@
+Settings the Fabmodules for the Fundamental Course
+
+Please change only the mentioned settings, don't touch the others.
+
+Roland MDX40A
+
+Engraving:
+
+- jog height 5mm
+- cut depth 0.0
+- tool diameter 0.2mm
+- offset overlap 55%
+
+
+Cutout:
+
+- cut speed 1mm
+- plunge speed 1mm
+- jog height 5mm
+- cut depth 1.9mm
+- tool diameter 1mm
+- number of offsets 1
+
+
+Cirqoid
+
+Engraving:
+
+
+- cut speed 1mm
+- plunge speed 1mm
+- jog speed 1mm
+- jog height 2mm
+- cut depth 0.0
+- tool diameter 0.2mm
+- offset overlap 55%
+
+
+Cutout:
+
+- cut speed 0.4mm
+- plunge speed 0.4mm
+- jog speed 1mm
+- jog height 5mm
+- cut depth 1.9mm
+- tool diameter 1mm
+- number of offsets 1
+
+Useful gcode command
+
+- start spindle: M3 S100
+- stop spindle: M5
+- move to X home: G0 X0
+- move to Y home: G0 Y0
+- mode to Z home: G0 Z0
+
